@@ -7,6 +7,9 @@ export const resources: Resource[] = [
     slug: 'annual-impact-report-2024',
     type: 'report',
     summary: 'Comprehensive overview of our achievements, challenges, and future goals in bringing STEM education to underserved communities.',
+    description: 'Comprehensive overview of our achievements, challenges, and future goals in bringing STEM education to underserved communities.',
+    date: '2024-12-01',
+    category: 'Impact',
     content: `Our 2024 impact report showcases significant growth across all program areas. This year marked a milestone with over 2,500 students enrolled in the Uwezo Token program, 5 tons of e-waste processed through our Fab Lab, and 85 communities reached through mobile teaching initiatives.
 
 Key highlights include the successful implementation of our blockchain-based reward system, which has shown a 40% increase in student engagement and academic performance. The Fab Lab program has evolved from basic electronics repair to sophisticated IoT development, with students creating solutions for local agricultural challenges.
@@ -27,6 +30,9 @@ Looking ahead to 2025, we're planning to scale our token program to 10 additiona
     slug: 'blockchain-education-whitepaper',
     type: 'report',
     summary: 'Technical whitepaper examining the application of blockchain technology in educational reward systems and student motivation.',
+    description: 'Technical whitepaper examining the application of blockchain technology in educational reward systems and student motivation.',
+    date: '2024-10-15',
+    category: 'Research',
     content: `This whitepaper presents our findings from implementing blockchain technology in educational settings. We examine the technical architecture, security considerations, and practical challenges of deploying decentralized systems in resource-constrained environments.
 
 Our research demonstrates that blockchain-based reward systems can significantly improve student engagement when properly implemented. The transparency and immutability of blockchain records build trust among students, parents, and educators while providing verifiable achievement tracking.
@@ -47,6 +53,9 @@ The paper also addresses ethical considerations around student data privacy and 
     slug: 'sustainable-stem-practices',
     type: 'blog',
     summary: 'Exploring innovative approaches to STEM education that prioritize environmental sustainability and community engagement.',
+    description: 'Exploring innovative approaches to STEM education that prioritize environmental sustainability and community engagement.',
+    date: '2024-11-20',
+    category: 'Sustainability',
     content: `Sustainable STEM education goes beyond teaching science and technology—it's about fostering a mindset that values environmental stewardship and community responsibility. Our approach integrates circular economy principles into every aspect of learning.
 
 In our Fab Lab, students don't just learn electronics; they learn to see waste as a resource. Every project begins with the question: "How can we solve this problem while minimizing environmental impact?" This mindset shift is crucial for developing solutions that are both innovative and sustainable.
@@ -66,6 +75,9 @@ Case studies from our programs show that when students understand the environmen
     slug: 'mobile-learning-toolkit',
     type: 'download',
     summary: 'Free resource package including lesson plans, activity guides, and setup instructions for mobile STEM education programs.',
+    description: 'Free resource package including lesson plans, activity guides, and setup instructions for mobile STEM education programs.',
+    date: '2024-09-30',
+    category: 'Resources',
     content: `Our Mobile Learning Toolkit provides everything needed to launch effective STEM education programs in resource-limited environments. Developed through years of field experience, these materials are tested, refined, and ready for immediate implementation.
 
 The toolkit includes:
@@ -91,6 +103,9 @@ The toolkit also features troubleshooting guides, safety protocols, and tips for
     slug: 'girls-in-stem-case-study',
     type: 'blog',
     summary: 'Inspiring stories of young women who have thrived in our STEM programs and the strategies that made their success possible.',
+    description: 'Inspiring stories of young women who have thrived in our STEM programs and the strategies that made their success possible.',
+    date: '2024-11-05',
+    category: 'Stories',
     content: `Creating inclusive STEM programs requires intentional design and ongoing commitment. This post shares stories of remarkable young women who have not only participated in our programs but have become leaders and innovators in their communities.
 
 Meet Grace, who started in our Fab Lab as a shy 16-year-old and now leads a team building solar-powered water purification systems for her community. Her journey illustrates the importance of mentorship, peer support, and culturally relevant curricula.

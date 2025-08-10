@@ -46,6 +46,9 @@ export interface Resource {
   slug: string;
   type: 'report' | 'blog' | 'download' | 'video';
   summary: string;
+  description: string;
+  date: string;
+  category: string;
   content: string;
   image: string;
   imageAlt: string;

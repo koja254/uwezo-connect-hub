@@ -1,6 +1,6 @@
 import { TeamMember } from '@/types';
 
-export const team: TeamMember[] = [
+export const teamMembers: TeamMember[] = [
   {
     id: 'tevin-omondi',
     name: 'Tevin Omondi',
