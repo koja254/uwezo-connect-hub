@@ -48,7 +48,7 @@ const Header = () => {
           <Link 
             to="/" 
             className="flex items-center space-x-3 group"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
           >
             <img
               src="/images/image-24.png"
@@ -70,7 +70,11 @@ const Header = () => {
             <NavigationMenu>
               <NavigationMenuList className="flex space-x-6">
                 <NavigationMenuItem>
-                  <Link to="/about" className={`nav-link ${isActivePath('/about') ? 'active' : ''}`}>
+                  <Link 
+                    to="/about" 
+                    className={`nav-link ${isActivePath('/about') ? 'active' : ''}`}
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
                     About
                   </Link>
                 </NavigationMenuItem>
@@ -86,6 +90,7 @@ const Header = () => {
                           <Link
                             to="/programs"
                             className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-primary p-6 no-underline outline-none focus:shadow-md"
+                            onClick={() => window.scrollTo(0, 0)}
                           >
                             <div className="mb-2 mt-4 text-lg font-medium text-white">
                               All Programs
@@ -101,6 +106,7 @@ const Header = () => {
                           <Link
                             to={`/programs/${program.slug}`}
                             className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            onClick={() => window.scrollTo(0, 0)}
                           >
                             <div className="text-sm font-medium leading-none">
                               {program.title}
@@ -116,19 +122,31 @@ const Header = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link to="/resources" className={`nav-link ${isActivePath('/resources') ? 'active' : ''}`}>
+                  <Link 
+                    to="/resources" 
+                    className={`nav-link ${isActivePath('/resources') ? 'active' : ''}`}
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
                     Resources
                   </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link to="/team" className={`nav-link ${isActivePath('/team') ? 'active' : ''}`}>
+                  <Link 
+                    to="/team" 
+                    className={`nav-link ${isActivePath('/team') ? 'active' : ''}`}
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
                     Team
                   </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link to="/contact" className={`nav-link ${isActivePath('/contact') ? 'active' : ''}`}>
+                  <Link 
+                    to="/contact" 
+                    className={`nav-link ${isActivePath('/contact') ? 'active' : ''}`}
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
                     Contact
                   </Link>
                 </NavigationMenuItem>
@@ -137,10 +155,10 @@ const Header = () => {
 
             <div className="flex items-center space-x-3">
               <Button asChild variant="outline" size="sm">
-                <Link to="/donate">Donate</Link>
+                <Link to="/donate" onClick={() => window.scrollTo(0, 0)}>Donate</Link>
               </Button>
               <Button asChild size="sm" className="cta-primary">
-                <Link to="/programs">Get Involved</Link>
+                <Link to="/programs" onClick={() => window.scrollTo(0, 0)}>Get Involved</Link>
               </Button>
             </div>
           </nav>
@@ -162,7 +180,7 @@ const Header = () => {
               <Link
                 to="/about"
                 className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 About
               </Link>
@@ -173,7 +191,7 @@ const Header = () => {
                   <Link
                     to="/programs"
                     className="block py-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
                   >
                     All Programs
                   </Link>
@@ -182,7 +200,7 @@ const Header = () => {
                       key={program.id}
                       to={`/programs/${program.slug}`}
                       className="block py-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
                     >
                       {program.title}
                     </Link>
@@ -193,7 +211,7 @@ const Header = () => {
               <Link
                 to="/resources"
                 className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 Resources
               </Link>
@@ -201,7 +219,7 @@ const Header = () => {
               <Link
                 to="/team"
                 className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 Team
               </Link>
@@ -209,19 +227,19 @@ const Header = () => {
               <Link
                 to="/contact"
                 className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 Contact
               </Link>
               
               <div className="px-4 pt-4 flex flex-col space-y-3">
                 <Button asChild variant="outline" className="w-full">
-                  <Link to="/donate" onClick={() => setIsMenuOpen(false)}>
+                  <Link to="/donate" onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}>
                     Donate
                   </Link>
                 </Button>
                 <Button asChild className="w-full cta-primary">
-                  <Link to="/programs" onClick={() => setIsMenuOpen(false)}>
+                  <Link to="/programs" onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}>
                     Get Involved
                   </Link>
                 </Button>

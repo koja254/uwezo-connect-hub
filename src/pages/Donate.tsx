@@ -144,11 +144,6 @@ const Donate = () => {
                 "When you invest in a young person's future, the returns are endless."
               </blockquote>
             </div>
-            <div className="max-w-2xl mx-auto mb-8">
-              <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
-                "When you invest in a young person's future, the returns are endless."
-              </blockquote>
-            </div>
             <div className="flex justify-center">
               <img 
                 src="/images/image-19.jpg" 

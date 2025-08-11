@@ -88,10 +88,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Organization Info */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">U</span>
-              </div>
+            <Link to="/" className="flex items-center space-x-3 mb-6" onClick={() => window.scrollTo(0, 0)}>
+              <img
+                src="/images/image-24.png"
+                alt="Uwezo Logo"
+                className="w-10 h-10 bg-transparent rounded-xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300"
+              />
               <div>
                 <span className="font-poppins font-bold text-xl">Uwezo Link</span>
                 <div className="text-sm text-white/80">Initiative</div>
@@ -128,7 +130,7 @@ const Footer = () => {
             <h4 className="font-poppins font-semibold text-lg mb-6">Programs</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/programs" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/programs" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   All Programs
                 </Link>
               </li>
@@ -137,6 +139,7 @@ const Footer = () => {
                   <Link 
                     to={`/programs/${program.slug}`} 
                     className="text-white/80 hover:text-accent transition-colors text-sm"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     {program.title}
                   </Link>
@@ -150,27 +153,27 @@ const Footer = () => {
             <h4 className="font-poppins font-semibold text-lg mb-6">Organization</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/about" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/team" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Our Team
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/resources" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Resources
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/contact" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/donate" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/donate" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Donate
                 </Link>
               </li>
@@ -182,22 +185,22 @@ const Footer = () => {
             <h4 className="font-poppins font-semibold text-lg mb-6">Get Involved</h4>
             <ul className="space-y-3 mb-6">
               <li>
-                <Link to="/donate" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/donate" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Make a Donation
                 </Link>
               </li>
               <li>
-                <Link to="/team#volunteer" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/team#volunteer" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Volunteer with Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/contact" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Partner with Us
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-white/80 hover:text-accent transition-colors text-sm">
+                <Link to="/resources" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
                   Download Resources
                 </Link>
               </li>
