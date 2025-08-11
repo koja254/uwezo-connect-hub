@@ -4,10 +4,10 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'tevin-omondi',
     name: 'Tevin Omondi',
-    role: 'Executive Director & Founder',
-    bio: `Tevin brings over 8 years of experience in educational technology and community development. As a former software engineer turned social entrepreneur, he bridges the gap between technology and grassroots impact. His vision for democratizing STEM education drives Uwezo's innovative approach to learning.
+    role: 'Co-Founder & Technology Lead',
+    bio: `Passionate blockchain developer, community advocate, and innovation catalyst. Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
 
-Tevin holds a degree in Computer Science and has led multiple successful tech-for-good initiatives across East Africa. His passion for youth empowerment and sustainable development shapes every aspect of Uwezo's mission.`,
+"Technology is only as powerful as the lives it transforms."`,
     image: '/images/image-16.jpg',
     imageAlt: 'Portrait: Tevin Omondi',
     linkedin: 'https://linkedin.com/in/tevin-omondi',
@@ -18,10 +18,10 @@ Tevin holds a degree in Computer Science and has led multiple successful tech-fo
   {
     id: 'sharly-moraa',
     name: 'Sharly Moraa',
-    role: 'Program Director',
-    bio: `Sharly leads Uwezo's program implementation with a focus on curriculum development and community engagement. With a background in education and international development, she ensures our programs are culturally relevant and pedagogically sound.
+    role: 'Co-Founder & SRHR Advocate',
+    bio: `Vibrant voice for Sexual and Reproductive Health Rights in Kenya, with extensive experience in grassroots workshops and menstrual equity advocacy. Sharly ensures all programs meet the real needs of rural and underserved youth, particularly young women facing barriers to education.
 
-Her expertise in gender-inclusive STEM education has been instrumental in designing programs that specifically address barriers facing young women in technology. Sharly's collaborative approach builds strong partnerships with schools and community organizations.`,
+"Every girl deserves dignity, every boy deserves knowledge — and both deserve opportunity."`,
     image: '/images/image-17.jpg',
     imageAlt: 'Portrait: Sharly Moraa',
     linkedin: 'https://linkedin.com/in/sharly-moraa',

@@ -29,42 +29,42 @@ export const impactStats: ImpactStat[] = [
 
 export const donationTiers: DonationTier[] = [
   {
-    id: 'sponsor-student',
+    id: 'pads-for-term',
     amount: 10,
     currency: 'USD',
     type: 'one-time',
-    title: 'Sponsor a Student',
-    description: 'Provide a month of token-based learning for one student',
+    title: 'Sanitary Pads for a Term',
+    description: 'Provide a girl with sanitary pads for a full school term',
     impact: [
-      'QR-coded ID card and digital wallet setup',
-      'Access to educational resources',
-      'Participation in weekly SRHR workshops'
+      'Three months of dignity and school attendance',
+      'Access to SRHR education workshops',
+      'Uwezo Token rewards for participation'
     ]
   },
   {
-    id: 'equip-lab',
+    id: 'iot-starter-kit',
     amount: 50,
     currency: 'USD',
     type: 'one-time',
-    title: 'Equip the Lab',
-    description: 'Fund essential tools and materials for hands-on learning',
+    title: 'IoT Starter Kit',
+    description: 'Fund an IoT climate monitoring kit built from recycled materials',
     impact: [
-      'Electronics components for 10 student projects',
-      'Safety equipment and tools',
-      'Sustainable building materials'
+      'Recycled electronics components',
+      'Climate monitoring sensors',
+      'Student-led innovation project'
     ]
   },
   {
-    id: 'mobile-program',
+    id: 'community-workshop',
     amount: 100,
     currency: 'USD',
     type: 'one-time',
-    title: 'Fund Mobile Teaching',
-    description: 'Support a full mobile STEM program visit to a remote community',
+    title: 'Community Workshop',
+    description: 'Support a full community education workshop on AI, coding, and problem-solving',
     impact: [
-      'Transportation and setup costs',
-      'Teaching materials for 30 students',
-      'Local educator training session'
+      'Training for 30 community members',
+      'Materials and equipment',
+      'Local facilitator support'
     ]
   },
   {
@@ -73,11 +73,11 @@ export const donationTiers: DonationTier[] = [
     currency: 'USD',
     type: 'monthly',
     title: 'Monthly Champion',
-    description: 'Sustained support for program operations',
+    description: 'Sustained support for ongoing community programs',
     impact: [
-      'Ongoing mentorship for students',
-      'Program maintenance and updates',
-      'Community relationship building'
+      'Regular SRHR workshops',
+      'Fab Lab operations',
+      'Teacher training sessions'
     ]
   },
   {
@@ -86,12 +86,12 @@ export const donationTiers: DonationTier[] = [
     currency: 'USD',
     type: 'corporate',
     title: 'Corporate Partnership',
-    description: 'Comprehensive program sponsorship with visibility',
+    description: 'Comprehensive program sponsorship with community impact',
     impact: [
-      'Full program implementation in one school',
-      'Corporate branding on materials',
-      'Quarterly impact reports',
-      'Team volunteer opportunities'
+      'Full program implementation in one community',
+      'Corporate social responsibility reporting',
+      'Employee volunteer opportunities',
+      'Quarterly impact assessments'
     ]
   }
 ];
@@ -157,30 +157,30 @@ export const cryptoTokens: CryptoToken[] = [
 
 // Organization content
 export const organizationContent = {
-  mission: "To democratize STEM education and empower young people in marginalized communities through innovative technology, hands-on learning, and sustainable development practices.",
+  mission: "Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.",
   
-  vision: "A world where every young person, regardless of geographic or economic barriers, has access to quality STEM education that prepares them to solve local and global challenges.",
+  vision: "A future where every young person — regardless of gender, background, or location — has the resources, knowledge, and opportunities to thrive in a changing world.",
   
   coreValues: [
     {
-      title: "Innovation with Purpose",
-      description: "We embrace cutting-edge technology while staying grounded in community needs and real-world impact."
+      title: "Integrity",
+      description: "We operate with honesty, transparency, and ethical practices in all our community engagements and partnerships."
     },
     {
-      title: "Inclusive Excellence", 
-      description: "We create programs that welcome all learners, with particular attention to gender equity and accessibility."
+      title: "Innovation", 
+      description: "We embrace creative solutions and cutting-edge technology to address community challenges and create new opportunities."
     },
     {
-      title: "Sustainability First",
-      description: "Environmental stewardship guides our curriculum, operations, and the solutions we help students develop."
+      title: "Equity",
+      description: "We ensure fair access to resources and opportunities, with special attention to marginalized and underserved populations."
     },
     {
-      title: "Community-Centered",
-      description: "Local voices, needs, and knowledge shape every aspect of our programming and partnerships."
+      title: "Sustainability",
+      description: "Environmental and social responsibility guide our programs, ensuring lasting positive impact for future generations."
     },
     {
-      title: "Transparency & Accountability",
-      description: "We maintain open communication about our methods, outcomes, and challenges with all stakeholders."
+      title: "Collaboration",
+      description: "We build strong partnerships with communities, organizations, and individuals to maximize our collective impact."
     }
   ],
   

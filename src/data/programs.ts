@@ -3,12 +3,14 @@ import { Program } from '@/types';
 export const programs: Program[] = [
   {
     id: 'uwezo-token',
-    title: 'Uwezo Token',
+    title: 'Uwezo Token – Bridging Education & Dignity',
     slug: 'uwezo-token',
-    summary: 'Digital rewards system that empowers students to earn tokens for academic achievements and redeem them for educational resources.',
-    description: `The Uwezo Token program revolutionizes student motivation through blockchain-based rewards. Students earn digital tokens for academic milestones, attendance, and community engagement, which can be redeemed for school supplies, educational resources, and SRHR workshops.
+    summary: 'Blockchain-powered solution addressing period poverty and promoting education equity',
+    description: `Meet Amina, a bright 15-year-old from rural Kenya who dreams of becoming a doctor. Every month, Amina misses 3-5 days of school because her family cannot afford sanitary pads. This story repeats across countless communities, where period poverty becomes a barrier to education and future opportunities.
 
-Our QR-based ID system ensures transparent tracking while building financial literacy through digital wallet management. This innovative approach bridges traditional education with modern technology, preparing students for the digital economy while addressing immediate educational needs.`,
+"A girl's education should never stop because of her period."
+
+The Uwezo Token program uses blockchain technology to create a sustainable solution. Students earn digital tokens for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These tokens can be redeemed for sanitary products, school supplies, and other necessities, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
     heroImage: '/images/image-02.jpg',
     heroImageAlt: 'Students in a school corridor receiving assistance',
     keyFeatures: [
@@ -68,14 +70,14 @@ Our QR-based ID system ensures transparent tracking while building financial lit
   },
   {
     id: 'uwezo-fab-lab',
-    title: 'Uwezo Fab Lab',
+    title: 'Uwezo Fab Lab – Innovating for Climate & Community',
     slug: 'uwezo-fab-lab',
-    summary: 'Community fabrication laboratory where youth learn to build climate-smart solutions using recycled electronics and sustainable materials.',
-    description: `The Uwezo Fab Lab is a state-of-the-art maker space dedicated to environmental innovation and hands-on learning. Young makers transform e-waste into functional devices while developing critical STEM skills and environmental consciousness.
+    summary: 'Mobile fabrication laboratory turning e-waste into climate solutions',
+    description: `In Kenya, erratic rainfall and mounting e-waste pose growing challenges. Daniel, a 17-year-old from Machakos, witnessed his family's farm struggle with unpredictable weather patterns while electronics waste accumulated in his community. Through the Uwezo Fab Lab, Daniel learned to transform discarded cell phones and computers into IoT sensors that monitor soil moisture and weather patterns.
 
-Our lab focuses on climate-smart technologies, from IoT sensors for precision agriculture to solar-powered community solutions. Students learn electronics, programming, 3D printing, and sustainable design principles while addressing real community challenges.
+"We can't stop the rain, but we can design systems to live with it."
 
-Every project emphasizes circular economy principles, showing how technology can serve both innovation and environmental stewardship.`,
+Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching students to build climate monitoring devices, renewable energy solutions, and practical innovations using recycled electronics. This hands-on approach addresses environmental challenges while building essential 21st-century skills.`,
     heroImage: '/images/image-05.jpg',
     heroImageAlt: 'Fab Lab workshop with youth building devices',
     keyFeatures: [
@@ -136,14 +138,14 @@ Every project emphasizes circular economy principles, showing how technology can
   },
   {
     id: 'uwezo-teaching',
-    title: 'Uwezo Teaching',
+    title: 'Uwezo Teaching – Learning for the Future',
     slug: 'uwezo-teaching',
-    summary: 'Mobile education initiative bringing STEM learning directly to underserved communities through hands-on workshops and mentorship.',
-    description: `Uwezo Teaching breaks down geographical barriers by bringing world-class STEM education directly to communities that need it most. Our mobile units and educator teams travel to remote areas, setting up temporary learning spaces where students can access hands-on technology education.
+    summary: 'Community-based education addressing Africa\'s digital economy gap',
+    description: `Mary, a recent secondary school graduate from Turkana, possesses natural problem-solving abilities but has never touched a computer. Across Africa, the digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation.
 
-The program emphasizes practical skills, critical thinking, and creativity. From basic computer literacy to advanced robotics, we adapt our curriculum to meet communities where they are, building local capacity and inspiring the next generation of innovators.
+"We are not just teaching code — we are teaching possibility."
 
-Our teaching approach focuses on learning by doing, ensuring students gain confidence and real-world applicable skills while fostering a love for lifelong learning.`,
+The Uwezo Teaching program brings AI, coding, and digital problem-solving skills directly to underserved communities. Through mobile learning units and locally-trained facilitators, we create pathways for young people to engage with technology as creators, not just consumers, while addressing real challenges in their communities.`,
     heroImage: '/images/image-09.jpg',
     heroImageAlt: 'Mobile STEM teaching session with kids',
     keyFeatures: [

@@ -211,8 +211,7 @@ const About = () => {
               Who We Are
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              We are passionate advocates for educational equity, technological innovation, and 
-              community empowerment, working to democratize STEM education across Kenya.
+              Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible — and are working tirelessly to make it happen.
             </p>
             <img 
               src="/images/image-02.jpg" 
@@ -232,7 +231,7 @@ const About = () => {
                 Our Mission
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                To empower youth in underserved communities through innovative STEM education, blockchain technology, and sustainable maker spaces that foster creativity, critical thinking, and economic opportunity.
+                Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.
               </p>
             </div>
 
@@ -240,20 +239,13 @@ const About = () => {
               <div>
                 <h3 className="font-poppins text-2xl font-bold mb-6">Our Story</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Uwezo Link Initiative was born from a simple yet powerful observation: brilliant young minds 
-                  in underserved communities lack access to the tools and opportunities needed to transform 
-                  their innovative ideas into reality.
+                  Uwezo Link Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities — girls missing school due to lack of sanitary products, communities struggling with climate change impacts, and youth excluded from the digital economy despite their natural innovation abilities.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Founded by educators, technologists, and community advocates, we bridge the gap between 
-                  traditional education and the skills demanded by our rapidly evolving digital economy. 
-                  Our approach combines proven pedagogical methods with cutting-edge technology to create 
-                  learning experiences that are both engaging and relevant.
+                  The Uwezo Link Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  What sets us apart is our commitment to sustainability and community ownership. We don't 
-                  just provide programs—we build capacity, transfer knowledge, and create lasting systems 
-                  that continue to benefit communities long after our direct involvement ends.
+                  Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions — we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
                 </p>
               </div>
               <div className="space-y-6">
@@ -307,7 +299,7 @@ const About = () => {
                 </div>
                 <h3 className="font-poppins text-2xl font-bold mb-4">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  A future where every young person, regardless of their economic background or geographic location, has access to quality STEM education and the tools needed to become innovators, entrepreneurs, and leaders in the digital economy.
+                  A future where every young person — regardless of gender, background, or location — has the resources, knowledge, and opportunities to thrive in a changing world.
                 </p>
               </div>
               
@@ -317,7 +309,7 @@ const About = () => {
                 </div>
                 <h3 className="font-poppins text-2xl font-bold mb-4">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To empower youth in underserved communities through innovative STEM education, blockchain technology, and sustainable maker spaces that foster creativity, critical thinking, and economic opportunity.
+                  Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.
                 </p>
               </div>
             </div>

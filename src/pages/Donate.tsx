@@ -136,9 +136,13 @@ const Donate = () => {
               Support Our Mission
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Your contribution directly impacts students across Kenya, providing them with 
-              access to cutting-edge STEM education and life-changing opportunities.
+              Your contribution directly transforms lives across Kenyan communities, addressing period poverty, building climate resilience, and creating pathways to the digital economy.
             </p>
+            <div className="max-w-2xl mx-auto mb-8">
+              <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
+                "When you invest in a young person's future, the returns are endless."
+              </blockquote>
+            </div>
             <div className="flex justify-center">
               <img 
                 src="/images/image-19.jpg" 
@@ -168,12 +172,12 @@ const Donate = () => {
                 <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-2xl flex items-center justify-center">
                   <span className="text-primary font-bold text-xl">$10</span>
                 </div>
-                <CardTitle className="text-lg">School Supplies</CardTitle>
+                <CardTitle className="text-lg">Sanitary Pads for a Term</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Provides basic school supplies and materials for one student for a month, 
-                  including notebooks, pens, and basic tech accessories.
+                  Provides a girl with sanitary pads for a full school term, ensuring dignity 
+                  and uninterrupted education for three months.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -183,12 +187,12 @@ const Donate = () => {
                 <div className="w-16 h-16 mx-auto mb-4 bg-secondary/20 rounded-2xl flex items-center justify-center">
                   <span className="text-secondary font-bold text-xl">$50</span>
                 </div>
-                <CardTitle className="text-lg">Workshop Access</CardTitle>
+                <CardTitle className="text-lg">IoT Starter Kit</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Sponsors one student's participation in a full month of Fab Lab workshops, 
-                  including materials and mentorship.
+                  Funds an IoT climate monitoring kit built from recycled materials, 
+                  enabling community-led environmental solutions.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -198,12 +202,12 @@ const Donate = () => {
                 <div className="w-16 h-16 mx-auto mb-4 bg-accent/20 rounded-2xl flex items-center justify-center">
                   <span className="text-accent font-bold text-xl">$100</span>
                 </div>
-                <CardTitle className="text-lg">Full Program</CardTitle>
+                <CardTitle className="text-lg">Community Workshop</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Covers complete program participation for one student, including Uwezo Tokens, 
-                  Fab Lab access, and ongoing support.
+                  Supports a full community education workshop on AI, coding, and problem-solving 
+                  for 30 participants, including materials and facilitation.
                 </CardDescription>
               </CardContent>
             </Card>

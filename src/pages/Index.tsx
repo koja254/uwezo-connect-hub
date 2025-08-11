@@ -18,9 +18,9 @@ const Index = () => {
       
       {/* Hero Section */}
       <Hero
-        title="Empowering Youth Through STEM Innovation"
+        title="Empowering Communities. Transforming Futures. Building Resilience."
         subtitle="Building the Future Today"
-        description="We bridge the digital divide by bringing cutting-edge STEM education, blockchain technology, and hands-on maker spaces to underserved communities across Kenya."
+        description="Meet Amina, who misses school every month due to lack of sanitary products. Daniel, who has never accessed a coding lab. Mary, who's unsure how to contribute to climate solutions. Uwezo Link Initiative was founded to bridge these gaps — connecting communities to opportunity through technology, education, and innovation."
         primaryCTA={{
           text: "Join Our Community",
           href: "/programs"
@@ -41,11 +41,14 @@ const Index = () => {
             <h2 className="font-poppins text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
               Who We Are
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
-              Uwezo Link Initiative is a pioneering organization dedicated to democratizing STEM education 
-              through innovative technology and community-centered approaches. We believe every young person 
-              deserves access to the skills and knowledge needed to thrive in our digital future.
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
+              Uwezo Link Initiative is a Community-Based Organization using innovative, technology-driven solutions to fight period poverty, build climate resilience, and equip youth with 21st-century skills.
             </p>
+            <div className="max-w-2xl mx-auto mb-12">
+              <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
+                "We are not just solving problems — we are creating possibilities."
+              </blockquote>
+            </div>
             
             {/* Core Values Preview */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
