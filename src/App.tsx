@@ -11,6 +11,7 @@ import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
+import ProgramDetail from "./pages/ProgramDetail";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/programs/:slug" element={<ProgramDetail />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
