@@ -4,10 +4,9 @@ export const programs: Program[] = [
   {
     id: 'uwezo-token',
     title: 'Uwezo Token – Bridging Education & Dignity',
-    title: 'Uwezo Token – Bridging Education & Dignity',
     slug: 'uwezo-token',
     summary: 'Blockchain-powered solution addressing period poverty and promoting education equity',
-    description: `Meet Amina, a bright 15-year-old from rural Kenya who dreams of becoming a doctor. Every month, Amina misses 3-5 days of school because her family cannot afford sanitary pads. This story repeats across countless communities, where period poverty becomes a barrier to education and future opportunities.
+    description: `Meet Amina, a bright 15-year-old from rural Kenya who dreams of becoming a doctor. Every month, Amina misses 3–5 days of school because her family cannot afford sanitary pads. This story repeats across countless communities, where period poverty becomes a barrier to education and future opportunities.
 
 "A girl's education should never stop because of her period."
 
@@ -23,43 +22,15 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
       'Transparent achievement tracking'
     ],
     howItWorks: [
-      {
-        step: 1,
-        title: 'Student Registration',
-        description: 'Students receive QR-coded ID cards linking to their digital wallet'
-      },
-      {
-        step: 2,
-        title: 'Earn Tokens', 
-        description: 'Complete academic tasks, attend classes, and participate in community activities'
-      },
-      {
-        step: 3,
-        title: 'Redeem Rewards',
-        description: 'Exchange tokens for school supplies, resources, and workshop access'
-      },
-      {
-        step: 4,
-        title: 'Track Progress',
-        description: 'Monitor achievements and build financial literacy skills'
-      }
+      { step: 1, title: 'Student Registration', description: 'Students receive QR-coded ID cards linking to their digital wallet' },
+      { step: 2, title: 'Earn Tokens', description: 'Complete academic tasks, attend classes, and participate in community activities' },
+      { step: 3, title: 'Redeem Rewards', description: 'Exchange tokens for school supplies, resources, and workshop access' },
+      { step: 4, title: 'Track Progress', description: 'Monitor achievements and build financial literacy skills' }
     ],
     impact: [
-      {
-        metric: 'Students Enrolled',
-        value: '2,500+',
-        description: 'Active participants across rural schools'
-      },
-      {
-        metric: 'Tokens Earned',
-        value: '150K+',
-        description: 'Total tokens earned by students'
-      },
-      {
-        metric: 'Resources Redeemed',
-        value: '85%',
-        description: 'Student engagement in redemption activities'
-      }
+      { metric: 'Students Enrolled', value: '2,500+', description: 'Active participants across rural schools' },
+      { metric: 'Tokens Earned', value: '150K+', description: 'Total tokens earned by students' },
+      { metric: 'Resources Redeemed', value: '85%', description: 'Student engagement in redemption activities' }
     ],
     gallery: [
       { src: '/images/image-03.jpg', alt: 'QR ID card and token redemption illustration' },
@@ -72,14 +43,10 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
   {
     id: 'uwezo-fab-lab',
     title: 'Uwezo Fab Lab – Innovating for Climate & Community',
-    title: 'Uwezo Fab Lab – Innovating for Climate & Community',
     slug: 'uwezo-fab-lab',
     summary: 'Mobile fabrication laboratory turning e-waste into climate solutions',
     description: `In Kenya, erratic rainfall and mounting e-waste pose growing challenges. Daniel, a 17-year-old from Machakos, witnessed his family's farm struggle with unpredictable weather patterns while electronics waste accumulated in his community. Through the Uwezo Fab Lab, Daniel learned to transform discarded cell phones and computers into IoT sensors that monitor soil moisture and weather patterns.
-    summary: 'Mobile fabrication laboratory turning e-waste into climate solutions',
-    description: `In Kenya, erratic rainfall and mounting e-waste pose growing challenges. Daniel, a 17-year-old from Machakos, witnessed his family's farm struggle with unpredictable weather patterns while electronics waste accumulated in his community. Through the Uwezo Fab Lab, Daniel learned to transform discarded cell phones and computers into IoT sensors that monitor soil moisture and weather patterns.
 
-"We can't stop the rain, but we can design systems to live with it."
 "We can't stop the rain, but we can design systems to live with it."
 
 Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching students to build climate monitoring devices, renewable energy solutions, and practical innovations using recycled electronics. This hands-on approach addresses environmental challenges while building essential 21st-century skills.`,
@@ -94,43 +61,15 @@ Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching
       'Community problem-solving projects'
     ],
     howItWorks: [
-      {
-        step: 1,
-        title: 'Problem Identification',
-        description: 'Identify community challenges that technology can address'
-      },
-      {
-        step: 2,
-        title: 'Design & Prototype',
-        description: 'Create solutions using recycled materials and sustainable design'
-      },
-      {
-        step: 3,
-        title: 'Build & Test', 
-        description: 'Construct and iterate on functional prototypes'
-      },
-      {
-        step: 4,
-        title: 'Deploy & Scale',
-        description: 'Implement solutions in the community and share knowledge'
-      }
+      { step: 1, title: 'Problem Identification', description: 'Identify community challenges that technology can address' },
+      { step: 2, title: 'Design & Prototype', description: 'Create solutions using recycled materials and sustainable design' },
+      { step: 3, title: 'Build & Test', description: 'Construct and iterate on functional prototypes' },
+      { step: 4, title: 'Deploy & Scale', description: 'Implement solutions in the community and share knowledge' }
     ],
     impact: [
-      {
-        metric: 'E-waste Processed',
-        value: '5+ Tons',
-        description: 'Electronics diverted from landfills'
-      },
-      {
-        metric: 'Prototypes Built',
-        value: '200+',
-        description: 'Student-created technological solutions'
-      },
-      {
-        metric: 'Community Projects',
-        value: '45',
-        description: 'Active deployments serving local needs'
-      }
+      { metric: 'E-waste Processed', value: '5+ Tons', description: 'Electronics diverted from landfills' },
+      { metric: 'Prototypes Built', value: '200+', description: 'Student-created technological solutions' },
+      { metric: 'Community Projects', value: '45', description: 'Active deployments serving local needs' }
     ],
     gallery: [
       { src: '/images/image-06.jpg', alt: 'Recycled electronics parts on a workbench' },
@@ -144,14 +83,10 @@ Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching
   {
     id: 'uwezo-teaching',
     title: 'Uwezo Teaching – Learning for the Future',
-    title: 'Uwezo Teaching – Learning for the Future',
     slug: 'uwezo-teaching',
     summary: 'Community-based education addressing Africa\'s digital economy gap',
     description: `Mary, a recent secondary school graduate from Turkana, possesses natural problem-solving abilities but has never touched a computer. Across Africa, the digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation.
-    summary: 'Community-based education addressing Africa\'s digital economy gap',
-    description: `Mary, a recent secondary school graduate from Turkana, possesses natural problem-solving abilities but has never touched a computer. Across Africa, the digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation.
 
-"We are not just teaching code — we are teaching possibility."
 "We are not just teaching code — we are teaching possibility."
 
 The Uwezo Teaching program brings AI, coding, and digital problem-solving skills directly to underserved communities. Through mobile learning units and locally-trained facilitators, we create pathways for young people to engage with technology as creators, not just consumers, while addressing real challenges in their communities.`,
@@ -166,43 +101,15 @@ The Uwezo Teaching program brings AI, coding, and digital problem-solving skills
       'Curriculum adaptation for local contexts'
     ],
     howItWorks: [
-      {
-        step: 1,
-        title: 'Community Outreach',
-        description: 'Identify and connect with underserved communities'
-      },
-      {
-        step: 2,
-        title: 'Setup Mobile Lab',
-        description: 'Deploy portable teaching equipment and learning materials'
-      },
-      {
-        step: 3,
-        title: 'Deliver Workshops',
-        description: 'Conduct intensive hands-on learning sessions'
-      },
-      {
-        step: 4,
-        title: 'Build Local Capacity',
-        description: 'Train local educators and establish ongoing support networks'
-      }
+      { step: 1, title: 'Community Outreach', description: 'Identify and connect with underserved communities' },
+      { step: 2, title: 'Setup Mobile Lab', description: 'Deploy portable teaching equipment and learning materials' },
+      { step: 3, title: 'Deliver Workshops', description: 'Conduct intensive hands-on learning sessions' },
+      { step: 4, title: 'Build Local Capacity', description: 'Train local educators and establish ongoing support networks' }
     ],
     impact: [
-      {
-        metric: 'Communities Reached',
-        value: '85+',
-        description: 'Rural and underserved areas served'
-      },
-      {
-        metric: 'Students Trained',
-        value: '3,200+',
-        description: 'Direct beneficiaries of mobile education'
-      },
-      {
-        metric: 'Local Educators',
-        value: '120+',
-        description: 'Teachers trained to continue programs locally'
-      }
+      { metric: 'Communities Reached', value: '85+', description: 'Rural and underserved areas served' },
+      { metric: 'Students Trained', value: '3,200+', description: 'Direct beneficiaries of mobile education' },
+      { metric: 'Local Educators', value: '120+', description: 'Teachers trained to continue programs locally' }
     ],
     gallery: [
       { src: '/images/image-10.jpg', alt: 'Classroom robotics workshop for girls' },

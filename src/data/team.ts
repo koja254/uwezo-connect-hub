@@ -5,9 +5,9 @@ export const teamMembers: TeamMember[] = [
     id: 'tevin-omondi',
     name: 'Tevin Omondi',
     role: 'Co-Founder & Technology Lead',
-    bio: `Passionate blockchain developer, community advocate, and innovation catalyst. Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
-    role: 'Co-Founder & Technology Lead',
-    bio: `Passionate blockchain developer, community advocate, and innovation catalyst. Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
+    bio: `Passionate blockchain developer, community advocate, and innovation catalyst. 
+Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. 
+With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
 
 "Technology is only as powerful as the lives it transforms."`,
     image: '/images/image-16.jpeg',
@@ -21,9 +21,8 @@ export const teamMembers: TeamMember[] = [
     id: 'sharly-moraa',
     name: 'Sharly Moraa',
     role: 'Co-Founder & SRHR Advocate',
-    bio: `Vibrant voice for Sexual and Reproductive Health Rights in Kenya, with extensive experience in grassroots workshops and menstrual equity advocacy. Sharly ensures all programs meet the real needs of rural and underserved youth, particularly young women facing barriers to education.
-    role: 'Co-Founder & SRHR Advocate',
-    bio: `Vibrant voice for Sexual and Reproductive Health Rights in Kenya, with extensive experience in grassroots workshops and menstrual equity advocacy. Sharly ensures all programs meet the real needs of rural and underserved youth, particularly young women facing barriers to education.
+    bio: `Vibrant voice for Sexual and Reproductive Health Rights in Kenya, with extensive experience in grassroots workshops and menstrual equity advocacy. 
+Sharly ensures all programs meet the real needs of rural and underserved youth, particularly young women facing barriers to education.
 
 "Every girl deserves dignity, every boy deserves knowledge — and both deserve opportunity."`,
     image: '/images/image-17.jpeg',
