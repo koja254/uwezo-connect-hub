@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { socialLinks } from '@/data/static';
 import { programs } from '@/data/programs';
 
 const Footer = () => {
@@ -11,7 +10,6 @@ const Footer = () => {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement newsletter signup
     console.log('Newsletter signup submitted');
   };
 
@@ -28,27 +26,31 @@ const Footer = () => {
           <circle cx="4" cy="4" r="2"/>
         </svg>
       ),
-      Facebook: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-        </svg>
-      ),
       Instagram: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
         </svg>
-      ),
-      YouTube: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/>
-          <polygon points="9.75,15.02 15.5,11.75 9.75,8.48"/>
-        </svg>
       )
     };
     return icons[platform] || null;
   };
+
+  const socialLinks = [
+    {
+      platform: 'Twitter',
+      url: 'https://x.com/uwezofoundation?s=21&t=37kvQaGNhrmEbI6X267VvQ'
+    },
+    {
+      platform: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/uwezo-link-initiative-2a7b23379'
+    },
+    {
+      platform: 'Instagram',
+      url: 'https://www.instagram.com/uwezo_link?igsh=d2prZ2FzaXBweDFs'
+    }
+  ];
 
   return (
     <footer className="bg-neutral-dark text-white">

@@ -14,7 +14,6 @@ const ImpactStats = () => {
     Users
   };
 
-  // Extract numeric values from stat values for animation
   const extractNumber = (value: string): number => {
     const match = value.match(/[\d,]+/);
     if (match) {
@@ -23,7 +22,6 @@ const ImpactStats = () => {
     return 0;
   };
 
-  // Format number with appropriate suffix
   const formatNumber = (num: number, originalValue: string): string => {
     if (originalValue.includes('+')) {
       if (num >= 1000) {
@@ -37,24 +35,21 @@ const ImpactStats = () => {
     return num.toLocaleString();
   };
 
-  // Animate numbers when section becomes visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
-          
-          // Initialize animated values
+
           const initialValues: { [key: string]: number } = {};
           impactStats.forEach(stat => {
             initialValues[stat.label] = 0;
           });
           setAnimatedValues(initialValues);
 
-          // Animate each stat
           impactStats.forEach(stat => {
             const targetValue = extractNumber(stat.value);
-            const duration = 2000; // 2 seconds
+            const duration = 2000;
             const steps = 60;
             const increment = targetValue / steps;
             let currentValue = 0;
@@ -63,7 +58,7 @@ const ImpactStats = () => {
             const timer = setInterval(() => {
               step++;
               currentValue = Math.min(currentValue + increment, targetValue);
-              
+
               setAnimatedValues(prev => ({
                 ...prev,
                 [stat.label]: Math.round(currentValue)
@@ -91,15 +86,18 @@ const ImpactStats = () => {
   }, [isVisible]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="py-16 md:py-24 bg-gradient-primary relative overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -118,11 +116,11 @@ const ImpactStats = () => {
           {impactStats.map((stat, index) => {
             const Icon = iconMap[stat.icon as keyof typeof iconMap];
             const animatedValue = animatedValues[stat.label] || 0;
-            
+
             return (
-              <div 
+              <div
                 key={stat.label}
-                className={`text-center group animate-fade-in`}
+                className="text-center group animate-fade-in"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Icon */}
@@ -131,7 +129,10 @@ const ImpactStats = () => {
                 </div>
 
                 {/* Animated Number */}
-                <div className="stat-number text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
+                <div
+                  className="stat-number text-4xl md:text-5xl lg:text-6xl font-bold text-white bg-black/60 rounded-lg px-4 py-2 mb-2"
+                  style={{ textShadow: '0 2px 6px rgba(0,0,0,0.8)' }}
+                >
                   {isVisible ? formatNumber(animatedValue, stat.value) : '0'}
                 </div>
 
@@ -155,13 +156,13 @@ const ImpactStats = () => {
             These numbers are growing every day. Join us in creating even greater impact.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a 
+            <a
               href="/donate"
               className="cta-accent inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105"
             >
               Support Our Mission
             </a>
-            <a 
+            <a
               href="/programs"
               className="inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold text-white border-2 border-white/30 hover:bg-white/10 transition-all duration-300"
             >

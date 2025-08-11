@@ -6,9 +6,11 @@ export const teamMembers: TeamMember[] = [
     name: 'Tevin Omondi',
     role: 'Co-Founder & Technology Lead',
     bio: `Passionate blockchain developer, community advocate, and innovation catalyst. Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
+    role: 'Co-Founder & Technology Lead',
+    bio: `Passionate blockchain developer, community advocate, and innovation catalyst. Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
 
 "Technology is only as powerful as the lives it transforms."`,
-    image: '/images/image-16.jpg',
+    image: '/images/image-16.jpeg',
     imageAlt: 'Portrait: Tevin Omondi',
     linkedin: 'https://linkedin.com/in/tevin-omondi',
     twitter: 'https://twitter.com/tevin_omondi',
@@ -20,30 +22,95 @@ export const teamMembers: TeamMember[] = [
     name: 'Sharly Moraa',
     role: 'Co-Founder & SRHR Advocate',
     bio: `Vibrant voice for Sexual and Reproductive Health Rights in Kenya, with extensive experience in grassroots workshops and menstrual equity advocacy. Sharly ensures all programs meet the real needs of rural and underserved youth, particularly young women facing barriers to education.
+    role: 'Co-Founder & SRHR Advocate',
+    bio: `Vibrant voice for Sexual and Reproductive Health Rights in Kenya, with extensive experience in grassroots workshops and menstrual equity advocacy. Sharly ensures all programs meet the real needs of rural and underserved youth, particularly young women facing barriers to education.
 
 "Every girl deserves dignity, every boy deserves knowledge — and both deserve opportunity."`,
-    image: '/images/image-17.jpg',
+    image: '/images/image-17.jpeg',
     imageAlt: 'Portrait: Sharly Moraa',
     linkedin: 'https://linkedin.com/in/sharly-moraa',
     email: 'sharly@uwezolink.org',
     category: 'leadership'
   },
   {
-    id: 'dr-jane-wanjiku',
-    name: 'Dr. Jane Wanjiku',
-    role: 'Advisory Board Chair',
-    bio: `Dr. Wanjiku is a renowned education policy expert with over 15 years of experience in curriculum development and educational reform. She provides strategic guidance on program design and ensures alignment with national education standards.`,
-    image: '/images/image-15.jpg',
-    imageAlt: 'Team group photo',
+    id: 'johnson-kuria',
+    name: 'Johnson Kuria',
+    role: 'Advisory Board Member',
+    bio: `Experienced leader with a proven track record in project management. Dedicated to driving innovation and fostering sustainable growth in communities.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Johnson Kuria',
     category: 'advisory'
   },
   {
-    id: 'michael-kimani',
-    name: 'Michael Kimani',
-    role: 'Technology Advisor',
-    bio: `Michael is a blockchain developer and fintech entrepreneur who guides our digital token architecture. His expertise ensures our technology solutions are scalable, secure, and user-friendly for educational environments.`,
-    image: '/images/image-15.jpg',
-    imageAlt: 'Team group photo',
+    id: 'kevin-omondi',
+    name: 'Kevin Omondi',
+    role: 'Advisory Board Member',
+    bio: `Passionate about technology, data analytics, and AI, with a strong commitment to advancing STEM education for youth.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Kevin Omondi',
+    category: 'advisory'
+  },
+  {
+    id: 'bob-kimani',
+    name: 'Bob Kimani',
+    role: 'Advisory Board Member',
+    bio: `IT enthusiast focused on AI and iOS mobile development, dedicated to empowering youth and promoting inclusivity in tech.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Bob Kimani',
+    category: 'advisory'
+  },
+  {
+    id: 'ali-raqiba',
+    name: 'Ali Raqiba',
+    role: 'Advisory Board Member',
+    bio: `Technology advocate passionate about girls’ empowerment and creating equal opportunities in education and tech.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Ali Raqiba',
+    category: 'advisory'
+  },
+  {
+    id: 'sharon-kemunto',
+    name: 'Sharon Kemunto',
+    role: 'Advisory Board Member',
+    bio: `Established businesswoman and data analytics enthusiast with expertise in machine learning, leveraging tech for impactful business growth.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Sharon Kemunto',
+    category: 'advisory'
+  },
+  {
+    id: 'teresiah-wanjohi',
+    name: 'Teresiah Wanjohi',
+    role: 'Advisory Board Member',
+    bio: `Cybersecurity expert safeguarding digital spaces while championing girls’ empowerment in the tech sector.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Teresiah Wanjohi',
+    category: 'advisory'
+  },
+  {
+    id: 'hellen-koros',
+    name: 'Hellen Koros',
+    role: 'Advisory Board Member',
+    bio: `Certified accountant passionate about numbers, financial management, and advancing opportunities for women and girls.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Hellen Koros',
+    category: 'advisory'
+  },
+  {
+    id: 'patrick-koigi',
+    name: 'Patrick Koigi',
+    role: 'Advisory Board Member',
+    bio: `Finance & Programs Administrator passionate about empowering communities through impactful projects. Skilled in grants, budgets, and compliance, with a proven record in delivering donor-funded initiatives.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Patrick Koigi',
+    category: 'advisory'
+  },
+  {
+    id: 'agnes-moraa',
+    name: 'Agnes Moraa',
+    role: 'Advisory Board Member',
+    bio: `Dedicated professional with exceptional communication skills, fostering strong relationships and driving collaborative success.`,
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Agnes Moraa',
     category: 'advisory'
   },
   {
@@ -51,8 +118,8 @@ export const teamMembers: TeamMember[] = [
     name: 'Sarah Mutindi',
     role: 'Community Coordinator',
     bio: `Sarah manages our community partnerships and volunteer network. Her deep connections with rural communities ensure our programs are responsive to local needs and cultural contexts.`,
-    image: '/images/image-15.jpg',
-    imageAlt: 'Team group photo',
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: Sarah Mutindi',
     category: 'extended'
   },
   {
@@ -60,8 +127,8 @@ export const teamMembers: TeamMember[] = [
     name: 'James Ochieng',
     role: 'Fab Lab Coordinator',
     bio: `James oversees the technical operations of our fabrication laboratory. With a background in electronics engineering, he mentors students in building innovative solutions from recycled materials.`,
-    image: '/images/image-15.jpg',
-    imageAlt: 'Team group photo',
+    image: '/images/placeholder.jpeg',
+    imageAlt: 'Placeholder: James Ochieng',
     category: 'extended'
   }
 ];

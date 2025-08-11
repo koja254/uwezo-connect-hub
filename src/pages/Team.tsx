@@ -22,7 +22,6 @@ const VolunteerForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission
     console.log('Volunteer form submitted:', formData);
   };
 
@@ -150,8 +149,12 @@ const Team = () => {
                 key={member.id}
                 className="bg-card rounded-2xl border border-border p-6 text-center hover:shadow-card-hover transition-all duration-300 group"
               >
-                <div className="w-24 h-24 mx-auto mb-4 bg-gradient-primary rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  {member.name.split(' ').map(n => n[0]).join('')}
+                <div className="w-24 h-24 mx-auto mb-4 relative">
+                  <img
+                    src={member.image}
+                    alt={member.imageAlt}
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
                 
                 <h3 className="font-poppins font-semibold text-lg mb-1">{member.name}</h3>
@@ -187,21 +190,133 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Advisory Board */}
+      {/* Tech Team */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-              Advisory Board
+              Tech Team
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Our advisory board provides strategic guidance and expertise to help us 
-              maximize our impact in STEM education and community development.
+              Our tech team drives innovation and develops cutting-edge solutions to enhance STEM education.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {teamMembers.filter(member => member.category === 'advisory').map((member) => (
+            {[
+              {
+                id: 'tevin',
+                name: 'Tevin',
+                role: teamMembers.find(m => m.name === 'Tevin')?.role || 'Tech Lead',
+                bio: teamMembers.find(m => m.name === 'Tevin')?.bio || 'Tech enthusiast driving innovation in STEM education.',
+              },
+              {
+                id: 'kevin',
+                name: 'Kevin Omondi',
+                role: 'Data & AI Specialist',
+                bio: 'Passionate about technology, data analytics, and AI, with a strong commitment to advancing STEM education for youth.',
+              },
+              {
+                id: 'bob',
+                name: 'Bob Kimani',
+                role: 'AI & Mobile Developer',
+                bio: 'IT enthusiast focused on AI and iOS mobile development, dedicated to empowering youth and promoting inclusivity in tech.',
+              },
+            ].map((member) => (
+              <div
+                key={member.id}
+                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-poppins font-semibold text-lg mb-1">{member.name}</h3>
+                    <p className="text-secondary font-medium text-sm mb-2">{member.role}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Advocacy & SRHR Team */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+              Advocacy & SRHR Team
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Our advocacy and SRHR team champions equal opportunities and empowerment through education and technology.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                id: 'sharly',
+                name: 'Sharly',
+                role: teamMembers.find(m => m.name === 'Sharly')?.role || 'Advocacy Lead',
+                bio: teamMembers.find(m => m.name === 'Sharly')?.bio || 'Passionate advocate for education and empowerment.',
+              },
+              {
+                id: 'sharon',
+                name: 'Sharon Kemunto',
+                role: 'Admin & Data Specialist',
+                bio: 'Established ICT professional and data analytics enthusiast with expertise in machine learning, leveraging tech for impactful business growth.',
+              },
+              {
+                id: 'raqiba',
+                name: 'Ali Raqiba',
+                role: 'Technology Advocate',
+                bio: 'Technology advocate passionate about girls’ empowerment and creating equal opportunities in education and tech.',
+              },
+            ].map((member) => (
+              <div
+                key={member.id}
+                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-poppins font-semibold text-lg mb-1">{member.name}</h3>
+                    <p className="text-secondary font-medium text-sm mb-2">{member.role}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Kenya Poverty Action Representative (KPA) */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+              Kenya Poverty Action Representative (KPA)
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Our KPA representative drives sustainable, community-driven change through strategic partnerships and policy advocacy.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                id: 'evans',
+                name: 'Evans James',
+                role: 'Executive Director, KPA',
+                bio: 'Development expert with 20+ years in water, health, and sanitation. Executive Director of KPA and advisor to multiple organizations. Skilled in strategic partnerships, resource mobilization, and policy advocacy. Dedicated to fostering sustainable, community-driven change.',
+              },
+            ].map((member) => (
               <div
                 key={member.id}
                 className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300"

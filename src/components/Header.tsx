@@ -50,9 +50,11 @@ const Header = () => {
             className="flex items-center space-x-3 group"
             onClick={() => setIsMenuOpen(false)}
           >
-            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300">
-              <span className="text-white font-bold text-xl">U</span>
-            </div>
+            <img
+              src="/images/image-24.png"
+              alt="Uwezo Logo"
+              className="w-10 h-10 bg-transparent rounded-xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300"
+            />
             <div className="hidden sm:block">
               <span className="font-poppins font-bold text-xl text-foreground">
                 Uwezo Link

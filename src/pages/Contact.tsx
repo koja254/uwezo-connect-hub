@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, Globe, Instagram } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -19,7 +19,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission
     console.log('Contact form submitted:', formData);
   };
 
@@ -135,7 +134,7 @@ const Contact = () => {
                     <h3 className="font-poppins font-semibold text-lg mb-2">Office Location</h3>
                     <p className="text-muted-foreground">
                       Nairobi, Kenya<br />
-                      (Specific address available upon request)
+                       Wu Yi Plaza 
                     </p>
                   </div>
                 </div>
@@ -162,8 +161,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-poppins font-semibold text-lg mb-2">Phone</h3>
                     <p className="text-muted-foreground">
-                      +254 (0) XXX XXX XXX<br />
-                      <span className="text-sm">Available upon request</span>
+                      +254 (0) 789 914 719<br />
                     </p>
                   </div>
                 </div>
@@ -191,18 +189,19 @@ const Contact = () => {
                     <h3 className="font-poppins font-semibold text-lg mb-2">Follow Us</h3>
                     <div className="flex space-x-3">
                       <Button variant="outline" size="sm" asChild>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
+                        <a href="https://x.com/uwezofoundation?s=21&t=37kvQaGNhrmEbI6X267VvQ" target="_blank" rel="noopener noreferrer">
                           Twitter
                         </a>
                       </Button>
                       <Button variant="outline" size="sm" asChild>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/uwezo-link-initiative-2a7b23379" target="_blank" rel="noopener noreferrer">
                           LinkedIn
                         </a>
                       </Button>
                       <Button variant="outline" size="sm" asChild>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                          Facebook
+                        <a href="https://www.instagram.com/uwezo_link?igsh=d2prZ2FzaXBweDFs" target="_blank" rel="noopener noreferrer">
+                          <Instagram className="w-4 h-4 mr-2" />
+                          Instagram
                         </a>
                       </Button>
                     </div>

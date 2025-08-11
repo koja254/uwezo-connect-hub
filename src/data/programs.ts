@@ -4,6 +4,7 @@ export const programs: Program[] = [
   {
     id: 'uwezo-token',
     title: 'Uwezo Token – Bridging Education & Dignity',
+    title: 'Uwezo Token – Bridging Education & Dignity',
     slug: 'uwezo-token',
     summary: 'Blockchain-powered solution addressing period poverty and promoting education equity',
     description: `Meet Amina, a bright 15-year-old from rural Kenya who dreams of becoming a doctor. Every month, Amina misses 3-5 days of school because her family cannot afford sanitary pads. This story repeats across countless communities, where period poverty becomes a barrier to education and future opportunities.
@@ -11,7 +12,7 @@ export const programs: Program[] = [
 "A girl's education should never stop because of her period."
 
 The Uwezo Token program uses blockchain technology to create a sustainable solution. Students earn digital tokens for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These tokens can be redeemed for sanitary products, school supplies, and other necessities, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
-    heroImage: '/images/image-02.jpg',
+    heroImage: '/images/img-21.png',
     heroImageAlt: 'Students in a school corridor receiving assistance',
     keyFeatures: [
       'Blockchain-based reward system',
@@ -71,14 +72,18 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
   {
     id: 'uwezo-fab-lab',
     title: 'Uwezo Fab Lab – Innovating for Climate & Community',
+    title: 'Uwezo Fab Lab – Innovating for Climate & Community',
     slug: 'uwezo-fab-lab',
+    summary: 'Mobile fabrication laboratory turning e-waste into climate solutions',
+    description: `In Kenya, erratic rainfall and mounting e-waste pose growing challenges. Daniel, a 17-year-old from Machakos, witnessed his family's farm struggle with unpredictable weather patterns while electronics waste accumulated in his community. Through the Uwezo Fab Lab, Daniel learned to transform discarded cell phones and computers into IoT sensors that monitor soil moisture and weather patterns.
     summary: 'Mobile fabrication laboratory turning e-waste into climate solutions',
     description: `In Kenya, erratic rainfall and mounting e-waste pose growing challenges. Daniel, a 17-year-old from Machakos, witnessed his family's farm struggle with unpredictable weather patterns while electronics waste accumulated in his community. Through the Uwezo Fab Lab, Daniel learned to transform discarded cell phones and computers into IoT sensors that monitor soil moisture and weather patterns.
 
 "We can't stop the rain, but we can design systems to live with it."
+"We can't stop the rain, but we can design systems to live with it."
 
 Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching students to build climate monitoring devices, renewable energy solutions, and practical innovations using recycled electronics. This hands-on approach addresses environmental challenges while building essential 21st-century skills.`,
-    heroImage: '/images/image-05.jpg',
+    heroImage: '/images/img-05.png',
     heroImageAlt: 'Fab Lab workshop with youth building devices',
     keyFeatures: [
       'E-waste recycling and repurposing',
@@ -139,14 +144,18 @@ Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching
   {
     id: 'uwezo-teaching',
     title: 'Uwezo Teaching – Learning for the Future',
+    title: 'Uwezo Teaching – Learning for the Future',
     slug: 'uwezo-teaching',
+    summary: 'Community-based education addressing Africa\'s digital economy gap',
+    description: `Mary, a recent secondary school graduate from Turkana, possesses natural problem-solving abilities but has never touched a computer. Across Africa, the digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation.
     summary: 'Community-based education addressing Africa\'s digital economy gap',
     description: `Mary, a recent secondary school graduate from Turkana, possesses natural problem-solving abilities but has never touched a computer. Across Africa, the digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation.
 
 "We are not just teaching code — we are teaching possibility."
+"We are not just teaching code — we are teaching possibility."
 
 The Uwezo Teaching program brings AI, coding, and digital problem-solving skills directly to underserved communities. Through mobile learning units and locally-trained facilitators, we create pathways for young people to engage with technology as creators, not just consumers, while addressing real challenges in their communities.`,
-    heroImage: '/images/image-09.jpg',
+    heroImage: '/images/img-09.png',
     heroImageAlt: 'Mobile STEM teaching session with kids',
     keyFeatures: [
       'Mobile teaching units',

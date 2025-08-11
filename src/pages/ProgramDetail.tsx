@@ -58,9 +58,6 @@ const ProgramDetail = () => {
                     {program.ctaText}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                    Download Brochure
-                  </Button>
                 </div>
               </div>
               

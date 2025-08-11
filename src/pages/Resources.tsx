@@ -60,10 +60,10 @@ const Resources = () => {
                 </div>
                 
                 <Button asChild className="w-full" variant="outline">
-                  <Link to={`/resources/${resource.slug}`}>
+                  <a href={resource.downloadUrl} target="_blank" rel="noopener noreferrer">
                     <Download className="w-4 h-4 mr-2" />
                     Access Resource
-                  </Link>
+                  </a>
                 </Button>
               </div>
             ))}

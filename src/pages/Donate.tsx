@@ -137,7 +137,13 @@ const Donate = () => {
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
               Your contribution directly transforms lives across Kenyan communities, addressing period poverty, building climate resilience, and creating pathways to the digital economy.
+              Your contribution directly transforms lives across Kenyan communities, addressing period poverty, building climate resilience, and creating pathways to the digital economy.
             </p>
+            <div className="max-w-2xl mx-auto mb-8">
+              <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
+                "When you invest in a young person's future, the returns are endless."
+              </blockquote>
+            </div>
             <div className="max-w-2xl mx-auto mb-8">
               <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
                 "When you invest in a young person's future, the returns are endless."
@@ -173,11 +179,12 @@ const Donate = () => {
                   <span className="text-primary font-bold text-xl">$10</span>
                 </div>
                 <CardTitle className="text-lg">Sanitary Pads for a Term</CardTitle>
+                <CardTitle className="text-lg">Sanitary Pads for a Term</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
                   Provides a girl with sanitary pads for a full school term, ensuring dignity 
-                  and uninterrupted education for three months.
+                  and uninterrupted education for three months. (10$ will help 1 girl for 3 months (Impact))
                 </CardDescription>
               </CardContent>
             </Card>
@@ -188,11 +195,12 @@ const Donate = () => {
                   <span className="text-secondary font-bold text-xl">$50</span>
                 </div>
                 <CardTitle className="text-lg">IoT Starter Kit</CardTitle>
+                <CardTitle className="text-lg">IoT Starter Kit</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
                   Funds an IoT climate monitoring kit built from recycled materials, 
-                  enabling community-led environmental solutions.
+                  enabling community-led environmental solutions. (50$ will help equip 5 students with a kit for a month (Impact))
                 </CardDescription>
               </CardContent>
             </Card>
@@ -203,11 +211,12 @@ const Donate = () => {
                   <span className="text-accent font-bold text-xl">$100</span>
                 </div>
                 <CardTitle className="text-lg">Community Workshop</CardTitle>
+                <CardTitle className="text-lg">Community Workshop</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
                   Supports a full community education workshop on AI, coding, and problem-solving 
-                  for 30 participants, including materials and facilitation.
+                  for 30 participants, including materials and facilitation. (100$ will help 10 girls for 2 months (Impact))
                 </CardDescription>
               </CardContent>
             </Card>
