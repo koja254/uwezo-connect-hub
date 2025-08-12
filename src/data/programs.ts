@@ -35,7 +35,10 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
     gallery: [
       { src: '/images/image-03.jpg', alt: 'QR ID card and token redemption illustration' },
       { src: '/images/image-04.jpg', alt: 'Girls attending SRHR workshop' },
-      { src: '/images/image-11.jpg', alt: 'Youth coding on laptops in a rural lab' }
+      { src: '/images/image-11.jpg', alt: 'Youth coding on laptops in a rural lab' },
+      { src: '/images/pads.png', alt: 'Youth girls holding pads' },
+      { src: '/images/sanitary.jpg', alt: 'Sanitary pads' }
+
     ],
     ctaText: 'Join the Token Program',
     ctaAction: 'participate'

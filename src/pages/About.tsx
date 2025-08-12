@@ -8,7 +8,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { organizationContent } from '@/data/static';
 
 const GetInvolvedForm = () => {
@@ -21,18 +20,14 @@ const GetInvolvedForm = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement form submission
-    console.log('Get Involved form submitted:', formData);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form method="POST" data-netlify="true" className="space-y-4">
+      <input type="hidden" name="form-name" value="get-involved" />
       <div>
         <Label htmlFor="name">Full Name</Label>
         <Input
           id="name"
+          name="name"
           value={formData.name}
           onChange={(e) => setFormData({...formData, name: e.target.value})}
           required
@@ -42,6 +37,7 @@ const GetInvolvedForm = () => {
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
+          name="email"
           type="email"
           value={formData.email}
           onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -52,31 +48,36 @@ const GetInvolvedForm = () => {
         <Label htmlFor="phone">Phone</Label>
         <Input
           id="phone"
+          name="phone"
           value={formData.phone}
           onChange={(e) => setFormData({...formData, phone: e.target.value})}
         />
       </div>
       <div>
         <Label htmlFor="interest">How would you like to get involved?</Label>
-        <Select onValueChange={(value) => setFormData({...formData, interest: value})}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select your interest" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="volunteer">Volunteer</SelectItem>
-            <SelectItem value="mentor">Mentor Students</SelectItem>
-            <SelectItem value="teach">Teach/Workshop Leader</SelectItem>
-            <SelectItem value="fundraising">Fundraising</SelectItem>
-            <SelectItem value="marketing">Marketing & Outreach</SelectItem>
-            <SelectItem value="tech">Technical Support</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
+        <select
+          id="interest"
+          name="interest"
+          value={formData.interest}
+          onChange={(e) => setFormData({...formData, interest: e.target.value})}
+          className="w-full border border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-between rounded-md px-3 py-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          required
+        >
+          <option value="">Select your interest</option>
+          <option value="volunteer">Volunteer</option>
+          <option value="mentor">Mentor Students</option>
+          <option value="teach">Teach/Workshop Leader</option>
+          <option value="fundraising">Fundraising</option>
+          <option value="marketing">Marketing & Outreach</option>
+          <option value="tech">Technical Support</option>
+          <option value="other">Other</option>
+        </select>
       </div>
       <div>
         <Label htmlFor="experience">Relevant Experience</Label>
         <Textarea
           id="experience"
+          name="experience"
           value={formData.experience}
           onChange={(e) => setFormData({...formData, experience: e.target.value})}
           placeholder="Tell us about your background and skills..."
@@ -86,6 +87,7 @@ const GetInvolvedForm = () => {
         <Label htmlFor="message">Additional Message</Label>
         <Textarea
           id="message"
+          name="message"
           value={formData.message}
           onChange={(e) => setFormData({...formData, message: e.target.value})}
           placeholder="Anything else you'd like us to know?"
@@ -110,18 +112,14 @@ const PartnershipForm = () => {
     resources: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement form submission
-    console.log('Partnership form submitted:', formData);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form method="POST" data-netlify="true" className="space-y-4">
+      <input type="hidden" name="form-name" value="partnership" />
       <div>
         <Label htmlFor="organizationName">Organization Name</Label>
         <Input
           id="organizationName"
+          name="organizationName"
           value={formData.organizationName}
           onChange={(e) => setFormData({...formData, organizationName: e.target.value})}
           required
@@ -131,6 +129,7 @@ const PartnershipForm = () => {
         <Label htmlFor="contactName">Contact Person</Label>
         <Input
           id="contactName"
+          name="contactName"
           value={formData.contactName}
           onChange={(e) => setFormData({...formData, contactName: e.target.value})}
           required
@@ -140,6 +139,7 @@ const PartnershipForm = () => {
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
+          name="email"
           type="email"
           value={formData.email}
           onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -150,31 +150,36 @@ const PartnershipForm = () => {
         <Label htmlFor="phone">Phone</Label>
         <Input
           id="phone"
+          name="phone"
           value={formData.phone}
           onChange={(e) => setFormData({...formData, phone: e.target.value})}
         />
       </div>
       <div>
         <Label htmlFor="partnershipType">Partnership Type</Label>
-        <Select onValueChange={(value) => setFormData({...formData, partnershipType: value})}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select partnership type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="funding">Funding Partnership</SelectItem>
-            <SelectItem value="program">Program Collaboration</SelectItem>
-            <SelectItem value="corporate">Corporate Partnership</SelectItem>
-            <SelectItem value="academic">Academic Institution</SelectItem>
-            <SelectItem value="government">Government Agency</SelectItem>
-            <SelectItem value="ngo">NGO Partnership</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
+        <select
+          id="partnershipType"
+          name="partnershipType"
+          value={formData.partnershipType}
+          onChange={(e) => setFormData({...formData, partnershipType: e.target.value})}
+          className="w-full border border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-between rounded-md px-3 py-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          required
+        >
+          <option value="">Select partnership type</option>
+          <option value="funding">Funding Partnership</option>
+          <option value="program">Program Collaboration</option>
+          <option value="corporate">Corporate Partnership</option>
+          <option value="academic">Academic Institution</option>
+          <option value="government">Government Agency</option>
+          <option value="ngo">NGO Partnership</option>
+          <option value="other">Other</option>
+        </select>
       </div>
       <div>
         <Label htmlFor="description">Partnership Description</Label>
         <Textarea
           id="description"
+          name="description"
           value={formData.description}
           onChange={(e) => setFormData({...formData, description: e.target.value})}
           placeholder="Describe the partnership opportunity..."
@@ -185,6 +190,7 @@ const PartnershipForm = () => {
         <Label htmlFor="resources">Resources Available</Label>
         <Textarea
           id="resources"
+          name="resources"
           value={formData.resources}
           onChange={(e) => setFormData({...formData, resources: e.target.value})}
           placeholder="What resources can your organization contribute?"
