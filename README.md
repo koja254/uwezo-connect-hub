@@ -28,15 +28,12 @@ This platform enables:
 
 ## 🏗️ Technologies Used
 
-| Technology                            | Purpose                              |
+| Technology                           | Purpose                              |
 |--------------------------------------|--------------------------------------|
 | **React + TypeScript + Vite**        | Core frontend framework and tooling  |
 | **Tailwind CSS + shadcn-ui**         | UI styling and component library     |
 | **Node.js + Express (if backend)**   | API server and data handling         |
-| **SQLite/PostgreSQL (optional)**     | Backend data persistence             |
-| **Supabase/Firebase (optional)**     | Auth and realtime backend (if used)  |
-| **Ngrok**                            | For sharing local development setups |
-| **Vercel / Netlify**                 | Hosting & continuous deployment      |
+| **Netlify**                          | Hosting & continuous deployment      |
 
 ---
 
