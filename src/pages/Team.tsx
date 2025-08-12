@@ -120,11 +120,17 @@ const Team = () => {
                 </DialogContent>
               </Dialog>
               <Button asChild variant="outline" size="lg">
-                <Link to="/contact">
-                  <Users className="w-4 h-4 mr-2" />
-                  Contact Us
-                </Link>
-              </Button>
+  <Link
+    to="/contact"
+    onClick={() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+  >
+    <Users className="w-4 h-4 mr-2" />
+    Contact Us
+  </Link>
+</Button>
+
             </div>
           </div>
         </div>

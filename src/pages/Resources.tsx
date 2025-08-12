@@ -82,11 +82,17 @@ const Resources = () => {
               Be the first to access our latest research, guides, and educational materials.
             </p>
             <Button asChild size="lg" className="cta-primary">
-              <Link to="/contact">
-                Subscribe to Updates
-                <ExternalLink className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
+  <Link
+    to="/contact"
+    onClick={() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+  >
+    Subscribe to Updates
+    <ExternalLink className="w-4 h-4 ml-2" />
+  </Link>
+</Button>
+
           </div>
         </div>
       </section>

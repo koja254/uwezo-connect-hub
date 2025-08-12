@@ -194,11 +194,17 @@ const Programs = () => {
             </div>
 
             <Button asChild size="lg" className="cta-primary">
-              <Link to="/resources">
-                Read More Success Stories
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
+  <Link
+    to="/resources"
+    onClick={() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+  >
+    Read More Success Stories
+    <ArrowRight className="w-4 h-4 ml-2" />
+  </Link>
+</Button>
+
           </div>
         </div>
       </section>

@@ -177,11 +177,17 @@ const Index = () => {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link to="/contact">
-                  Contact Us
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
+  <Link
+    to="/contact"
+    onClick={() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+  >
+    Contact Us
+    <ExternalLink className="w-4 h-4 ml-2" />
+  </Link>
+</Button>
+
             </div>
           </div>
         </div>

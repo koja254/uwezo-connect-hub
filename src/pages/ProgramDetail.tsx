@@ -225,12 +225,23 @@ const ProgramDetail = () => {
                 {program.ctaText}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                <Link to="/contact">
-                  Contact Us
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
+              <Button
+  asChild
+  size="lg"
+  variant="outline"
+  className="border-white text-white hover:bg-white hover:text-primary"
+>
+  <Link
+    to="/contact"
+    onClick={() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+  >
+    Contact Us
+    <ArrowRight className="w-4 h-4 ml-2" />
+  </Link>
+</Button>
+
             </div>
           </div>
         </div>
