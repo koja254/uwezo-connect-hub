@@ -1,73 +1,122 @@
-# Welcome to your Lovable project
+# 🌍 Uwezo-Connect-Hub
 
-## Project info
+![Uwezo-Connect Hub Logo](/public/images/image-24.png)
 
-**URL**: https://lovable.dev/projects/50a3c307-9b90-4e38-b9d3-49194acf3fec
+## 📌 About Uwezo-Connect-Hub
 
-## How can I edit this code?
+**Uwezo-Connect-Hub** is a community-driven platform aimed at enhancing connectivity—both digital and social—for underserved communities. It facilitates collaboration, resource sharing, and engagement across members, organizations, and stakeholders.
 
-There are several ways of editing your application.
+This platform enables:  
+✅ Seamless connection and communication among users.  
+✅ Resource discovery, curation, and sharing.  
+✅ Event announcements, coordination, and RSVPs.  
+✅ Dashboard insights for admins and community organizers.  
+✅ Integrations with local services and APIs.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/50a3c307-9b90-4e38-b9d3-49194acf3fec) and start prompting.
+## 🚀 Features
 
-Changes made via Lovable will be committed automatically to this repo.
+✨ **Responsive & Interactive UI** – Clean animations, hover feedback, and accessible components.  
+🌐 **Real-Time Updates** – Live state management powered by React + TypeScript.  
+👥 **User Management** – Profiles, roles (e.g., admin, member), and authentication mechanisms.  
+🔗 **APIs Integration** – External data integration via RESTful endpoints or GraphQL.  
+🗂 **Resource & Events Module** – Add/manage postings with search and categorization.  
+🚀 **Deployment-ready** – Configured for development and production builds via Vite.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🏗️ Technologies Used
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+| Technology                            | Purpose                              |
+|--------------------------------------|--------------------------------------|
+| **React + TypeScript + Vite**        | Core frontend framework and tooling  |
+| **Tailwind CSS + shadcn-ui**         | UI styling and component library     |
+| **Node.js + Express (if backend)**   | API server and data handling         |
+| **SQLite/PostgreSQL (optional)**     | Backend data persistence             |
+| **Supabase/Firebase (optional)**     | Auth and realtime backend (if used)  |
+| **Ngrok**                            | For sharing local development setups |
+| **Vercel / Netlify**                 | Hosting & continuous deployment      |
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 📂 Project Structure
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+📦 uwezo-connect-hub
+│-- 📁 backend (optional, if applicable)
+│-- 📁 public
+│   └── 📁 images
+│-- 📁 src
+│   ├── 📁 components
+│   ├── 📁 pages
+│   ├── 📁 utils
+│   ├── App.tsx
+│   └── main.tsx
+│-- 📄 README.md
+│-- 📄 package.json
+│-- 📄 tsconfig.json
+│-- 📄 vite.config.ts
 ```
 
-**Edit a file directly in GitHub**
+## 🔥 How to Run the Project
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/koja254/uwezo-connect-hub.git
+cd uwezo-connect-hub
 
-**Use GitHub Codespaces**
+# 2️⃣ Install dependencies
+npm install
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# 3️⃣ Start the development server
+npm run dev
+# The local server should now run at http://localhost:5173/.
 
-## What technologies are used for this project?
+```
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 💡 Contribution Guidelines
 
-## How can I deploy this project?
+We welcome contributions from developers, designers, and content creators! 🚀
 
-Simply open [Lovable](https://lovable.dev/projects/50a3c307-9b90-4e38-b9d3-49194acf3fec) and click on Share -> Publish.
+```bash
+# 1️⃣ Fork the repository
+# 2️⃣ Create a new branch
+git checkout -b feature-branch
 
-## Can I connect a custom domain to my Lovable project?
+# 3️⃣ Make your changes
 
-Yes, you can!
+# 4️⃣ Commit using meaningful messages
+git commit -m "✨ Added new feature"
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# 5️⃣ Push to GitHub and open a Pull Request
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+## 💬 Commit Message Guide
+
+| Emoji | Type   | Description           |
+| ----- | ------ | --------------------- |
+| ✨     | feat   | Adding a new feature  |
+| 🐛    | fix    | Fixing a bug          |
+| 📝    | docs   | Documentation updates |
+| 🎨    | style  | UI improvements       |
+| 🚀    | deploy | Deployment updates    |
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+## 📧 Contact
+
+📩 Email: [info@uwezolinkinitiative.org](mailto:info@uwezolinkinitiative.org)  
+🌍 Website: [uwezolinkinitiative.org](https://689b51b9c619e0fa72707073--gorgeous-seahorse-93fdcc.netlify.app/ )  
+🔗 LinkedIn: Uwezo Link Initiative
+
