@@ -37,4 +37,5 @@ app.post('/webhook', async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log('✅ Server running on port 5000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

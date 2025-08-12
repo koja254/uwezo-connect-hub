@@ -26,11 +26,13 @@ const VolunteerForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form method="POST" data-netlify="true" name="volunteer" onSubmit={handleSubmit} className="space-y-4">
+      <input type="hidden" name="form-name" value="volunteer" />
       <div>
         <Label htmlFor="name">Full Name</Label>
         <Input
           id="name"
+          name="name"
           value={formData.name}
           onChange={(e) => setFormData({...formData, name: e.target.value})}
           required
@@ -40,6 +42,7 @@ const VolunteerForm = () => {
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
+          name="email"
           type="email"
           value={formData.email}
           onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -50,6 +53,7 @@ const VolunteerForm = () => {
         <Label htmlFor="phone">Phone</Label>
         <Input
           id="phone"
+          name="phone"
           value={formData.phone}
           onChange={(e) => setFormData({...formData, phone: e.target.value})}
         />
@@ -58,6 +62,7 @@ const VolunteerForm = () => {
         <Label htmlFor="skills">Skills & Expertise</Label>
         <Input
           id="skills"
+          name="skills"
           value={formData.skills}
           onChange={(e) => setFormData({...formData, skills: e.target.value})}
           placeholder="e.g., Programming, Teaching, Design"
@@ -67,6 +72,7 @@ const VolunteerForm = () => {
         <Label htmlFor="experience">Relevant Experience</Label>
         <Textarea
           id="experience"
+          name="experience"
           value={formData.experience}
           onChange={(e) => setFormData({...formData, experience: e.target.value})}
           placeholder="Tell us about your background..."
@@ -76,6 +82,7 @@ const VolunteerForm = () => {
         <Label htmlFor="motivation">Why do you want to volunteer?</Label>
         <Textarea
           id="motivation"
+          name="motivation"
           value={formData.motivation}
           onChange={(e) => setFormData({...formData, motivation: e.target.value})}
           placeholder="Share your motivation..."
@@ -120,17 +127,16 @@ const Team = () => {
                 </DialogContent>
               </Dialog>
               <Button asChild variant="outline" size="lg">
-  <Link
-    to="/contact"
-    onClick={() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-  >
-    <Users className="w-4 h-4 mr-2" />
-    Contact Us
-  </Link>
-</Button>
-
+                <Link
+                  to="/contact"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  <Users className="w-4 h-4 mr-2" />
+                  Contact Us
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -58,7 +58,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     setIsSubmitting(true);
 
     try {
-      // TODO: Implement actual newsletter signup API call
+      // Simulate API call for Netlify form submission
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       
       console.log('Newsletter signup:', formData);
@@ -118,7 +118,8 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form method="POST" data-netlify="true" name="newsletter" onSubmit={handleSubmit} className="space-y-4">
+        <input type="hidden" name="form-name" value="newsletter" />
         {/* Name Fields (for modal and sidebar variants) */}
         {variant !== 'inline' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -172,6 +173,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
                 <div key={option.id} className="flex items-center space-x-2">
                   <Checkbox
                     id={option.id}
+                    name={`interests[${option.id}]`}
                     checked={formData.interests.includes(option.id)}
                     onCheckedChange={(checked) => 
                       handleInterestChange(option.id, checked as boolean)
