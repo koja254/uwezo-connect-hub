@@ -3,13 +3,13 @@ import { ImpactStat, DonationTier, SocialLink, CryptoToken } from '@/types';
 export const impactStats: ImpactStat[] = [
   {
     label: 'Students Empowered',
-    value: '2,500+',
+    value: '200+',
     description: 'Young learners across rural Kenya',
     icon: 'GraduationCap'
   },
   {
     label: 'Communities Reached',
-    value: '85+',
+    value: '15+',
     description: 'Villages and schools served',
     icon: 'MapPin'
   },
@@ -21,7 +21,7 @@ export const impactStats: ImpactStat[] = [
   },
   {
     label: 'Local Educators Trained',
-    value: '120+',
+    value: '15+',
     description: 'Teachers equipped with STEM skills',
     icon: 'Users'
   }
@@ -30,7 +30,7 @@ export const impactStats: ImpactStat[] = [
 export const donationTiers: DonationTier[] = [
   {
     id: 'pads-for-term',
-    amount: 10,
+    amount: 100,
     currency: 'USD',
     type: 'one-time',
     title: 'Sanitary Pads for a Term',
@@ -43,7 +43,7 @@ export const donationTiers: DonationTier[] = [
   },
   {
     id: 'iot-starter-kit',
-    amount: 50,
+    amount: 150,
     currency: 'USD',
     type: 'one-time',
     title: 'IoT Starter Kit',
@@ -56,20 +56,20 @@ export const donationTiers: DonationTier[] = [
   },
   {
     id: 'community-workshop',
-    amount: 100,
+    amount: 200,
     currency: 'USD',
     type: 'one-time',
     title: 'Community Workshop',
     description: 'Support a full community education workshop on AI, coding, and problem-solving',
     impact: [
-      'Training for 30 community members',
+      'Training for 5 community members',
       'Materials and equipment',
       'Local facilitator support'
     ]
   },
   {
     id: 'monthly-champion',
-    amount: 25,
+    amount: 100,
     currency: 'USD',
     type: 'monthly',
     title: 'Monthly Champion',
@@ -159,7 +159,7 @@ export const cryptoTokens: CryptoToken[] = [
 export const organizationContent = {
   mission: "Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.",
   
-  vision: "A future where every young person — regardless of gender, background, or location — has the resources, knowledge, and opportunities to thrive in a changing world.",
+  vision: "A future where every young person, regardless of gender, background, or location has the resources, knowledge, and opportunities to thrive in a changing world.",
   
   coreValues: [
     {

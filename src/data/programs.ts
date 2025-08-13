@@ -10,7 +10,7 @@ export const programs: Program[] = [
 
 "A girl's education should never stop because of her period."
 
-The Uwezo Token program uses blockchain technology to create a sustainable solution. Students earn digital tokens for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These tokens can be redeemed for sanitary products, school supplies, and other necessities, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
+The Uwezo Token program uses blockchain technology to create a sustainable solution. Students earn digital tokens for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These tokens can be redeemed for sanitary products, school supplies, and other necessities at patner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
     heroImage: '/images/img-21.png',
     heroImageAlt: 'Students in a school corridor receiving assistance',
     keyFeatures: [
@@ -28,9 +28,9 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
       { step: 4, title: 'Track Progress', description: 'Monitor achievements and build financial literacy skills' }
     ],
     impact: [
-      { metric: 'Students Enrolled', value: '2,500+', description: 'Active participants across rural schools' },
-      { metric: 'Tokens Earned', value: '150K+', description: 'Total tokens earned by students' },
-      { metric: 'Resources Redeemed', value: '85%', description: 'Student engagement in redemption activities' }
+      { metric: 'Students Enrolled', value: '200+', description: 'Active participants across rural schools' },
+      { metric: 'Tokens Earned', value: '1K+', description: 'Total tokens earned by students' },
+      { metric: 'Resources Redeemed', value: '80%', description: 'Student engagement in redemption activities' }
     ],
     gallery: [
       { src: '/images/image-03.jpg', alt: 'QR ID card and token redemption illustration' },
@@ -52,7 +52,7 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
 
 "We can't stop the rain, but we can design systems to live with it."
 
-Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching students to build climate monitoring devices, renewable energy solutions, and practical innovations using recycled electronics. This hands-on approach addresses environmental challenges while building essential 21st-century skills.`,
+Uwezo Fab Lab is a community-driven innovation hub where young people learn to design and create IoT-powered climate solutions as well as learning about environmental conservation. Using recycled electronics and local materials, we build tools like smart irrigation systems, low-cost environmental sensors, and renewable energy prototypes.`,
     heroImage: '/images/img-05.png',
     heroImageAlt: 'Fab Lab workshop with youth building devices',
     keyFeatures: [
@@ -71,8 +71,8 @@ Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching
     ],
     impact: [
       { metric: 'E-waste Processed', value: '5+ Tons', description: 'Electronics diverted from landfills' },
-      { metric: 'Prototypes Built', value: '200+', description: 'Student-created technological solutions' },
-      { metric: 'Community Projects', value: '45', description: 'Active deployments serving local needs' }
+      { metric: 'Prototypes Built', value: '9+', description: 'Student-created technological solutions' },
+      { metric: 'Community Projects', value: '6', description: 'Active deployments serving local needs' }
     ],
     gallery: [
       { src: '/images/image-06.jpg', alt: 'Recycled electronics parts on a workbench' },
@@ -90,9 +90,9 @@ Our mobile Fab Lab brings cutting-edge technology to rural communities, teaching
     summary: 'Community-based education addressing Africa\'s digital economy gap',
     description: `Mary, a recent secondary school graduate from Turkana, possesses natural problem-solving abilities but has never touched a computer. Across Africa, the digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation.
 
-"We are not just teaching code — we are teaching possibility."
+"We are not just teaching code; we are teaching possibility."
 
-The Uwezo Teaching program brings AI, coding, and digital problem-solving skills directly to underserved communities. Through mobile learning units and locally-trained facilitators, we create pathways for young people to engage with technology as creators, not just consumers, while addressing real challenges in their communities.`,
+Uwezo Teaching is our education and training program, offering STEM and AI courses from beginner-friendly basics to advanced certification programs. We partner with local schools, universities, and online platforms to make high-quality tech education accessible to all.`,
     heroImage: '/images/img-09.png',
     heroImageAlt: 'Mobile STEM teaching session with kids',
     keyFeatures: [
@@ -110,9 +110,9 @@ The Uwezo Teaching program brings AI, coding, and digital problem-solving skills
       { step: 4, title: 'Build Local Capacity', description: 'Train local educators and establish ongoing support networks' }
     ],
     impact: [
-      { metric: 'Communities Reached', value: '85+', description: 'Rural and underserved areas served' },
-      { metric: 'Students Trained', value: '3,200+', description: 'Direct beneficiaries of mobile education' },
-      { metric: 'Local Educators', value: '120+', description: 'Teachers trained to continue programs locally' }
+      { metric: 'Communities Reached', value: '5+', description: 'Rural and underserved areas served' },
+      { metric: 'Students Trained', value: '100+', description: 'Direct beneficiaries of mobile education' },
+      { metric: 'Local Educators', value: '10+', description: 'Teachers trained to continue programs locally' }
     ],
     gallery: [
       { src: '/images/image-10.jpg', alt: 'Classroom robotics workshop for girls' },

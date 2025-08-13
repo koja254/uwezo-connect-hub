@@ -6,15 +6,16 @@ export const teamMembers: TeamMember[] = [
     name: 'Tevin Omondi',
     role: 'Co-Founder & Technology Lead',
     bio: `Passionate blockchain developer, community advocate, and innovation catalyst. 
+    
 Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. 
 With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
-
-"Technology is only as powerful as the lives it transforms."`,
+"Technology is only as powerful as the lives it transforms."`
+,
     image: '/images/image-16.jpeg',
     imageAlt: 'Portrait: Tevin Omondi',
-    linkedin: 'https://linkedin.com/in/tevin-omondi',
+    linkedin: 'https://www.linkedin.com/in/tevin-omondi-40655723b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B3wknxCrUTf%2B6fhDNWHROpQ%3D%3D',
     twitter: 'https://twitter.com/tevin_omondi',
-    email: 'tevin@uwezolink.org',
+    email: 'tevin@uwezolinkinitiative.org',
     category: 'leadership'
   },
   {
@@ -24,11 +25,11 @@ With expertise in smart contracts, IoT prototypes, and youth mentorship, he brid
     bio: `Vibrant voice for Sexual and Reproductive Health Rights in Kenya, with extensive experience in grassroots workshops and menstrual equity advocacy. 
 Sharly ensures all programs meet the real needs of rural and underserved youth, particularly young women facing barriers to education.
 
-"Every girl deserves dignity, every boy deserves knowledge — and both deserve opportunity."`,
+"Every girl deserves dignity, every boy deserves knowledge and both deserve opportunity."`,
     image: '/images/image-17.jpeg',
     imageAlt: 'Portrait: Sharly Moraa',
-    linkedin: 'https://linkedin.com/in/sharly-moraa',
-    email: 'sharly@uwezolink.org',
+    linkedin: 'https://www.linkedin.com/in/sharly-misati-818b28261?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Be1VYrjlpQBW9%2FWM65m%2B5QA%3D%3D',
+    email: 'sharly@uwezolinkinitiative.org',
     category: 'leadership'
   },
   {

@@ -217,7 +217,7 @@ const About = () => {
               Who We Are
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible — and are working tirelessly to make it happen.
+              Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible, and are working tirelessly to make it happen.
             </p>
             <img 
               src="/images/image-02.jpg" 
@@ -245,13 +245,13 @@ const About = () => {
               <div>
                 <h3 className="font-poppins text-2xl font-bold mb-6">Our Story</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Uwezo Link Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities — girls missing school due to lack of sanitary products, communities struggling with climate change impacts, and youth excluded from the digital economy despite their natural innovation abilities.
+                  Uwezo Link Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities, girls missing school due to lack of sanitary products, communities struggling with climate change impacts, and youth excluded from the digital economy despite their natural innovation abilities.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   The Uwezo Link Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions — we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
+                  Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions ; we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
                 </p>
               </div>
               <div className="space-y-6">
@@ -305,7 +305,7 @@ const About = () => {
                 </div>
                 <h3 className="font-poppins text-2xl font-bold mb-4">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  A future where every young person — regardless of gender, background, or location — has the resources, knowledge, and opportunities to thrive in a changing world.
+                  A future where every young person , regardless of gender, background, or location ; has the resources, knowledge, and opportunities to thrive in a changing world.
                 </p>
               </div>
               

@@ -14,7 +14,7 @@ const DonationForm = ({ type }: { type: 'one-time' | 'monthly' }) => {
   const [amount, setAmount] = useState('');
   const [customAmount, setCustomAmount] = useState('');
   
-  const predefinedAmounts = ['25', '50', '100', '250', '500'];
+  const predefinedAmounts = ['50', '75', '100', '250', '500'];
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -137,7 +137,6 @@ const Donate = () => {
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
               Your contribution directly transforms lives across Kenyan communities, addressing period poverty, building climate resilience, and creating pathways to the digital economy.
-              Your contribution directly transforms lives across Kenyan communities, addressing period poverty, building climate resilience, and creating pathways to the digital economy.
             </p>
             <div className="max-w-2xl mx-auto mb-8">
               <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
@@ -171,15 +170,14 @@ const Donate = () => {
             <Card className="text-center border-primary/20">
               <CardHeader>
                 <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-2xl flex items-center justify-center">
-                  <span className="text-primary font-bold text-xl">$10</span>
+                  <span className="text-primary font-bold text-xl">$100</span>
                 </div>
-                <CardTitle className="text-lg">Sanitary Pads for a Term</CardTitle>
                 <CardTitle className="text-lg">Sanitary Pads for a Term</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
                   Provides a girl with sanitary pads for a full school term, ensuring dignity 
-                  and uninterrupted education for three months. (10$ will help 1 girl for 3 months (Impact))
+                  and uninterrupted education for three months. (100$ will help 1 girl for 3 months)
                 </CardDescription>
               </CardContent>
             </Card>
@@ -187,15 +185,14 @@ const Donate = () => {
             <Card className="text-center border-secondary/20">
               <CardHeader>
                 <div className="w-16 h-16 mx-auto mb-4 bg-secondary/20 rounded-2xl flex items-center justify-center">
-                  <span className="text-secondary font-bold text-xl">$50</span>
+                  <span className="text-secondary font-bold text-xl">$150</span>
                 </div>
-                <CardTitle className="text-lg">IoT Starter Kit</CardTitle>
                 <CardTitle className="text-lg">IoT Starter Kit</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
                   Funds an IoT climate monitoring kit built from recycled materials, 
-                  enabling community-led environmental solutions. (50$ will help equip 5 students with a kit for a month (Impact))
+                  enabling community-led environmental solutions. (150$ will help equip 5 students with a kit for a month)
                 </CardDescription>
               </CardContent>
             </Card>
@@ -203,15 +200,14 @@ const Donate = () => {
             <Card className="text-center border-accent/20">
               <CardHeader>
                 <div className="w-16 h-16 mx-auto mb-4 bg-accent/20 rounded-2xl flex items-center justify-center">
-                  <span className="text-accent font-bold text-xl">$100</span>
+                  <span className="text-accent font-bold text-xl">$300</span>
                 </div>
-                <CardTitle className="text-lg">Community Workshop</CardTitle>
                 <CardTitle className="text-lg">Community Workshop</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
                   Supports a full community education workshop on AI, coding, and problem-solving 
-                  for 30 participants, including materials and facilitation. (100$ will help 10 girls for 2 months (Impact))
+                  for 30 participants, including materials and facilitation. (300$ will help 10 girls for 2 months)
                 </CardDescription>
               </CardContent>
             </Card>

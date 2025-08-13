@@ -134,7 +134,7 @@ const Contact = () => {
                     <h3 className="font-poppins font-semibold text-lg mb-2">Office Location</h3>
                     <p className="text-muted-foreground">
                       Nairobi, Kenya<br />
-                       Wu Yi Plaza 
+                       Wu Yi Plaza , Galana Road
                     </p>
                   </div>
                 </div>
@@ -148,7 +148,8 @@ const Contact = () => {
                     <h3 className="font-poppins font-semibold text-lg mb-2">Email</h3>
                     <p className="text-muted-foreground">
                       General: info@uwezolinkinitiative.org<br />
-                      Partnerships: partnerships@uwezolinkinitiative.org
+                      Partnerships: sharly@uwezolinkinitiative.org<br />
+                      Payments: tevin@uwezolinkinitiative.org
                     </p>
                   </div>
                 </div>

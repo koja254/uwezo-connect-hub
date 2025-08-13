@@ -20,7 +20,7 @@ const Index = () => {
       <Hero
         title="Empowering Communities. Transforming Futures. Building Resilience."
         subtitle="Building the Future Today"
-        description="Meet Amina, who misses school every month due to lack of sanitary products. Daniel, who has never accessed a coding lab. Mary, who's unsure how to contribute to climate solutions. Uwezo Link Initiative was founded to bridge these gaps — connecting communities to opportunity through technology, education, and innovation."
+        description="Meet Amina, who misses school every month due to lack of sanitary products. Daniel, who has never accessed a coding lab. Mary, who's unsure how to contribute to climate solutions. Uwezo Link Initiative was founded to bridge these gaps, connecting communities to opportunity through technology, education, and innovation."
         primaryCTA={{
           text: "Join Our Community",
           href: "/programs"
@@ -42,11 +42,14 @@ const Index = () => {
               Who We Are
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Uwezo Link Initiative is a Community-Based Organization using innovative, technology-driven solutions to fight period poverty, build climate resilience, and equip youth with 21st-century skills.
+            Uwezo Link Initiative is a Community-Based Organization in Nairobi,Kenya dedicated to transforming lives through innovative, technology-driven solutions.
+            <br></br>
+            We address period poverty, champion climate resilience, and equip young people with 21st-century IT skills.
+            Our work is rooted in empathy, fueled by innovation, and guided by a vision of equitable progress.
             </p>
             <div className="max-w-2xl mx-auto mb-12">
               <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
-                "We are not just solving problems — we are creating possibilities."
+                "We are not just solving problems , we are creating possibilities."
               </blockquote>
             </div>
             

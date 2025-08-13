@@ -113,7 +113,7 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-accent shrink-0" />
                 <a href="mailto:info@uwezolink.org" className="text-white/80 hover:text-accent transition-colors">
-                  info@uwezolink.org
+                  info@uwezolinkinitiative.org
                 </a>
               </div>
               <div className="flex items-center space-x-3">

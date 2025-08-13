@@ -108,8 +108,7 @@ const Team = () => {
               Our Team & Community
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Meet the passionate individuals driving change in STEM education across Kenya. 
-              Our diverse team combines expertise in technology, education, and community development.
+            Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible, and are working tirelessly to make it happen
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Dialog>
@@ -150,8 +149,7 @@ const Team = () => {
               Leadership Team
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Our leadership team brings together diverse expertise in technology, education, 
-              and social impact to drive our mission forward.
+            The Uwezo Link Initiative Leadership team, is a blend of tech innovators, educators, climate champions, and community advocates. We are united by one mission: to use technology and education to break cycles of inequality, create sustainable opportunities, and give young people the tools to shape their futures.
             </p>
           </div>
 
