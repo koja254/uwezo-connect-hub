@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { organizationContent } from '@/data/static';
+import { useToast } from '@/hooks/use-toast';
 
 const GetInvolvedForm = () => {
   const [formData, setFormData] = useState({
@@ -19,9 +20,42 @@ const GetInvolvedForm = () => {
     experience: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formElement = e.target as HTMLFormElement;
+      const response = await fetch('/', {
+        method: 'POST',
+        body: new FormData(formElement),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Success!",
+          description: "Your submission has been received.",
+        });
+        setFormData({ name: '', email: '', phone: '', interest: '', experience: '', message: '' });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem submitting. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <form method="POST" data-netlify="true" className="space-y-4">
+    <form method="POST" data-netlify="true" name="get-involved" onSubmit={handleSubmit} className="space-y-4">
       <input type="hidden" name="form-name" value="get-involved" />
       <div>
         <Label htmlFor="name">Full Name</Label>
@@ -93,9 +127,9 @@ const GetInvolvedForm = () => {
           placeholder="Anything else you'd like us to know?"
         />
       </div>
-      <Button type="submit" className="w-full cta-primary">
-        <Send className="w-4 h-4 mr-2" />
-        Submit Application
+      <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
+        {isSubmitting ? 'Submitting...' : <Send className="w-4 h-4 mr-2" />}
+        {isSubmitting ? 'Submitting...' : 'Submit Application'}
       </Button>
     </form>
   );
@@ -111,9 +145,42 @@ const PartnershipForm = () => {
     description: '',
     resources: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formElement = e.target as HTMLFormElement;
+      const response = await fetch('/', {
+        method: 'POST',
+        body: new FormData(formElement),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Success!",
+          description: "Your submission has been received.",
+        });
+        setFormData({ organizationName: '', contactName: '', email: '', phone: '', partnershipType: '', description: '', resources: '' });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem submitting. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <form method="POST" data-netlify="true" className="space-y-4">
+    <form method="POST" data-netlify="true" name="partnership" onSubmit={handleSubmit} className="space-y-4">
       <input type="hidden" name="form-name" value="partnership" />
       <div>
         <Label htmlFor="organizationName">Organization Name</Label>
@@ -196,9 +263,9 @@ const PartnershipForm = () => {
           placeholder="What resources can your organization contribute?"
         />
       </div>
-      <Button type="submit" className="w-full cta-primary">
-        <Send className="w-4 h-4 mr-2" />
-        Submit Partnership Proposal
+      <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
+        {isSubmitting ? 'Submitting...' : <Send className="w-4 h-4 mr-2" />}
+        {isSubmitting ? 'Submitting...' : 'Submit Partnership Proposal'}
       </Button>
     </form>
   );

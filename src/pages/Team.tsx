@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { teamMembers } from '@/data/team';
+import { useToast } from '@/hooks/use-toast';
 
 const VolunteerForm = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +20,39 @@ const VolunteerForm = () => {
     experience: '',
     motivation: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Volunteer form submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      const formElement = e.target as HTMLFormElement;
+      const response = await fetch('/', {
+        method: 'POST',
+        body: new FormData(formElement),
+      });
+
+      if (response.ok) {
+        console.log('Volunteer form submitted:', formData);
+        toast({
+          title: "Success!",
+          description: "Your volunteer application has been submitted.",
+        });
+        setFormData({ name: '', email: '', phone: '', skills: '', experience: '', motivation: '' });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem submitting your application. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -88,8 +118,8 @@ const VolunteerForm = () => {
           placeholder="Share your motivation..."
         />
       </div>
-      <Button type="submit" className="w-full cta-primary">
-        Submit Application
+      <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
+        {isSubmitting ? 'Submitting...' : 'Submit Application'}
       </Button>
     </form>
   );

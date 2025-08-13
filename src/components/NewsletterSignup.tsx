@@ -69,13 +69,22 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Newsletter signup:', formData);
-      setIsSubmitted(true);
-      toast({
-        title: "Success!",
-        description: "You've been subscribed to our newsletter.",
+      const formElement = e.target as HTMLFormElement;
+      const response = await fetch('/', {
+        method: 'POST',
+        body: new FormData(formElement),
       });
+
+      if (response.ok) {
+        console.log('Newsletter signup:', formData);
+        setIsSubmitted(true);
+        toast({
+          title: "Success!",
+          description: "You've been subscribed to our newsletter.",
+        });
+      } else {
+        throw new Error('Submission failed');
+      }
     } catch (error) {
       toast({
         title: "Error",
