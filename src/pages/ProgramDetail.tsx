@@ -208,44 +208,7 @@ const ProgramDetail = () => {
         </div>
       </section>
 
-      {/* Get Involved CTA */}
-      <section className="py-16 md:py-24 bg-gradient-primary">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Users className="w-16 h-16 text-white/80 mx-auto mb-6" />
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Get Involved?
-            </h2>
-            <p className="text-lg text-white/90 leading-relaxed mb-12">
-              Join thousands of students, educators, and community members who are already part of this transformative program.
-            </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" className="cta-accent">
-                {program.ctaText}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-              <Button
-  asChild
-  size="lg"
-  variant="outline"
-  className="border-white text-white hover:bg-white hover:text-primary"
->
-  <Link
-    to="/contact"
-    onClick={() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-  >
-    Contact Us
-    <ArrowRight className="w-4 h-4 ml-2" />
-  </Link>
-</Button>
-
-            </div>
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>

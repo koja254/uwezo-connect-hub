@@ -352,36 +352,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* How We Work */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-                How We Work
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Our approach combines research-backed methodologies with grassroots community engagement 
-                to create sustainable, scalable impact.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {organizationContent.coreValues.slice(0, 4).map((value, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">{index + 1}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-poppins font-semibold text-lg mb-2">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Call to Action */}
       <section className="py-16">

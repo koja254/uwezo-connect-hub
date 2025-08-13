@@ -22,7 +22,7 @@ const Index = () => {
         subtitle="Building the Future Today"
         description="Meet Amina, who misses school every month due to lack of sanitary products. Daniel, who has never accessed a coding lab. Mary, who's unsure how to contribute to climate solutions. Uwezo Link Initiative was founded to bridge these gaps, connecting communities to opportunity through technology, education, and innovation."
         primaryCTA={{
-          text: "Join Our Community",
+          text: "See Our Programs",
           href: "/programs"
         }}
         secondaryCTA={{
@@ -201,8 +201,8 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <NewsletterSignup
-              title="Stay Connected with Our Mission"
-              description="Get the latest updates on our programs, success stories, and opportunities to make a difference in STEM education."
+            title="Our Partners"
+            description="Join us in celebrating the hearts and hands that make our journey possible. Together, we nurture dreams, inspire growth, and create lasting impact in every life we touch."            
               showInterests={true}
             />
           </div>

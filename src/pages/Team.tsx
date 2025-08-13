@@ -162,7 +162,7 @@ const Team = () => {
                 <div className="w-24 h-24 mx-auto mb-4 relative">
                   <img
                     src={member.image}
-                    alt={member.imageAlt}
+                    alt={member.imageAlt || ''}
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
@@ -215,14 +215,8 @@ const Team = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                id: 'tevin',
-                name: 'Tevin',
-                role: teamMembers.find(m => m.name === 'Tevin')?.role || 'Tech Lead',
-                bio: teamMembers.find(m => m.name === 'Tevin')?.bio || 'Tech enthusiast driving innovation in STEM education.',
-              },
-              {
                 id: 'kevin',
-                name: 'Kevin Omondi',
+                name: 'Kevin Ojwang',
                 role: 'Data & AI Specialist',
                 bio: 'Passionate about technology, data analytics, and AI, with a strong commitment to advancing STEM education for youth.',
               },
@@ -268,10 +262,10 @@ const Team = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                id: 'sharly',
-                name: 'Sharly',
-                role: teamMembers.find(m => m.name === 'Sharly')?.role || 'Advocacy Lead',
-                bio: teamMembers.find(m => m.name === 'Sharly')?.bio || 'Passionate advocate for education and empowerment.',
+                id: 'muna',
+                name: 'Christine Muna',
+                role: 'Communications Specialist',
+                bio: 'With 15+ years in non-profits and humanitarian work, Christine creates impactful communication strategies that boost fundraising, donor engagement, and brand visibility.',
               },
               {
                 id: 'sharon',

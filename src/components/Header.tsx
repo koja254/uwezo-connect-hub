@@ -53,7 +53,7 @@ const Header = () => {
             <img
               src="/images/image-24.png"
               alt="Uwezo Logo"
-              className="w-10 h-10 bg-transparent rounded-xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300"
+              className="w-14 h-14 bg-transparent rounded-xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300"
             />
             <div className="hidden sm:block">
               <span className="font-poppins font-bold text-xl text-foreground">
@@ -72,7 +72,7 @@ const Header = () => {
                 <NavigationMenuItem>
                   <Link 
                     to="/about" 
-                    className={`nav-link ${isActivePath('/about') ? 'active' : ''}`}
+                    className={`nav-link text-gray-800 hover:text-primary font-medium ${isActivePath('/about') ? 'active' : ''}`}
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     About
@@ -80,7 +80,7 @@ const Header = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="nav-link">
+                  <NavigationMenuTrigger className="nav-link text-gray-800 hover:text-primary font-medium">
                     Programs
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -124,7 +124,7 @@ const Header = () => {
                 <NavigationMenuItem>
                   <Link 
                     to="/resources" 
-                    className={`nav-link ${isActivePath('/resources') ? 'active' : ''}`}
+                    className={`nav-link text-gray-800 hover:text-primary font-medium ${isActivePath('/resources') ? 'active' : ''}`}
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     Resources
@@ -134,7 +134,7 @@ const Header = () => {
                 <NavigationMenuItem>
                   <Link 
                     to="/team" 
-                    className={`nav-link ${isActivePath('/team') ? 'active' : ''}`}
+                    className={`nav-link text-gray-800 hover:text-primary font-medium ${isActivePath('/team') ? 'active' : ''}`}
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     Team
@@ -144,7 +144,7 @@ const Header = () => {
                 <NavigationMenuItem>
                   <Link 
                     to="/contact" 
-                    className={`nav-link ${isActivePath('/contact') ? 'active' : ''}`}
+                    className={`nav-link text-gray-800 hover:text-primary font-medium ${isActivePath('/contact') ? 'active' : ''}`}
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     Contact
@@ -157,9 +157,7 @@ const Header = () => {
               <Button asChild variant="outline" size="sm">
                 <Link to="/donate" onClick={() => window.scrollTo(0, 0)}>Donate</Link>
               </Button>
-              <Button asChild size="sm" className="cta-primary">
-                <Link to="/programs" onClick={() => window.scrollTo(0, 0)}>Get Involved</Link>
-              </Button>
+              
             </div>
           </nav>
 
@@ -179,14 +177,14 @@ const Header = () => {
             <nav className="py-4 space-y-2">
               <Link
                 to="/about"
-                className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
+                className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-accent/50 transition-colors font-medium"
                 onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 About
               </Link>
               
               <div className="px-4 py-2">
-                <div className="text-foreground font-medium mb-2">Programs</div>
+                <div className="text-gray-800 font-medium mb-2">Programs</div>
                 <div className="pl-4 space-y-1">
                   <Link
                     to="/programs"
@@ -210,7 +208,7 @@ const Header = () => {
 
               <Link
                 to="/resources"
-                className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
+                className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-accent/50 transition-colors font-medium"
                 onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 Resources
@@ -218,7 +216,7 @@ const Header = () => {
               
               <Link
                 to="/team"
-                className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
+                className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-accent/50 transition-colors font-medium"
                 onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 Team
@@ -226,7 +224,7 @@ const Header = () => {
               
               <Link
                 to="/contact"
-                className="block px-4 py-2 text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
+                className="block px-4 py-2 text-gray-800 hover:text-primary hover:bg-accent/50 transition-colors font-medium"
                 onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
               >
                 Contact
@@ -238,11 +236,7 @@ const Header = () => {
                     Donate
                   </Link>
                 </Button>
-                <Button asChild className="w-full cta-primary">
-                  <Link to="/programs" onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}>
-                    Get Involved
-                  </Link>
-                </Button>
+                
               </div>
             </nav>
           </div>

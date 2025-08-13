@@ -35,12 +35,12 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
     gallery: [
       { src: '/images/image-03.jpg', alt: 'QR ID card and token redemption illustration' },
       { src: '/images/image-04.jpg', alt: 'Girls attending SRHR workshop' },
-      { src: '/images/image-11.jpg', alt: 'Youth coding on laptops in a rural lab' },
+      { src: '/images/programs.jpg', alt: 'Youth coding on laptops in a rural lab' },
       { src: '/images/pads.png', alt: 'Youth girls holding pads' },
       { src: '/images/sanitary.jpg', alt: 'Sanitary pads' }
 
     ],
-    ctaText: 'Join the Token Program',
+    ctaText: 'View Concept Note',
     ctaAction: 'participate'
   },
   {
@@ -80,7 +80,7 @@ Uwezo Fab Lab is a community-driven innovation hub where young people learn to d
       { src: '/images/image-08.jpg', alt: 'Solar-powered water pump prototype in farm' },
       { src: '/images/image-12.jpg', alt: 'Close-up of hands assembling electronics' }
     ],
-    ctaText: 'Partner with the Fab Lab',
+    ctaText: 'View Concept Note',
     ctaAction: 'partner'
   },
   {
@@ -116,10 +116,10 @@ Uwezo Teaching is our education and training program, offering STEM and AI cours
     ],
     gallery: [
       { src: '/images/image-10.jpg', alt: 'Classroom robotics workshop for girls' },
-      { src: '/images/image-11.jpg', alt: 'Youth coding on laptops in a rural lab' },
+      { src: '/images/programs.jpg', alt: 'Youth coding on laptops in a rural lab' },
       { src: '/images/image-18.jpg', alt: 'Volunteers working with local community' }
     ],
-    ctaText: 'Request Teaching Visit',
+    ctaText: 'View Concept Note',
     ctaAction: 'participate'
   }
 ];

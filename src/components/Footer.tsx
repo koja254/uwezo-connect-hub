@@ -237,9 +237,10 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center space-x-1 text-sm text-white/60">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
-              <span>for education and empowerment</span>
+            <span>Made with</span>
+<Heart className="w-4 h-4 text-pink-500 fill-current animate-pulse" />
+<span>by <strong>Oj & Bob</strong> - for dreams, learning, and empowerment</span>
+
             </div>
           </div>
         </div>

@@ -32,8 +32,8 @@ export interface TeamMember {
   name: string;
   role: string;
   bio: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   linkedin?: string;
   twitter?: string;
   email?: string;

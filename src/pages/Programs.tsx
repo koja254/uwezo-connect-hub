@@ -26,7 +26,7 @@ const Programs = () => {
           text: "Support Our Work",
           href: "/donate"
         }}
-        backgroundImage="/images/image-11.jpg"
+        backgroundImage="/images/programs.jpg"
         imageAlt="Youth coding on laptops in a rural lab"
         size="medium"
       />
@@ -209,36 +209,7 @@ const Programs = () => {
         </div>
       </section>
 
-      {/* Get Involved */}
-      <section className="py-16 md:py-24 bg-gradient-primary">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold text-white mb-8">
-              Ready to Get Involved?
-            </h2>
-            <p className="text-lg text-white/90 leading-relaxed mb-12">
-              Whether you want to participate in our programs, volunteer as a mentor, 
-              partner with us, or support our mission financially, we have opportunities 
-              for everyone to make a meaningful impact.
-            </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild size="lg" className="cta-accent">
-                <Link to="/contact">
-                  Join Our Programs
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                <Link to="/donate">
-                  Support Our Mission
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>
