@@ -37,7 +37,6 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
       imageAlt: 'Youth coding on laptops in a rural lab',
       name: 'Partner One'
     },
-   
   ];
 
   const interestOptions = [
@@ -69,10 +68,15 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     setIsSubmitting(true);
 
     try {
-      const formElement = e.target as HTMLFormElement;
-      const response = await fetch('/', {
+      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
         method: 'POST',
-        body: new FormData(formElement),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'form-name': 'newsletter',
+          ...formData
+        }),
       });
 
       if (response.ok) {
@@ -186,107 +190,6 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
         <div className="absolute top-1/2 -left-3 w-4 h-4 bg-purple-400 rounded-full opacity-40 animate-pulse"></div>
         <div className="absolute -bottom-3 left-1/3 w-5 h-5 bg-pink-400 rounded-full opacity-50 animate-bounce" style={{ animationDelay: '0.5s' }}></div>
       </div>
-
-      {/* Hidden Form */}
-      <form 
-        method="POST" 
-        data-netlify="true" 
-        name="newsletter" 
-        onSubmit={handleSubmit} 
-        className="hidden"
-      >
-        <input type="hidden" name="form-name" value="newsletter" />
-        {variant !== 'inline' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="firstName">First Name</Label>
-              <Input
-                id="firstName"
-                name="firstName"
-                type="text"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                placeholder="Your first name"
-              />
-            </div>
-            <div>
-              <Label htmlFor="lastName">Last Name</Label>
-              <Input
-                id="lastName"
-                name="lastName"
-                type="text"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                placeholder="Your last name"
-              />
-            </div>
-          </div>
-        )}
-
-        <div>
-          <Label htmlFor="email">Email Address</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="your.email@example.com"
-            required
-          />
-        </div>
-
-        {showInterests && (
-          <div>
-            <Label className="text-base font-medium mb-3 block">
-              I'm interested in (optional):
-            </Label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {interestOptions.map((option) => (
-                <div key={option.id} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={option.id}
-                    name={`interests[${option.id}]`}
-                    checked={formData.interests.includes(option.id)}
-                    onCheckedChange={(checked) => 
-                      handleInterestChange(option.id, checked as boolean)
-                    }
-                  />
-                  <Label 
-                    htmlFor={option.id} 
-                    className="text-sm font-normal cursor-pointer"
-                  >
-                    {option.label}
-                  </Label>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <p className="text-xs text-muted-foreground">
-          By subscribing, you agree to receive updates from Uwezo Link Initiative. 
-          We respect your privacy and you can unsubscribe at any time.
-        </p>
-
-        <Button 
-          type="submit" 
-          className="w-full cta-primary" 
-          disabled={isSubmitting || !formData.email}
-        >
-          {isSubmitting ? (
-            <>
-              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2" />
-              Subscribing...
-            </>
-          ) : (
-            <>
-              <Mail className="w-4 h-4 mr-2" />
-              Subscribe to Updates
-            </>
-          )}
-        </Button>
-      </form>
     </div>
   );
 };

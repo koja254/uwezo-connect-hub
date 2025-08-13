@@ -28,10 +28,15 @@ const VolunteerForm = () => {
     setIsSubmitting(true);
 
     try {
-      const formElement = e.target as HTMLFormElement;
-      const response = await fetch('/', {
+      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
         method: 'POST',
-        body: new FormData(formElement),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'form-name': 'volunteer',
+          ...formData
+        }),
       });
 
       if (response.ok) {
@@ -56,8 +61,7 @@ const VolunteerForm = () => {
   };
 
   return (
-    <form method="POST" data-netlify="true" name="volunteer" onSubmit={handleSubmit} className="space-y-4">
-      <input type="hidden" name="form-name" value="volunteer" />
+    <form method="POST" name="volunteer" onSubmit={handleSubmit} className="space-y-4">
       <div>
         <Label htmlFor="name">Full Name</Label>
         <Input

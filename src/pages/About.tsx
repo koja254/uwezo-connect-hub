@@ -28,10 +28,15 @@ const GetInvolvedForm = () => {
     setIsSubmitting(true);
 
     try {
-      const formElement = e.target as HTMLFormElement;
-      const response = await fetch('/', {
+      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
         method: 'POST',
-        body: new FormData(formElement),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'form-name': 'get-involved',
+          ...formData
+        }),
       });
 
       if (response.ok) {
@@ -55,8 +60,7 @@ const GetInvolvedForm = () => {
   };
 
   return (
-    <form method="POST" data-netlify="true" name="get-involved" onSubmit={handleSubmit} className="space-y-4">
-      <input type="hidden" name="form-name" value="get-involved" />
+    <form method="POST" name="get-involved" onSubmit={handleSubmit} className="space-y-4">
       <div>
         <Label htmlFor="name">Full Name</Label>
         <Input
@@ -153,10 +157,15 @@ const PartnershipForm = () => {
     setIsSubmitting(true);
 
     try {
-      const formElement = e.target as HTMLFormElement;
-      const response = await fetch('/', {
+      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
         method: 'POST',
-        body: new FormData(formElement),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'form-name': 'partnership',
+          ...formData
+        }),
       });
 
       if (response.ok) {
@@ -180,8 +189,7 @@ const PartnershipForm = () => {
   };
 
   return (
-    <form method="POST" data-netlify="true" name="partnership" onSubmit={handleSubmit} className="space-y-4">
-      <input type="hidden" name="form-name" value="partnership" />
+    <form method="POST" name="partnership" onSubmit={handleSubmit} className="space-y-4">
       <div>
         <Label htmlFor="organizationName">Organization Name</Label>
         <Input
@@ -418,7 +426,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
 
       {/* Call to Action */}
       <section className="py-16">
