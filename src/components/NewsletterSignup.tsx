@@ -29,15 +29,15 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
-  // Partner logos
+  // Partner logos with link
   const partners = [
     {
       id: 'partner-1',
       image: '/images/partner1.png',
       imageAlt: 'Youth coding on laptops in a rural lab',
-      name: 'Partner One'
-    },
-   
+      name: 'Kenya Poverty Action',
+      link: 'https://kenyapovertyaction.org.uk/why-kpa/'
+    }
   ];
 
   const interestOptions = [
@@ -58,7 +58,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   const handleInterestChange = (interestId: string, checked: boolean) => {
     setFormData(prev => ({
       ...prev,
-      interests: checked 
+      interests: checked
         ? [...prev.interests, interestId]
         : prev.interests.filter(id => id !== interestId)
     }));
@@ -147,7 +147,12 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
               className="group flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:-translate-y-2"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="relative p-4 bg-white rounded-xl shadow-lg group-hover:shadow-2xl transition-all duration-300 border border-gray-100">
+              <a
+                href={partner.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative p-4 bg-white rounded-xl shadow-lg group-hover:shadow-2xl transition-all duration-300 border border-gray-100"
+              >
                 {/* Animated gradient border on hover */}
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
                 
@@ -164,11 +169,11 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
                   </div>
                   <div className="w-2 h-2 bg-gray-900 transform rotate-45 absolute -top-1 left-1/2 -translate-x-1/2"></div>
                 </div>
-              </div>
+              </a>
             </div>
           ))}
           
-          {/* Add more partner placeholder spots with subtle animation */}
+          {/* Placeholder spots */}
           {[...Array(3)].map((_, index) => (
             <div 
               key={`placeholder-${index}`} 
@@ -181,7 +186,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
           ))}
         </div>
         
-        {/* Floating elements for visual appeal */}
+        {/* Floating elements */}
         <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-400 rounded-full opacity-60 animate-bounce"></div>
         <div className="absolute top-1/2 -left-3 w-4 h-4 bg-purple-400 rounded-full opacity-40 animate-pulse"></div>
         <div className="absolute -bottom-3 left-1/3 w-5 h-5 bg-pink-400 rounded-full opacity-50 animate-bounce" style={{ animationDelay: '0.5s' }}></div>

@@ -149,7 +149,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">
                       General: info@uwezolinkinitiative.org<br />
                       Partnerships: sharly@uwezolinkinitiative.org<br />
-                      Payments: tevin@uwezolinkinitiative.org
+                      Donations: tevin@uwezolinkinitiative.org
                     </p>
                   </div>
                 </div>
