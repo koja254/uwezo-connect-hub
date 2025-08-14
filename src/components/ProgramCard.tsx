@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Program } from '@/types';
@@ -40,12 +40,16 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
         />
         
         {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <Link
+          to={`/programs/${program.slug}`}
+          className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+          aria-label={`Learn more about ${program.title}`}
+        >
           <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
             <h4 className="font-poppins font-semibold text-lg mb-2">Learn More</h4>
             <ArrowRight className="w-6 h-6 mx-auto" />
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Program Content */}
@@ -96,29 +100,44 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
         {/* CTA Button */}
         {showCTA && (
           <div className="mt-auto pt-4">
-            <Button 
-              asChild 
-              className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-              variant="outline"
-            >
-              <Link 
-                to={`/programs/${program.slug}`}
-                className="inline-flex items-center justify-center space-x-2"
+            {program.downloadUrl ? (
+              <a
+                href={program.downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center space-x-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                onClick={() => console.log('Opening PDF:', program.downloadUrl)}
               >
-                <span>Explore Program</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
+                <Download className="w-4 h-4 mr-2" />
+                {program.ctaText}
+              </a>
+            ) : (
+              <Button 
+                asChild 
+                className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                variant="outline"
+              >
+                <Link 
+                  to={`/programs/${program.slug}`}
+                  className="inline-flex items-center justify-center space-x-2"
+                >
+                  <span>{program.ctaText}</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            )}
           </div>
         )}
       </div>
 
-      {/* Link Overlay */}
-      <Link 
-        to={`/programs/${program.slug}`}
-        className="absolute inset-0 z-10"
-        aria-label={`Learn more about ${program.title}`}
-      />
+      {/* Link Overlay (only for non-download cases) */}
+      {!program.downloadUrl && (
+        <Link 
+          to={`/programs/${program.slug}`}
+          className="absolute inset-0 z-10"
+          aria-label={`Learn more about ${program.title}`}
+        />
+      )}
     </div>
   );
 };

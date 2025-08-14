@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Linkedin, Twitter, Users, Heart, Target } from 'lucide-react';
+import { Mail, Linkedin, Twitter, Users, Heart } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -25,39 +25,57 @@ const VolunteerForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          'form-name': 'volunteer',
-          ...formData
-        }),
-      });
-
-      if (response.ok) {
-        console.log('Volunteer form submitted:', formData);
-        toast({
-          title: "Success!",
-          description: "Your volunteer application has been submitted.",
-        });
-        setFormData({ name: '', email: '', phone: '', skills: '', experience: '', motivation: '' });
-      } else {
-        throw new Error('Submission failed');
-      }
-    } catch (error) {
+    if (!formData.name || !formData.email) {
       toast({
         title: "Error",
-        description: "There was a problem submitting your application. Please try again.",
+        description: "Name and email are required.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
+    setIsSubmitting(true);
+
+    const maxRetries = 2;
+    let attempts = 0;
+
+    while (attempts < maxRetries) {
+      try {
+        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            'form-name': 'volunteer',
+            ...formData
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Volunteer form submitted:', formData);
+          toast({
+            title: "Success!",
+            description: "Your volunteer application has been submitted.",
+          });
+          setFormData({ name: '', email: '', phone: '', skills: '', experience: '', motivation: '' });
+          return;
+        } else {
+          const errorText = await response.text();
+          throw new Error(`Submission failed: ${response.status} ${errorText}`);
+        }
+      } catch (error) {
+        attempts++;
+        console.error(`Attempt ${attempts} failed:`, error);
+        if (attempts === maxRetries) {
+          toast({
+            title: "Error",
+            description: "There was a problem submitting your application. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      }
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -79,7 +97,7 @@ const VolunteerForm = () => {
           name="email"
           type="email"
           value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({...formData, email: e.target.value.trim()})}
           required
         />
       </div>
@@ -89,7 +107,7 @@ const VolunteerForm = () => {
           id="phone"
           name="phone"
           value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          onChange={(e) => setFormData({...formData, phone: e.target.value.trim()})}
         />
       </div>
       <div>
@@ -134,15 +152,14 @@ const Team = () => {
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold mb-6">
               Our Team & Community
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-            Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible, and are working tirelessly to make it happen
+              Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible, and are working tirelessly to make it happen
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Dialog>
@@ -175,7 +192,6 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Leadership Team */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -183,7 +199,7 @@ const Team = () => {
               Leadership Team
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            The Uwezo Link Initiative Leadership team, is a blend of tech innovators, educators, climate champions, and community advocates. We are united by one mission: to use technology and education to break cycles of inequality, create sustainable opportunities, and give young people the tools to shape their futures.
+              The Uwezo Link Initiative Leadership team, is a blend of tech innovators, educators, climate champions, and community advocates. We are united by one mission: to use technology and education to break cycles of inequality, create sustainable opportunities, and give young people the tools to shape their futures.
             </p>
           </div>
 
@@ -191,20 +207,19 @@ const Team = () => {
             {teamMembers.filter(member => member.category === 'leadership').map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 text-center hover:shadow-card-hover transition-all duration-300 group"
+                className="bg-card rounded-2xl border border-border p-6 text-center hover:shadow-card-hover transition-shadow duration-300"
               >
-                <div className="w-24 h-24 mx-auto mb-4 relative">
+                <div className="w-24 h-24 mx-auto mb-4">
                   <img
                     src={member.image}
                     alt={member.imageAlt || ''}
                     className="w-full h-full object-cover rounded-full"
+                    loading="lazy"
                   />
                 </div>
-                
                 <h3 className="font-poppins font-semibold text-lg mb-1">{member.name}</h3>
                 <p className="text-primary font-medium text-sm mb-3">{member.role}</p>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">{member.bio}</p>
-                
                 <div className="flex justify-center space-x-3">
                   {member.email && (
                     <Button variant="outline" size="icon" asChild>
@@ -234,7 +249,6 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Tech Team */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -263,7 +277,7 @@ const Team = () => {
             ].map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300"
+                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
@@ -281,7 +295,6 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Advocacy & SRHR Team */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -316,7 +329,7 @@ const Team = () => {
             ].map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300"
+                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
@@ -334,7 +347,6 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Kenya Poverty Action Representative (KPA) */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -357,7 +369,7 @@ const Team = () => {
             ].map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300"
+                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
@@ -375,7 +387,6 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Extended Family */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -402,7 +413,7 @@ const Team = () => {
               
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-secondary/20 rounded-2xl flex items-center justify-center">
-                  <Target className="w-8 h-8 text-secondary" />
+                  <Heart className="w-8 h-8 text-secondary" />
                 </div>
                 <h3 className="font-poppins font-semibold text-lg mb-2">Partners</h3>
                 <p className="text-muted-foreground text-sm">

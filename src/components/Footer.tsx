@@ -1,17 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import { programs } from '@/data/programs';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const { toast } = useToast();
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup submitted');
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Email is required.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'form-name': 'newsletter',
+          email
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Footer newsletter signup:', email);
+        toast({
+          title: "Success!",
+          description: "You've been subscribed to our newsletter.",
+        });
+        setEmail('');
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem subscribing you. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const currentYear = new Date().getFullYear();
 
   const getSocialIcon = (platform: string) => {
     const icons: { [key: string]: React.ReactNode } = {
@@ -72,11 +117,13 @@ const Footer = () => {
               <Input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20"
                 required
               />
-              <Button type="submit" className="cta-accent shrink-0">
-                Subscribe
+              <Button type="submit" className="cta-accent shrink-0" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Subscribe'}
               </Button>
             </form>
           </div>
@@ -92,7 +139,7 @@ const Footer = () => {
               <img
                 src="/images/image-24.png"
                 alt="Uwezo Logo"
-                className="w-10 h-10 bg-transparent rounded-xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300"
+                className="w-10 h-10 bg-transparent rounded-lg flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300"
               />
               <div>
                 <span className="font-poppins font-bold text-xl">Uwezo Link</span>
@@ -216,7 +263,7 @@ const Footer = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-accent hover:text-neutral-dark rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                    className="w-10 h-10 bg-white/10 hover:bg-accent hover:text-neutral-dark rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105"
                     aria-label={`Follow us on ${social.platform}`}
                   >
                     {getSocialIcon(social.platform)}
@@ -237,10 +284,9 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center space-x-1 text-sm text-white/60">
-            <span>Made with</span>
-<Heart className="w-4 h-4 text-pink-500 fill-current animate-pulse" />
-<span>by <strong>Oj & Bob</strong> - for dreams, learning, and empowerment</span>
-
+              <span>Made with</span>
+              <Heart className="w-4 h-4 text-pink-500 fill-current animate-pulse" />
+              <span>by <strong>Oj & Bob</strong> - for dreams, learning, and empowerment</span>
             </div>
           </div>
         </div>

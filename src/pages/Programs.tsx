@@ -93,7 +93,7 @@ const Programs = () => {
                     and building digital literacy skills through blockchain-based incentives.
                   </p>
                   <Link 
-                    to="/programs/uwezo-token" 
+                    to={`/programs/${programs[0].slug}`} 
                     className="text-primary text-sm font-medium hover:text-primary/80 transition-colors inline-flex items-center"
                   >
                     Learn More <ArrowRight className="w-3 h-3 ml-1" />
@@ -117,7 +117,7 @@ const Programs = () => {
                     innovative solutions while learning electronics, programming, and sustainable design.
                   </p>
                   <Link 
-                    to="/programs/uwezo-fab-lab" 
+                    to={`/programs/${programs[1].slug}`} 
                     className="text-secondary text-sm font-medium hover:text-secondary/80 transition-colors inline-flex items-center"
                   >
                     Learn More <ArrowRight className="w-3 h-3 ml-1" />
@@ -141,7 +141,7 @@ const Programs = () => {
                     to share knowledge and expand our reach to new communities.
                   </p>
                   <Link 
-                    to="/programs/uwezo-teaching" 
+                    to={`/programs/${programs[2].slug}`} 
                     className="text-accent text-sm font-medium hover:text-accent/80 transition-colors inline-flex items-center"
                   >
                     Learn More <ArrowRight className="w-3 h-3 ml-1" />
@@ -194,22 +194,19 @@ const Programs = () => {
             </div>
 
             <Button asChild size="lg" className="cta-primary">
-  <Link
-    to="/resources"
-    onClick={() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-  >
-    Read More Success Stories
-    <ArrowRight className="w-4 h-4 ml-2" />
-  </Link>
-</Button>
-
+              <Link
+                to="/resources"
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Read More Success Stories
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
-
-
 
       <Footer />
     </div>

@@ -29,13 +29,14 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
-  // Partner logos
+  // Partner logos with links
   const partners = [
     {
       id: 'partner-1',
       image: '/images/partner1.png',
       imageAlt: 'Youth coding on laptops in a rural lab',
-      name: 'Partner One'
+      name: 'Partner One',
+      link: 'https://kenyapovertyaction.org.uk/' 
     },
   ];
 
@@ -141,35 +142,38 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
       <div className="relative mb-12">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-purple-50 to-indigo-50 rounded-2xl -m-4"></div>
-        <div className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-2xl -m-4"></div>
+        <div className="absolute inset-0 bg-white/60 rounded-2xl -m-4"></div>
         
         {/* Partners container */}
         <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 p-8">
           {partners.map((partner, index) => (
-            <div 
+            <a 
+              href={partner.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
               key={partner.id} 
-              className="group flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:-translate-y-2"
+              className="group flex items-center justify-center transform transition-all duration-300 hover:scale-105 focus:scale-105 outline-none"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="relative p-4 bg-white rounded-xl shadow-lg group-hover:shadow-2xl transition-all duration-300 border border-gray-100">
+              <div className="relative p-4 bg-white rounded-xl shadow-lg group-hover:shadow-2xl transition-all duration-300 border border-gray-100 group-focus:shadow-2xl">
                 {/* Animated gradient border on hover */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm group-focus:opacity-100"></div>
                 
                 <img
                   src={partner.image}
                   alt={partner.imageAlt}
-                  className="max-h-16 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="max-h-16 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 group-focus:grayscale-0"
                 />
                 
                 {/* Partner name tooltip */}
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0">
                   <div className="bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
                     {partner.name}
                   </div>
                   <div className="w-2 h-2 bg-gray-900 transform rotate-45 absolute -top-1 left-1/2 -translate-x-1/2"></div>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
           
           {/* Add more partner placeholder spots with subtle animation */}
@@ -184,11 +188,6 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
             </div>
           ))}
         </div>
-        
-        {/* Floating elements for visual appeal */}
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-400 rounded-full opacity-60 animate-bounce"></div>
-        <div className="absolute top-1/2 -left-3 w-4 h-4 bg-purple-400 rounded-full opacity-40 animate-pulse"></div>
-        <div className="absolute -bottom-3 left-1/3 w-5 h-5 bg-pink-400 rounded-full opacity-50 animate-bounce" style={{ animationDelay: '0.5s' }}></div>
       </div>
     </div>
   );

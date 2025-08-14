@@ -25,6 +25,7 @@ export interface Program {
   }[];
   ctaText: string;
   ctaAction: string;
+  downloadUrl?: string; // Added optional property for PDF links
 }
 
 export interface TeamMember {

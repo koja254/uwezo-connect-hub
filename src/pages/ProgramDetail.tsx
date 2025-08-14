@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, CheckCircle, Users, Target, Lightbulb } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle, Download } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -54,10 +54,30 @@ const ProgramDetail = () => {
                   {program.summary}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="cta-accent">
-                    {program.ctaText}
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  {program.downloadUrl ? (
+                    <Button
+                      asChild
+                      size="lg"
+                      className="cta-accent inline-flex items-center justify-center space-x-2"
+                    >
+                      <a
+                        href={program.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => console.log('Opening PDF:', program.downloadUrl)}
+                      >
+                        <Download className="w-4 h-4 mr-2" />
+                        View Concept Note
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button size="lg" className="cta-accent">
+                      <Link to="/contact" className="inline-flex items-center">
+                        Contact Us
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               </div>
               
@@ -207,8 +227,6 @@ const ProgramDetail = () => {
           </div>
         </div>
       </section>
-
-
 
       <Footer />
     </div>

@@ -25,38 +25,56 @@ const GetInvolvedForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          'form-name': 'get-involved',
-          ...formData
-        }),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Success!",
-          description: "Your submission has been received.",
-        });
-        setFormData({ name: '', email: '', phone: '', interest: '', experience: '', message: '' });
-      } else {
-        throw new Error('Submission failed');
-      }
-    } catch (error) {
+    if (!formData.name || !formData.email || !formData.interest) {
       toast({
         title: "Error",
-        description: "There was a problem submitting. Please try again.",
+        description: "Name, email, and interest are required.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
+    setIsSubmitting(true);
+
+    const maxRetries = 2;
+    let attempts = 0;
+
+    while (attempts < maxRetries) {
+      try {
+        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            'form-name': 'get-involved',
+            ...formData
+          }),
+        });
+
+        if (response.ok) {
+          toast({
+            title: "Success!",
+            description: "Your submission has been received.",
+          });
+          setFormData({ name: '', email: '', phone: '', interest: '', experience: '', message: '' });
+          return;
+        } else {
+          const errorText = await response.text();
+          throw new Error(`Submission failed: ${response.status} ${errorText}`);
+        }
+      } catch (error) {
+        attempts++;
+        console.error(`Attempt ${attempts} failed:`, error);
+        if (attempts === maxRetries) {
+          toast({
+            title: "Error",
+            description: "There was a problem submitting. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      }
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -78,7 +96,7 @@ const GetInvolvedForm = () => {
           name="email"
           type="email"
           value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({...formData, email: e.target.value.trim()})}
           required
         />
       </div>
@@ -88,7 +106,7 @@ const GetInvolvedForm = () => {
           id="phone"
           name="phone"
           value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          onChange={(e) => setFormData({...formData, phone: e.target.value.trim()})}
         />
       </div>
       <div>
@@ -98,7 +116,7 @@ const GetInvolvedForm = () => {
           name="interest"
           value={formData.interest}
           onChange={(e) => setFormData({...formData, interest: e.target.value})}
-          className="w-full border border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-between rounded-md px-3 py-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full border border-input bg-background rounded-md px-3 py-2 text-sm"
           required
         >
           <option value="">Select your interest</option>
@@ -132,8 +150,7 @@ const GetInvolvedForm = () => {
         />
       </div>
       <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
-        {isSubmitting ? 'Submitting...' : <Send className="w-4 h-4 mr-2" />}
-        {isSubmitting ? 'Submitting...' : 'Submit Application'}
+        {isSubmitting ? 'Submitting...' : <><Send className="w-4 h-4 mr-2" />Submit Application</>}
       </Button>
     </form>
   );
@@ -154,38 +171,56 @@ const PartnershipForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          'form-name': 'partnership',
-          ...formData
-        }),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Success!",
-          description: "Your submission has been received.",
-        });
-        setFormData({ organizationName: '', contactName: '', email: '', phone: '', partnershipType: '', description: '', resources: '' });
-      } else {
-        throw new Error('Submission failed');
-      }
-    } catch (error) {
+    if (!formData.organizationName || !formData.contactName || !formData.email || !formData.description) {
       toast({
         title: "Error",
-        description: "There was a problem submitting. Please try again.",
+        description: "Required fields are missing.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
+    setIsSubmitting(true);
+
+    const maxRetries = 2;
+    let attempts = 0;
+
+    while (attempts < maxRetries) {
+      try {
+        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            'form-name': 'partnership',
+            ...formData
+          }),
+        });
+
+        if (response.ok) {
+          toast({
+            title: "Success!",
+            description: "Your submission has been received.",
+          });
+          setFormData({ organizationName: '', contactName: '', email: '', phone: '', partnershipType: '', description: '', resources: '' });
+          return;
+        } else {
+          const errorText = await response.text();
+          throw new Error(`Submission failed: ${response.status} ${errorText}`);
+        }
+      } catch (error) {
+        attempts++;
+        console.error(`Attempt ${attempts} failed:`, error);
+        if (attempts === maxRetries) {
+          toast({
+            title: "Error",
+            description: "There was a problem submitting. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      }
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -217,7 +252,7 @@ const PartnershipForm = () => {
           name="email"
           type="email"
           value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({...formData, email: e.target.value.trim()})}
           required
         />
       </div>
@@ -227,7 +262,7 @@ const PartnershipForm = () => {
           id="phone"
           name="phone"
           value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          onChange={(e) => setFormData({...formData, phone: e.target.value.trim()})}
         />
       </div>
       <div>
@@ -237,7 +272,7 @@ const PartnershipForm = () => {
           name="partnershipType"
           value={formData.partnershipType}
           onChange={(e) => setFormData({...formData, partnershipType: e.target.value})}
-          className="w-full border border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-between rounded-md px-3 py-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full border border-input bg-background rounded-md px-3 py-2 text-sm"
           required
         >
           <option value="">Select partnership type</option>
@@ -272,8 +307,7 @@ const PartnershipForm = () => {
         />
       </div>
       <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
-        {isSubmitting ? 'Submitting...' : <Send className="w-4 h-4 mr-2" />}
-        {isSubmitting ? 'Submitting...' : 'Submit Partnership Proposal'}
+        {isSubmitting ? 'Submitting...' : <><Send className="w-4 h-4 mr-2" />Submit Partnership Proposal</>}
       </Button>
     </form>
   );
@@ -284,11 +318,10 @@ const About = () => {
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold mb-6">
               Who We Are
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
@@ -298,12 +331,12 @@ const About = () => {
               src="/images/image-02.jpg" 
               alt="Students in a school corridor receiving assistance"
               className="rounded-2xl shadow-card mx-auto max-w-2xl w-full"
+              loading="lazy"
             />
           </div>
         </div>
       </section>
 
-      {/* About Overview */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -326,7 +359,7 @@ const About = () => {
                   The Uwezo Link Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions ; we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
+                  Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions; we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
                 </p>
               </div>
               <div className="space-y-6">
@@ -369,7 +402,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Vision & Mission */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -380,7 +412,7 @@ const About = () => {
                 </div>
                 <h3 className="font-poppins text-2xl font-bold mb-4">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  A future where every young person , regardless of gender, background, or location ; has the resources, knowledge, and opportunities to thrive in a changing world.
+                  A future where every young person, regardless of gender, background, or location; has the resources, knowledge, and opportunities to thrive in a changing world.
                 </p>
               </div>
               
@@ -398,7 +430,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Core Values */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -414,8 +445,8 @@ const About = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {organizationContent.coreValues.map((value, index) => (
-                <div key={index} className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group">
-                  <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div key={index} className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300">
+                  <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4">
                     <CheckCircle className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="font-poppins font-semibold text-lg mb-3">{value.title}</h3>
@@ -427,7 +458,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">

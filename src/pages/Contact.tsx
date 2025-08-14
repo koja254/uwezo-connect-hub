@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +17,61 @@ const Contact = () => {
     interest: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
+    if (!formData.name || !formData.email || !formData.interest || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Name, email, interest, and message are required.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setIsSubmitting(true);
+
+    const maxRetries = 2;
+    let attempts = 0;
+
+    while (attempts < maxRetries) {
+      try {
+        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            'form-name': 'contact',
+            ...formData
+          }),
+        });
+
+        if (response.ok) {
+          toast({
+            title: "Success!",
+            description: "Your message has been sent successfully.",
+          });
+          setFormData({ name: '', email: '', phone: '', interest: '', message: '' });
+          return;
+        } else {
+          const errorText = await response.text();
+          throw new Error(`Submission failed: ${response.status} ${errorText}`);
+        }
+      } catch (error) {
+        attempts++;
+        console.error(`Attempt ${attempts} failed:`, error);
+        if (attempts === maxRetries) {
+          toast({
+            title: "Error",
+            description: "There was a problem sending your message. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      }
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -66,7 +118,7 @@ const Contact = () => {
                       id="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) => setFormData({...formData, email: e.target.value.trim()})}
                       required
                       className="mt-1"
                     />
@@ -78,7 +130,7 @@ const Contact = () => {
                   <Input
                     id="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value.trim()})}
                     placeholder="+254..."
                     className="mt-1"
                   />
@@ -113,9 +165,8 @@ const Contact = () => {
                   />
                 </div>
                 
-                <Button type="submit" size="lg" className="w-full cta-primary">
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                <Button type="submit" size="lg" className="w-full cta-primary" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : <><Send className="w-4 h-4 mr-2" />Send Message</>}
                 </Button>
               </form>
             </div>
@@ -134,7 +185,7 @@ const Contact = () => {
                     <h3 className="font-poppins font-semibold text-lg mb-2">Office Location</h3>
                     <p className="text-muted-foreground">
                       Nairobi, Kenya<br />
-                       Wu Yi Plaza , Galana Road
+                      Wu Yi Plaza , Galana Road
                     </p>
                   </div>
                 </div>

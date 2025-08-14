@@ -10,7 +10,7 @@ export const programs: Program[] = [
 
 "A girl's education should never stop because of her period."
 
-The Uwezo Token program uses blockchain technology to create a sustainable solution. Students earn digital tokens for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These tokens can be redeemed for sanitary products, school supplies, and other necessities at patner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
+The Uwezo Token program uses blockchain technology to create a sustainable solution. Students earn digital tokens for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These tokens can be redeemed for sanitary products, school supplies, and other necessities at partner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
     heroImage: '/images/img-21.png',
     heroImageAlt: 'Students in a school corridor receiving assistance',
     keyFeatures: [
@@ -38,10 +38,10 @@ The Uwezo Token program uses blockchain technology to create a sustainable solut
       { src: '/images/programs.jpg', alt: 'Youth coding on laptops in a rural lab' },
       { src: '/images/pads.png', alt: 'Youth girls holding pads' },
       { src: '/images/sanitary.jpg', alt: 'Sanitary pads' }
-
     ],
     ctaText: 'View Concept Note',
-    ctaAction: 'participate'
+    ctaAction: 'participate',
+    downloadUrl: '/downloads/uwezo_token_concept_note.pdf'
   },
   {
     id: 'uwezo-fab-lab',
@@ -81,7 +81,8 @@ Uwezo Fab Lab is a community-driven innovation hub where young people learn to d
       { src: '/images/image-12.jpg', alt: 'Close-up of hands assembling electronics' }
     ],
     ctaText: 'View Concept Note',
-    ctaAction: 'partner'
+    ctaAction: 'partner',
+    downloadUrl: '/downloads/uwezo-fab_lab.pdf'
   },
   {
     id: 'uwezo-teaching',
@@ -120,6 +121,7 @@ Uwezo Teaching is our education and training program, offering STEM and AI cours
       { src: '/images/image-18.jpg', alt: 'Volunteers working with local community' }
     ],
     ctaText: 'View Concept Note',
-    ctaAction: 'participate'
+    ctaAction: 'participate',
+    downloadUrl: '/downloads/uwezo_teaching_stem_ai.pdf'
   }
 ];
