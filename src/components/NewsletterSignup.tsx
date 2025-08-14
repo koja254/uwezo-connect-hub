@@ -58,7 +58,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   const handleInterestChange = (interestId: string, checked: boolean) => {
     setFormData(prev => ({
       ...prev,
-      interests: checked 
+      interests: checked
         ? [...prev.interests, interestId]
         : prev.interests.filter(id => id !== interestId)
     }));
@@ -176,7 +176,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
             </a>
           ))}
           
-          {/* Add more partner placeholder spots with subtle animation */}
+          {/* Placeholder spots */}
           {[...Array(3)].map((_, index) => (
             <div 
               key={`placeholder-${index}`} 

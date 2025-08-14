@@ -183,6 +183,30 @@ export const organizationContent = {
       description: "We build strong partnerships with communities, organizations, and individuals to maximize our collective impact."
     }
   ],
+
+  sdgCommitments: [
+    {
+      title: "SDG 4 – Quality Education",
+      description: "Through Uwezo Teaching, we provide STEM and AI training to youth and girls, equipping them with future-ready skills and bridging the digital divide in underserved communities.",
+      icon: "GraduationCap"
+    },
+    {
+      title: "SDG 5 – Gender Equality",
+      description: "We prioritize inclusivity by creating safe, supportive learning environments for girls, ensuring equal access to technology, innovation spaces, and leadership opportunities.",
+      icon: "Scale"
+    },
+    {
+      title: "SDG 9 – Industry, Innovation, and Infrastructure",
+      description: "Through initiatives like Uwezo Fab Lab, we foster grassroots innovation, support local manufacturing, and empower communities to build sustainable, tech-enabled solutions.",
+      icon: "Cpu"
+    },
+    {
+      title: "SDG 13 – Climate Action",
+      description: "We address climate change by integrating environmental conservation, IoT-based climate solutions, and community-driven adaptation strategies into our programs.",
+      icon: "Leaf"
+    }
+  ],
+
   
   howWeWork: [
     {

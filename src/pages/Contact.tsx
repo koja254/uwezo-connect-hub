@@ -199,8 +199,8 @@ const Contact = () => {
                     <h3 className="font-poppins font-semibold text-lg mb-2">Email</h3>
                     <p className="text-muted-foreground">
                       General: info@uwezolinkinitiative.org<br />
-                      Partnerships: sharly@uwezolinkinitiative.org<br />
-                      Payments: tevin@uwezolinkinitiative.org
+                      Partnerships: sharly.moraa@uwezolinkinitiative.org<br />
+                      Donations: tevin@uwezolinkinitiative.org
                     </p>
                   </div>
                 </div>

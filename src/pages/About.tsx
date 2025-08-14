@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { organizationContent } from '@/data/static';
 import { useToast } from '@/hooks/use-toast';
+import * as Icons from 'lucide-react'
 
 const GetInvolvedForm = () => {
   const [formData, setFormData] = useState({
@@ -457,6 +458,84 @@ const About = () => {
           </div>
         </div>
       </section>
+
+
+      <section className="py-16">
+  <div className="container mx-auto px-4">
+    <div className="max-w-6xl mx-auto">
+      <div className="text-center mb-16">
+        <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+          Our Commitment to the UN Sustainable Development Goals (SDGs)
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          At Uwezo Link Initiative, we believe that meaningful change happens when technology,
+          education, and community empowerment come together. Our work directly supports four
+          core SDGs, while contributing to many others as interconnected outcomes:
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {organizationContent.sdgCommitments.map((sdg, index) => {
+          const IconComponent = sdg.icon ? (Icons as any)[sdg.icon] : null;
+
+          return (
+            <div
+              key={index}
+              className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
+            >
+              {IconComponent && (
+                <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <IconComponent className="w-7 h-7 text-white" />
+                </div>
+              )}
+              <h3 className="font-poppins font-semibold text-lg mb-3">{sdg.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{sdg.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <section className="py-16">
+  <div className="container mx-auto px-4">
+    <div className="max-w-6xl mx-auto">
+      <div className="text-center mb-16">
+        <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+          Our Commitment to the UN Sustainable Development Goals (SDGs)
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          At Uwezo Link Initiative, we believe that meaningful change happens when technology,
+          education, and community empowerment come together. Our work directly supports four
+          core SDGs, while contributing to many others as interconnected outcomes:
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {organizationContent.sdgCommitments.map((sdg, index) => {
+          const IconComponent = sdg.icon ? (Icons as any)[sdg.icon] : null;
+
+          return (
+            <div
+              key={index}
+              className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
+            >
+              {IconComponent && (
+                <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <IconComponent className="w-7 h-7 text-white" />
+                </div>
+              )}
+              <h3 className="font-poppins font-semibold text-lg mb-3">{sdg.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{sdg.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
 
       <section className="py-16">
         <div className="container mx-auto px-4">
