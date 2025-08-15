@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
-import { Heart, CreditCard, Smartphone, Globe, Shield, Users } from 'lucide-react';
+import { Heart, CreditCard, Smartphone, Globe, Shield, Users , Copy } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -9,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
+import { cryptoWallets } from '@/data/crypto';
 
 const DonationForm = ({ type }: { type: 'one-time' | 'monthly' }) => {
   const [amount, setAmount] = useState('');
@@ -124,6 +127,34 @@ const DonationForm = ({ type }: { type: 'one-time' | 'monthly' }) => {
 };
 
 const Donate = () => {
+	const [copied, setCopied] = useState<string | null>(null);
+
+	const handleCopy = async (address: string) => {
+  try {
+    // Try modern API first
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(address);
+    } else {
+      // Fallback method for HTTP or older browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = address;
+      textArea.style.position = "fixed"; // Avoid scrolling
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+    }
+
+    setCopied(address);
+    setTimeout(() => setCopied(null), 2000);
+  } catch (error) {
+    console.error("Copy failed", error);
+  }
+};
+
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -305,59 +336,64 @@ const Donate = () => {
                 </Card>
               </TabsContent>
 
-              <TabsContent value="crypto">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Cryptocurrency Donations</CardTitle>
-                    <CardDescription>
-                      Support us with digital currencies. We accept various tokens on multiple networks.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="p-6 bg-muted rounded-xl">
-                        <h3 className="font-semibold mb-3 flex items-center space-x-2">
-                          <Shield className="w-5 h-5" />
-                          <span>Ethereum (ERC-20)</span>
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Accepted tokens: ETH, USDC, USDT, DAI
-                        </p>
-                        <div className="p-3 bg-background rounded border text-xs font-mono break-all">
-                          [Ethereum Address - To be provided]
-                        </div>
-                      </div>
+           <TabsContent value="crypto">
+  <Card>
+    <CardHeader>
+      <CardTitle>Cryptocurrency Donations</CardTitle>
+      <CardDescription>
+        Support us with digital currencies. We accept various tokens on multiple networks.
+      </CardDescription>
+    </CardHeader>
 
-                      <div className="p-6 bg-muted rounded-xl">
-                        <h3 className="font-semibold mb-3 flex items-center space-x-2">
-                          <Globe className="w-5 h-5" />
-                          <span>Celo Network</span>
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Accepted tokens: CELO, cUSD, cEUR
-                        </p>
-                        <div className="p-3 bg-background rounded border text-xs font-mono break-all">
-                          [Celo Address - To be provided]
-                        </div>
-                      </div>
-                    </div>
+    <CardContent className="space-y-6">
+      {cryptoWallets.map((wallet) => (
+        <div key={wallet.name} className="p-6 bg-muted rounded-xl">
+          <h3 className="font-semibold mb-3 flex items-center space-x-2">
+            <img src={wallet.icon} alt={wallet.name} className="w-5 h-5" />
+            <span>{wallet.name}</span>
+          </h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            Network: {wallet.tokens}
+          </p>
+          <div className="p-3 bg-background rounded border text-xs font-mono break-all flex justify-between items-center">
+            <span>{wallet.address}</span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => handleCopy(wallet.address)}
+            >
+              <Copy className="w-4 h-4" />
+            </Button>
+          </div>
+          {copied === wallet.address && (
+            <p className="text-green-500 text-xs mt-1">Copied!</p>
+          )}
+        </div>
+      ))}
 
-                    <div className="p-4 bg-primary/10 rounded-xl">
-                      <h4 className="font-medium mb-2">Important Notes:</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        <li>• Always verify the address before sending</li>
-                        <li>• Include your email in the transaction memo for receipt</li>
-                        <li>• Minimum donation: $10 USD equivalent</li>
-                        <li>• Transaction fees are covered by the donor</li>
-                      </ul>
-                    </div>
+      {/* Important Notes */}
+      <div className="p-4 bg-primary/10 rounded-xl">
+        <h4 className="font-medium mb-2">Important Notes:</h4>
+        <ul className="text-sm text-muted-foreground space-y-1">
+          <li>• Always verify the address before sending</li>
+          <li>• Include your email in the transaction memo for receipt</li>
+          <li>• Minimum donation: $10 USD equivalent</li>
+          <li>• Transaction fees are covered by the donor</li>
+        </ul>
+      </div>
 
-                    <Button asChild className="w-full">
-                      <a href="/contact">Contact Us for Crypto Donations</a>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+      {/* Contact Us Button */}
+      <Button asChild className="w-full">
+        <a href="/contact">Contact Us for Crypto Donations</a>
+      </Button>
+    </CardContent>
+  </Card>
+</TabsContent>
+
+
+
+
+
             </Tabs>
           </div>
         </div>

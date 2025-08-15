@@ -13,8 +13,7 @@ With expertise in smart contracts, IoT prototypes, and youth mentorship, he brid
 ,
     //image: '/images/image-16.jpeg',
     //imageAlt: 'Portrait: Tevin Omondi',
-    linkedin: 'https://www.linkedin.com/in/tevin-omondi-40655723b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B3wknxCrUTf%2B6fhDNWHROpQ%3D%3D',
-    twitter: 'https://twitter.com/tevin_omondi',
+    linkedin: 'https://www.linkedin.com/in/tevin-omondi-40655723b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profs%3B3wknxCrUTf%2B6fhDNWHROpQ%3D%3D',
     email: 'tevin@uwezolinkinitiative.org',
     category: 'leadership'
   },
@@ -29,7 +28,7 @@ Sharly ensures all programs meet the real needs of rural and underserved youth, 
     //image: '/images/image-17.jpeg',
     //imageAlt: 'Portrait: Sharly Moraa',
     linkedin: 'https://www.linkedin.com/in/sharly-misati-818b28261?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Be1VYrjlpQBW9%2FWM65m%2B5QA%3D%3D',
-    email: 'sharly@uwezolinkinitiative.org',
+    email: 'sharly.moraa@uwezolinkinitiative.org',
     category: 'leadership'
   },
   {
