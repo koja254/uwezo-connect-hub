@@ -37,6 +37,9 @@ const Contact = () => {
 
     while (attempts < maxRetries) {
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s timeout for Render spin-up
+
         const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
           method: 'POST',
           headers: {
@@ -46,14 +49,19 @@ const Contact = () => {
             'form-name': 'contact',
             ...formData
           }),
+          signal: controller.signal,
         });
 
+        clearTimeout(timeoutId);
+
         if (response.ok) {
+          const data = await response.json();
           toast({
             title: "Success!",
-            description: "Your message has been sent successfully.",
+            description: data.message || "Your message has been sent successfully.",
           });
           setFormData({ name: '', email: '', phone: '', interest: '', message: '' });
+          setIsSubmitting(false);
           return;
         } else {
           const errorText = await response.text();
@@ -65,7 +73,9 @@ const Contact = () => {
         if (attempts === maxRetries) {
           toast({
             title: "Error",
-            description: "There was a problem sending your message. Please try again later.",
+            description: error.name === 'AbortError'
+              ? "Request timed out. Please try again later."
+              : "There was a problem sending your message. Please try again later.",
             variant: "destructive",
           });
         }
@@ -74,24 +84,24 @@ const Contact = () => {
     setIsSubmitting(false);
   };
 
-        return (
-          <div className="min-h-screen">
-            <Header />
-            
-            {/* Hero Section */}
-            <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
-              <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto text-center">
-                  <h1 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                    Get In Touch
-                  </h1>
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    Ready to join our mission? Have questions about our programs? 
-                    We'd love to hear from you and explore how we can work together.
-                  </p>
-                </div>
-              </div>
-            </section>
+  return (
+    <div className="min-h-screen">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Get In Touch
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              Ready to join our mission? Have questions about our programs? 
+              We'd love to hear from you and explore how we can work together.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Contact Content */}
       <section className="py-16">
@@ -107,7 +117,7 @@ const Contact = () => {
                     <Input
                       id="name"
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
                       className="mt-1"
                     />
@@ -118,7 +128,7 @@ const Contact = () => {
                       id="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value.trim()})}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value.trim() })}
                       required
                       className="mt-1"
                     />
@@ -130,7 +140,7 @@ const Contact = () => {
                   <Input
                     id="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value.trim()})}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value.trim() })}
                     placeholder="+254..."
                     className="mt-1"
                   />
@@ -138,7 +148,7 @@ const Contact = () => {
                 
                 <div>
                   <Label htmlFor="interest">Area of Interest</Label>
-                  <Select onValueChange={(value) => setFormData({...formData, interest: value})}>
+                  <Select onValueChange={(value) => setFormData({ ...formData, interest: value })}>
                     <SelectTrigger className="mt-1">
                       <SelectValue placeholder="Select your interest" />
                     </SelectTrigger>
@@ -158,7 +168,7 @@ const Contact = () => {
                   <Textarea
                     id="message"
                     value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                     className="mt-1 min-h-[120px]"
                     placeholder="Tell us about your interest, questions, or how you'd like to get involved..."
@@ -185,108 +195,108 @@ const Contact = () => {
                     <h3 className="font-poppins font-semibold text-lg mb-2">Office Location</h3>
                     <p className="text-muted-foreground">
                       Nairobi, Kenya<br />
-                      Wu Yi Plaza , Galana Road
+                      Wu Yi Plaza, Galana Road
                     </p>
                   </div>
                 </div>
 
-                      {/* Email */}
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Mail className="w-6 h-6 text-secondary" />
-                        </div>
-                        <div>
-                          <h3 className="font-poppins font-semibold text-lg mb-2">Email</h3>
-                          <p className="text-muted-foreground">
-                            <span className="block"> General: info@uwezolinkinitiative.org / uwezolinkinitiative@gmail.com</span>
-                            <span className="block"> Partnerships: sharly.moraa@uwezolinkinitiative.org </span>
-                            <span className="block"> Donations: tevin@uwezolinkinitiative.org </span>
-                          </p>
-                        </div>
-                      </div>
+                {/* Email */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h3 className="font-poppins font-semibold text-lg mb-2">Email</h3>
+                    <p className="text-muted-foreground">
+                      <span className="block"> General: info@uwezolinkinitiative.org / uwezolinkinitiative@gmail.com</span>
+                      <span className="block"> Partnerships: sharly.moraa@uwezolinkinitiative.org </span>
+                      <span className="block"> Donations: tevin@uwezolinkinitiative.org </span>
+                    </p>
+                  </div>
+                </div>
 
-                      {/* Phone */}
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Phone className="w-6 h-6 text-accent" />
-                        </div>
-                        <div>
-                          <h3 className="font-poppins font-semibold text-lg mb-2">Phone</h3>
-                          <p className="text-muted-foreground">
-                            +254 (0) 789 914 719<br />
-                          </p>
-                        </div>
-                      </div>
+                {/* Phone */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-poppins font-semibold text-lg mb-2">Phone</h3>
+                    <p className="text-muted-foreground">
+                      +254 (0) 789 914 719<br />
+                    </p>
+                  </div>
+                </div>
 
-                      {/* Office Hours */}
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Clock className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-poppins font-semibold text-lg mb-2">Office Hours</h3>
-                          <p className="text-muted-foreground">
-                            Monday - Friday: 9:00 AM - 5:00 PM EAT<br />
-                            Weekend: By appointment only
-                          </p>
-                        </div>
-                      </div>
+                {/* Office Hours */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-poppins font-semibold text-lg mb-2">Office Hours</h3>
+                    <p className="text-muted-foreground">
+                      Monday - Friday: 9:00 AM - 5:00 PM EAT<br />
+                      Weekend: By appointment only
+                    </p>
+                  </div>
+                </div>
 
-                      {/* Social Links */}
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Globe className="w-6 h-6 text-secondary" />
-                        </div>
-                        <div>
-                          <h3 className="font-poppins font-semibold text-lg mb-2">Follow Us</h3>
-                          <div className="flex space-x-3">
-                            <Button variant="outline" size="sm" asChild>
-                              <a href="https://x.com/uwezofoundation?s=21&t=37kvQaGNhrmEbI6X267VvQ" target="_blank" rel="noopener noreferrer">
-                                Twitter
-                              </a>
-                            </Button>
-                            <Button variant="outline" size="sm" asChild>
-                              <a href="https://www.linkedin.com/company/uwezo-link-initiative/" target="_blank" rel="noopener noreferrer">
-                                LinkedIn
-                              </a>
-                            </Button>
-                            <Button variant="outline" size="sm" asChild>
-                              <a href="https://www.instagram.com/uwezo_link?igsh=d2prZ2FzaXBweDFs" target="_blank" rel="noopener noreferrer">
-                                <Instagram className="w-4 h-4 mr-2" />
-                                Instagram
-                              </a>
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Quick Links */}
-                    <div className="mt-12 p-6 bg-muted/30 rounded-2xl">
-                      <h3 className="font-poppins font-semibold text-lg mb-4">Quick Links</h3>
-                      <div className="grid grid-cols-2 gap-3">
-                        <Button variant="outline" size="sm" asChild className="justify-start">
-                          <a href="/programs">View Programs</a>
-                        </Button>
-                        <Button variant="outline" size="sm" asChild className="justify-start">
-                          <a href="/donate">Make a Donation</a>
-                        </Button>
-                        <Button variant="outline" size="sm" asChild className="justify-start">
-                          <a href="/team">Join Our Team</a>
-                        </Button>
-                        <Button variant="outline" size="sm" asChild className="justify-start">
-                          <a href="/resources">View Resources</a>
-                        </Button>
-                      </div>
+                {/* Social Links */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h3 className="font-poppins font-semibold text-lg mb-2">Follow Us</h3>
+                    <div className="flex space-x-3">
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://x.com/uwezofoundation?s=21&t=37kvQaGNhrmEbI6X267VvQ" target="_blank" rel="noopener noreferrer">
+                          Twitter
+                        </a>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://www.linkedin.com/company/uwezo-link-initiative/" target="_blank" rel="noopener noreferrer">
+                          LinkedIn
+                        </a>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://www.instagram.com/uwezo_link?igsh=d2prZ2FzaXBweDFs" target="_blank" rel="noopener noreferrer">
+                          <Instagram className="w-4 h-4 mr-2" />
+                          Instagram
+                        </a>
+                      </Button>
                     </div>
                   </div>
                 </div>
               </div>
-            </section>
 
-            <Footer />
+              {/* Quick Links */}
+              <div className="mt-12 p-6 bg-muted/30 rounded-2xl">
+                <h3 className="font-poppins font-semibold text-lg mb-4">Quick Links</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <Button variant="outline" size="sm" asChild className="justify-start">
+                    <a href="/programs">View Programs</a>
+                  </Button>
+                  <Button variant="outline" size="sm" asChild className="justify-start">
+                    <a href="/donate">Make a Donation</a>
+                  </Button>
+                  <Button variant="outline" size="sm" asChild className="justify-start">
+                    <a href="/team">Join Our Team</a>
+                  </Button>
+                  <Button variant="outline" size="sm" asChild className="justify-start">
+                    <a href="/resources">View Resources</a>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
-        );
-      };
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
 
 export default Contact;
