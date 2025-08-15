@@ -44,7 +44,7 @@ const Footer = () => {
     },
     {
       platform: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/uwezo-link-initiative-2a7b23379'
+      url: 'https://www.linkedin.com/company/uwezo-link-initiative/'
     },
     {
       platform: 'Instagram',
