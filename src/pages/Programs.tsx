@@ -89,7 +89,7 @@ const Programs = () => {
                   </div>
                   <h3 className="font-poppins font-semibold text-lg mb-3">Motivation & Engagement</h3>
                   <p className="text-muted-foreground text-sm mb-4">
-                    Students start with the Uwezo Token program, earning rewards for academic achievements 
+                    Students start with the Uwezo Voucher program, earning rewards for academic achievements 
                     and building digital literacy skills through blockchain-based incentives.
                   </p>
                   <Link 
@@ -174,7 +174,7 @@ const Programs = () => {
                 />
                 <h3 className="font-poppins font-semibold text-lg mb-2">Grace's Solar Innovation</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Started in our Token program, Grace now leads a team in the Fab Lab building 
+                  Started in our Voucher program, Grace now leads a team in the Fab Lab building 
                   solar-powered water purification systems for her community.
                 </p>
               </div>

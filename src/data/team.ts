@@ -7,7 +7,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Co-Founder & Technology Lead',
     bio: `Passionate blockchain developer, community advocate, and innovation catalyst. 
     
-Tevin leads the development of blockchain-for-impact projects, including the Uwezo Token system. 
+Tevin leads the development of blockchain-for-impact projects, including the Uwezo Voucher system. 
 With expertise in smart contracts, IoT prototypes, and youth mentorship, he bridges cutting-edge technology with grassroots community needs.
 "Technology is only as powerful as the lives it transforms."`
 ,

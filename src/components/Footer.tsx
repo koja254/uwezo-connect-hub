@@ -280,7 +280,15 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-white/60">
-              © {currentYear} Uwezo Link Initiative. All rights reserved.
+              © {currentYear} Uwezo Link Initiative. All rights reserved. | 
+              <a 
+                href="/downloads/uwezo_link_terms_and_conditions.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-white/60 hover:text-accent transition-colors"
+              >
+                Terms and Conditions
+              </a>
             </div>
             
             <div className="flex items-center space-x-1 text-sm text-white/60">

@@ -38,7 +38,7 @@ export const donationTiers: DonationTier[] = [
     impact: [
       'Three months of dignity and school attendance',
       'Access to SRHR education workshops',
-      'Uwezo Token rewards for participation'
+      'Uwezo Voucher rewards for participation'
     ]
   },
   {

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Heart, CreditCard, Smartphone, Globe, Shield, Users , Copy } from 'lucide-react';
+import { Heart, CreditCard, Smartphone, Globe, Shield, Users, Copy, Loader2, CheckCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast'; // Assuming you have this from shadcn
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -11,19 +12,77 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
+import { Checkbox } from '@/components/ui/checkbox'; // Add if not present: npx shadcn-ui@latest add checkbox
 import { cryptoWallets } from '@/data/crypto';
 
 const DonationForm = ({ type }: { type: 'one-time' | 'monthly' }) => {
+  const { toast } = useToast();
   const [amount, setAmount] = useState('');
   const [customAmount, setCustomAmount] = useState('');
-  
+  const [isMonthly, setIsMonthly] = useState(type === 'monthly');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    country: 'KE',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const predefinedAmounts = ['50', '75', '100', '250', '500'];
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement payment processing
-    console.log('Donation form submitted:', { type, amount: amount || customAmount });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const finalAmount = amount || customAmount;
+    if (!finalAmount || parseFloat(finalAmount) < 1) {
+      toast({ title: "Error", description: "Please select or enter a valid amount (min $1).", variant: "destructive" });
+      return;
+    }
+    if (!formData.email || !formData.firstName || !formData.lastName) {
+      toast({ title: "Error", description: "Please fill in all required fields.", variant: "destructive" });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // Call your backend to initiate Pesapal
+      const response = await fetch('https://donations.uwezolinkinitiative.org/api/donate', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: parseFloat(finalAmount),
+          currency: 'USD', // Or 'KES'
+          description: `Donation to Uwezo Link ${type} - $${finalAmount}`,
+          isRecurring: isMonthly,
+          donor: formData,
+          type, // one-time or monthly
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to initiate payment');
+
+      const { redirectUrl } = await response.json();
+      if (!redirectUrl) throw new Error('No payment URL received');
+
+      // Redirect to Pesapal
+      window.location.href = redirectUrl;
+    } catch (error) {
+      console.error('Payment init failed:', error);
+      toast({
+        title: "Payment Error",
+        description: "Something went wrong. Please try again or contact us.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const selectedAmount = amount || customAmount;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -58,108 +117,103 @@ const DonationForm = ({ type }: { type: 'one-time' | 'monthly' }) => {
         </div>
       </div>
 
+      {type === 'monthly' && (
+        <div className="flex items-center space-x-2">
+          <Checkbox id="isMonthly" checked={isMonthly} onCheckedChange={(checked) => setIsMonthly(!!checked)} />
+          <Label htmlFor="isMonthly" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Set up monthly recurring donation (after first payment)
+          </Label>
+        </div>
+      )}
+
       <Separator />
 
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label htmlFor="firstName">First Name</Label>
-            <Input id="firstName" required />
+            <Input id="firstName" value={formData.firstName} onChange={handleInputChange} required />
           </div>
           <div>
             <Label htmlFor="lastName">Last Name</Label>
-            <Input id="lastName" required />
+            <Input id="lastName" value={formData.lastName} onChange={handleInputChange} required />
           </div>
         </div>
         
-        <div>
-          <Label htmlFor="email">Email Address</Label>
-          <Input id="email" type="email" required />
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <Label htmlFor="email">Email Address</Label>
+            <Input id="email" type="email" value={formData.email} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <Label htmlFor="phone">Phone Number</Label>
+            <Input id="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="+254 700 000 000" />
+          </div>
         </div>
         
         <div>
           <Label htmlFor="country">Country</Label>
-          <Select>
+          <Select value={formData.country} onValueChange={(value) => setFormData({ ...formData, country: value })}>
             <SelectTrigger>
               <SelectValue placeholder="Select country" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="us">United States</SelectItem>
-              <SelectItem value="ca">Canada</SelectItem>
-              <SelectItem value="uk">United Kingdom</SelectItem>
-              <SelectItem value="ke">Kenya</SelectItem>
+              <SelectItem value="KE">Kenya</SelectItem>
+              <SelectItem value="US">United States</SelectItem>
+              <SelectItem value="CA">Canada</SelectItem>
+              <SelectItem value="GB">United Kingdom</SelectItem>
               <SelectItem value="other">Other</SelectItem>
             </SelectContent>
           </Select>
         </div>
       </div>
 
-      <Separator />
-
-      <div className="space-y-4">
-        <div>
-          <Label htmlFor="cardNumber">Card Number</Label>
-          <Input id="cardNumber" placeholder="1234 5678 9012 3456" required />
-        </div>
-        
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="expiry">Expiry Date</Label>
-            <Input id="expiry" placeholder="MM/YY" required />
-          </div>
-          <div>
-            <Label htmlFor="cvc">CVC</Label>
-            <Input id="cvc" placeholder="123" required />
-          </div>
-        </div>
-      </div>
-
-      <Button type="submit" size="lg" className="w-full cta-primary">
-        <Heart className="w-4 h-4 mr-2" />
-        Donate ${amount || customAmount || '0'} {type === 'monthly' ? '/month' : ''}
+      <Button type="submit" size="lg" className="w-full cta-primary" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+        ) : (
+          <Heart className="w-4 h-4 mr-2" />
+        )}
+        Donate ${selectedAmount || '0'} {type === 'monthly' ? '/month' : ''}
       </Button>
 
       <p className="text-xs text-muted-foreground text-center">
-        Your donation is secure and encrypted. You will receive a receipt via email.
+        Secure payment via Pesapal. You'll receive a receipt via email. <Shield className="w-3 h-3 inline ml-1" />
       </p>
     </form>
   );
 };
 
 const Donate = () => {
-	const [copied, setCopied] = useState<string | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
 
-	const handleCopy = async (address: string) => {
-  try {
-    // Try modern API first
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(address);
-    } else {
-      // Fallback method for HTTP or older browsers
-      const textArea = document.createElement("textarea");
-      textArea.value = address;
-      textArea.style.position = "fixed"; // Avoid scrolling
-      textArea.style.opacity = "0";
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
+  const handleCopy = async (address: string) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(address);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = address;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      setCopied(address);
+      setTimeout(() => setCopied(null), 2000);
+    } catch (error) {
+      console.error("Copy failed", error);
     }
-
-    setCopied(address);
-    setTimeout(() => setCopied(null), 2000);
-  } catch (error) {
-    console.error("Copy failed", error);
-  }
-};
-
+  };
 
   return (
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section - unchanged */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -185,7 +239,7 @@ const Donate = () => {
         </div>
       </section>
 
-      {/* Impact Overview */}
+      {/* Impact Overview - unchanged */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -246,7 +300,7 @@ const Donate = () => {
         </div>
       </section>
 
-      {/* Donation Forms */}
+      {/* Donation Forms - Updated: Restored Mobile Money tab */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -259,11 +313,11 @@ const Donate = () => {
               </p>
             </div>
 
-            <Tabs defaultValue="card" className="space-y-8">
+            <Tabs defaultValue="pesapal" className="space-y-8">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="card" className="flex items-center space-x-2">
+                <TabsTrigger value="pesapal" className="flex items-center space-x-2">
                   <CreditCard className="w-4 h-4" />
-                  <span>Card Payment</span>
+                  <span>Pesapal (Card/Mobile)</span>
                 </TabsTrigger>
                 <TabsTrigger value="mobile" className="flex items-center space-x-2">
                   <Smartphone className="w-4 h-4" />
@@ -275,7 +329,7 @@ const Donate = () => {
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="card">
+              <TabsContent value="pesapal">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <Card>
                     <CardHeader>
@@ -319,14 +373,14 @@ const Donate = () => {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="p-6 bg-muted rounded-xl">
-                      <h3 className="font-semibold mb-3">M-Pesa Instructions</h3>
+                      <h3 className="font-semibold mb-3">M-Pesa Paybill Instructions</h3>
                       <ol className="space-y-2 text-sm text-muted-foreground">
                         <li>1. Go to M-Pesa menu on your phone</li>
                         <li>2. Select "Lipa Na M-Pesa"</li>
                         <li>3. Select "Pay Bill"</li>
-                        <li>4. Enter Business Number: [To be provided]</li>
+                        <li>4. Enter Business Number: [Insert your Paybill number here]</li>
                         <li>5. Enter Account Number: DONATE</li>
-                        <li>6. Enter amount and confirm</li>
+                        <li>6. Enter amount and confirm with your PIN</li>
                       </ol>
                     </div>
                     <p className="text-sm text-muted-foreground">
@@ -336,70 +390,66 @@ const Donate = () => {
                 </Card>
               </TabsContent>
 
-           <TabsContent value="crypto">
-  <Card>
-    <CardHeader>
-      <CardTitle>Cryptocurrency Donations</CardTitle>
-      <CardDescription>
-        Support us with digital currencies. We accept various tokens on multiple networks.
-      </CardDescription>
-    </CardHeader>
+              {/* Crypto Tab - unchanged */}
+              <TabsContent value="crypto">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Cryptocurrency Donations</CardTitle>
+                    <CardDescription>
+                      Support us with digital currencies. We accept various tokens on multiple networks.
+                    </CardDescription>
+                  </CardHeader>
 
-    <CardContent className="space-y-6">
-      {cryptoWallets.map((wallet) => (
-        <div key={wallet.name} className="p-6 bg-muted rounded-xl">
-          <h3 className="font-semibold mb-3 flex items-center space-x-2">
-            <img src={wallet.icon} alt={wallet.name} className="w-5 h-5" />
-            <span>{wallet.name}</span>
-          </h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            Network: {wallet.tokens}
-          </p>
-          <div className="p-3 bg-background rounded border text-xs font-mono break-all flex justify-between items-center">
-            <span>{wallet.address}</span>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => handleCopy(wallet.address)}
-            >
-              <Copy className="w-4 h-4" />
-            </Button>
-          </div>
-          {copied === wallet.address && (
-            <p className="text-green-500 text-xs mt-1">Copied!</p>
-          )}
-        </div>
-      ))}
+                  <CardContent className="space-y-6">
+                    {cryptoWallets.map((wallet) => (
+                      <div key={wallet.name} className="p-6 bg-muted rounded-xl">
+                        <h3 className="font-semibold mb-3 flex items-center space-x-2">
+                          <img src={wallet.icon} alt={wallet.name} className="w-5 h-5" />
+                          <span>{wallet.name}</span>
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-3">
+                          Network: {wallet.tokens}
+                        </p>
+                        <div className="p-3 bg-background rounded border text-xs font-mono break-all flex justify-between items-center">
+                          <span>{wallet.address}</span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => handleCopy(wallet.address)}
+                          >
+                            <Copy className="w-4 h-4" />
+                          </Button>
+                        </div>
+                        {copied === wallet.address && (
+                          <p className="text-green-500 text-xs mt-1">Copied!</p>
+                        )}
+                      </div>
+                    ))}
 
-      {/* Important Notes */}
-      <div className="p-4 bg-primary/10 rounded-xl">
-        <h4 className="font-medium mb-2">Important Notes:</h4>
-        <ul className="text-sm text-muted-foreground space-y-1">
-          <li>• Always verify the address before sending</li>
-          <li>• Include your email in the transaction memo for receipt</li>
-          <li>• Minimum donation: $10 USD equivalent</li>
-          <li>• Transaction fees are covered by the donor</li>
-        </ul>
-      </div>
+                    {/* Important Notes - unchanged */}
+                    <div className="p-4 bg-primary/10 rounded-xl">
+                      <h4 className="font-medium mb-2">Important Notes:</h4>
+                      <ul className="text-sm text-muted-foreground space-y-1">
+                        <li>• Always verify the address before sending</li>
+                        <li>• Include your email in the transaction memo for receipt</li>
+                        <li>• Minimum donation: $10 USD equivalent</li>
+                        <li>• Transaction fees are covered by the donor</li>
+                      </ul>
+                    </div>
 
-      {/* Contact Us Button */}
-      <Button asChild className="w-full">
-        <a href="/contact">Contact Us for Crypto Donations</a>
-      </Button>
-    </CardContent>
-  </Card>
-</TabsContent>
-
-
-
-
-
+                    {/* Contact Us Button - unchanged */}
+                    <Button asChild className="w-full">
+                      <a href="/contact">Contact Us for Crypto Donations</a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </TabsContent>
             </Tabs>
           </div>
         </div>
       </section>
 
-      {/* Corporate Partnerships */}
+      {/* Corporate Partnerships - unchanged */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
