@@ -1,191 +1,111 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Heart, CreditCard, Smartphone, Globe, Shield, Users, Copy, Loader2, CheckCircle } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast'; // Assuming you have this from shadcn
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-import { Checkbox } from '@/components/ui/checkbox'; // Add if not present: npx shadcn-ui@latest add checkbox
-import { cryptoWallets } from '@/data/crypto';
+import React, { useState } from "react";
+import { Heart, CreditCard, Smartphone, Globe, Shield, Users, Copy } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import { Checkbox } from "@/components/ui/checkbox";
+import { cryptoWallets } from "@/data/crypto";
 
-const DonationForm = ({ type }: { type: 'one-time' | 'monthly' }) => {
-  const { toast } = useToast();
-  const [amount, setAmount] = useState('');
-  const [customAmount, setCustomAmount] = useState('');
-  const [isMonthly, setIsMonthly] = useState(type === 'monthly');
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    country: 'KE',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+type DonationFormProps = {
+  type: "one-time" | "monthly";
+};
 
-  const predefinedAmounts = ['50', '75', '100', '250', '500'];
+/**
+ * DonationFormEmbedCompact
+ * - Renders a compact Pesapal embed button-sized iframe (200x40) as provided by you.
+ * - Shows "Open inline" which expands the iframe to full embedded form below (configurable height).
+ * - Provides a fallback "Open hosted donation page" link which opens the full page in a new tab.
+ */
+const DonationFormEmbedCompact: React.FC<DonationFormProps> = ({ type }) => {
+  // your provided embed source (keeps pageUrl param)
+  const pesapalEmbedSrc =
+    "https://store.pesapal.com/embed-code?pageUrl=https://store.pesapal.com/donationform";
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const finalAmount = amount || customAmount;
-    if (!finalAmount || parseFloat(finalAmount) < 1) {
-      toast({ title: "Error", description: "Please select or enter a valid amount (min $1).", variant: "destructive" });
-      return;
-    }
-    if (!formData.email || !formData.firstName || !formData.lastName) {
-      toast({ title: "Error", description: "Please fill in all required fields.", variant: "destructive" });
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      // Call your backend to initiate Pesapal
-      const response = await fetch('https://donations.uwezolinkinitiative.org/api/donate', { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: parseFloat(finalAmount),
-          currency: 'USD', // Or 'KES'
-          description: `Donation to Uwezo Link ${type} - $${finalAmount}`,
-          isRecurring: isMonthly,
-          donor: formData,
-          type, // one-time or monthly
-        }),
-      });
-
-      if (!response.ok) throw new Error('Failed to initiate payment');
-
-      const { redirectUrl } = await response.json();
-      if (!redirectUrl) throw new Error('No payment URL received');
-
-      // Redirect to Pesapal
-      window.location.href = redirectUrl;
-    } catch (error) {
-      console.error('Payment init failed:', error);
-      toast({
-        title: "Payment Error",
-        description: "Something went wrong. Please try again or contact us.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const selectedAmount = amount || customAmount;
+  const [expanded, setExpanded] = useState(false);
+  const expandedHeight = 600; // when expanded show the full form area
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <Label className="text-base font-medium">Select Amount (USD)</Label>
-        <div className="grid grid-cols-3 gap-3 mt-2">
-          {predefinedAmounts.map((value) => (
+    <div>
+      <div className="mb-3">
+        <div className="flex items-center justify-between">
+          <div className="text-sm text-muted-foreground">
+            {type === "monthly" ? "Monthly giving (Pesapal)" : "One-time donation (Pesapal)"}
+          </div>
+
+          <div className="flex items-center space-x-2">
             <Button
-              key={value}
-              type="button"
-              variant={amount === value ? "default" : "outline"}
+              size="sm"
               onClick={() => {
-                setAmount(value);
-                setCustomAmount('');
+                // small action - toggle expanded inline view
+                setExpanded((s) => !s);
               }}
             >
-              ${value}
+              {expanded ? "Hide form" : "Open inline"}
             </Button>
-          ))}
-        </div>
-        <div className="mt-3">
-          <Input
-            placeholder="Custom amount"
-            value={customAmount}
-            onChange={(e) => {
-              setCustomAmount(e.target.value);
-              setAmount('');
-            }}
-            type="number"
-            min="1"
-          />
+
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => {
+                // open hosted page in new tab as a fallback
+                window.open("https://store.pesapal.com/donationform", "_blank", "noopener,noreferrer");
+              }}
+            >
+              Open in new tab
+            </Button>
+          </div>
         </div>
       </div>
 
-      {type === 'monthly' && (
-        <div className="flex items-center space-x-2">
-          <Checkbox id="isMonthly" checked={isMonthly} onCheckedChange={(checked) => setIsMonthly(!!checked)} />
-          <Label htmlFor="isMonthly" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-            Set up monthly recurring donation (after first payment)
-          </Label>
+      {/* Small compact iframe (button-sized) */}
+      <div className="mb-4">
+        <iframe
+          title={`Pesapal Compact Button - ${type}`}
+          src={pesapalEmbedSrc}
+          width={200}
+          height={40}
+          style={{ border: 0 }}
+          frameBorder={0}
+          allowFullScreen
+          loading="lazy"
+          sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
+        />
+      </div>
+
+      {/* Expanded inline iframe (only shown when user toggles) */}
+      {expanded && (
+        <div className="mb-4 rounded-xl overflow-hidden border">
+          <iframe
+            title={`Pesapal Full Form - ${type}`}
+            src={pesapalEmbedSrc}
+            style={{ width: "100%", height: `${expandedHeight}px`, border: 0 }}
+            frameBorder={0}
+            allowFullScreen
+            loading="lazy"
+            sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
+          />
         </div>
       )}
 
-      <Separator />
-
-      <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="firstName">First Name</Label>
-            <Input id="firstName" value={formData.firstName} onChange={handleInputChange} required />
-          </div>
-          <div>
-            <Label htmlFor="lastName">Last Name</Label>
-            <Input id="lastName" value={formData.lastName} onChange={handleInputChange} required />
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="email">Email Address</Label>
-            <Input id="email" type="email" value={formData.email} onChange={handleInputChange} required />
-          </div>
-          <div>
-            <Label htmlFor="phone">Phone Number</Label>
-            <Input id="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="+254 700 000 000" />
-          </div>
-        </div>
-        
-        <div>
-          <Label htmlFor="country">Country</Label>
-          <Select value={formData.country} onValueChange={(value) => setFormData({ ...formData, country: value })}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select country" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="KE">Kenya</SelectItem>
-              <SelectItem value="US">United States</SelectItem>
-              <SelectItem value="CA">Canada</SelectItem>
-              <SelectItem value="GB">United Kingdom</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      <Button type="submit" size="lg" className="w-full cta-primary" disabled={isSubmitting}>
-        {isSubmitting ? (
-          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-        ) : (
-          <Heart className="w-4 h-4 mr-2" />
-        )}
-        Donate ${selectedAmount || '0'} {type === 'monthly' ? '/month' : ''}
-      </Button>
-
-      <p className="text-xs text-muted-foreground text-center">
-        Secure payment via Pesapal. You'll receive a receipt via email. <Shield className="w-3 h-3 inline ml-1" />
+      <p className="text-xs text-muted-foreground">
+        If the inline form doesn't load, please disable ad-blockers or use "Open in new tab".
       </p>
-    </form>
+    </div>
   );
 };
 
-const Donate = () => {
+const Donate: React.FC = () => {
   const [copied, setCopied] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleCopy = async (address: string) => {
     try {
@@ -204,16 +124,18 @@ const Donate = () => {
       }
       setCopied(address);
       setTimeout(() => setCopied(null), 2000);
+      toast({ title: "Copied", description: "Address copied to clipboard." });
     } catch (error) {
       console.error("Copy failed", error);
+      toast({ title: "Error", description: "Unable to copy address", variant: "destructive" });
     }
   };
 
   return (
     <div className="min-h-screen">
       <Header />
-      
-      {/* Hero Section - unchanged */}
+
+      {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -221,7 +143,7 @@ const Donate = () => {
               Support Our Mission
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Your contribution directly transforms lives across Kenyan communities, addressing period poverty, building climate resilience, and creating pathways to the digital economy.
+              Your contribution directly transforms lives across Kenyan communities.
             </p>
             <div className="max-w-2xl mx-auto mb-8">
               <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
@@ -229,8 +151,8 @@ const Donate = () => {
               </blockquote>
             </div>
             <div className="flex justify-center">
-              <img 
-                src="/images/image-19.jpg" 
+              <img
+                src="/images/image-19.jpg"
                 alt="Donation concept illustration"
                 className="rounded-2xl shadow-card max-w-md w-full"
               />
@@ -239,13 +161,11 @@ const Donate = () => {
         </div>
       </section>
 
-      {/* Impact Overview - unchanged */}
+      {/* Impact Overview */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-              Your Impact in Numbers
-            </h2>
+            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Your Impact in Numbers</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               See how your donation translates into real-world impact for students and communities.
             </p>
@@ -261,8 +181,7 @@ const Donate = () => {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Provides a girl with sanitary pads for a full school term, ensuring dignity 
-                  and uninterrupted education for three months. (100$ will help 1 girl for 3 months)
+                  Provides a girl with sanitary pads for a full school term, ensuring dignity and uninterrupted education for three months.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -276,8 +195,7 @@ const Donate = () => {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Funds an IoT climate monitoring kit built from recycled materials, 
-                  enabling community-led environmental solutions. (150$ will help equip 5 students with a kit for a month)
+                  Funds an IoT climate monitoring kit built from recycled materials, enabling community-led environmental solutions.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -290,27 +208,20 @@ const Donate = () => {
                 <CardTitle className="text-lg">Community Workshop</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription>
-                  Supports a full community education workshop on AI, coding, and problem-solving 
-                  for 30 participants, including materials and facilitation. (300$ will help 10 girls for 2 months)
-                </CardDescription>
+                <CardDescription>Supports a full community education workshop for participants.</CardDescription>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Donation Forms - Updated: Restored Mobile Money tab */}
+      {/* Donation Forms - compact embed */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-                Choose Your Donation Method
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Support our mission with a secure, convenient donation method that works for you.
-              </p>
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Choose Your Donation Method</h2>
+              <p className="text-lg text-muted-foreground">Support our mission with a secure, convenient donation method that works for you.</p>
             </div>
 
             <Tabs defaultValue="pesapal" className="space-y-8">
@@ -337,12 +248,10 @@ const Donate = () => {
                         <Heart className="w-5 h-5 text-primary" />
                         <span>One-Time Donation</span>
                       </CardTitle>
-                      <CardDescription>
-                        Make a single donation to support our current programs and initiatives.
-                      </CardDescription>
+                      <CardDescription>Make a single donation to support our current programs and initiatives.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <DonationForm type="one-time" />
+                      <DonationFormEmbedCompact type="one-time" />
                     </CardContent>
                   </Card>
 
@@ -352,24 +261,21 @@ const Donate = () => {
                         <Users className="w-5 h-5 text-secondary" />
                         <span>Monthly Giving</span>
                       </CardTitle>
-                      <CardDescription>
-                        Join our monthly giving program for sustained impact and exclusive updates.
-                      </CardDescription>
+                      <CardDescription>Join our monthly giving program for sustained impact and exclusive updates.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <DonationForm type="monthly" />
+                      <DonationFormEmbedCompact type="monthly" />
                     </CardContent>
                   </Card>
                 </div>
               </TabsContent>
 
+              {/* Mobile Money */}
               <TabsContent value="mobile">
                 <Card>
                   <CardHeader>
                     <CardTitle>Mobile Money Donations</CardTitle>
-                    <CardDescription>
-                      Support us using M-Pesa and other mobile money services available in Kenya.
-                    </CardDescription>
+                    <CardDescription>Support us using M-Pesa and other mobile money services available in Kenya.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="p-6 bg-muted rounded-xl">
@@ -383,21 +289,17 @@ const Donate = () => {
                         <li>6. Enter amount and confirm with your PIN</li>
                       </ol>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      For other mobile money services or assistance, please contact us directly.
-                    </p>
+                    <p className="text-sm text-muted-foreground">For other mobile money services or assistance, please contact us directly.</p>
                   </CardContent>
                 </Card>
               </TabsContent>
 
-              {/* Crypto Tab - unchanged */}
+              {/* Crypto */}
               <TabsContent value="crypto">
                 <Card>
                   <CardHeader>
                     <CardTitle>Cryptocurrency Donations</CardTitle>
-                    <CardDescription>
-                      Support us with digital currencies. We accept various tokens on multiple networks.
-                    </CardDescription>
+                    <CardDescription>Support us with digital currencies. We accept various tokens on multiple networks.</CardDescription>
                   </CardHeader>
 
                   <CardContent className="space-y-6">
@@ -407,26 +309,17 @@ const Donate = () => {
                           <img src={wallet.icon} alt={wallet.name} className="w-5 h-5" />
                           <span>{wallet.name}</span>
                         </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Network: {wallet.tokens}
-                        </p>
+                        <p className="text-sm text-muted-foreground mb-3">Network: {wallet.tokens}</p>
                         <div className="p-3 bg-background rounded border text-xs font-mono break-all flex justify-between items-center">
                           <span>{wallet.address}</span>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => handleCopy(wallet.address)}
-                          >
+                          <Button variant="ghost" size="icon" onClick={() => handleCopy(wallet.address)}>
                             <Copy className="w-4 h-4" />
                           </Button>
                         </div>
-                        {copied === wallet.address && (
-                          <p className="text-green-500 text-xs mt-1">Copied!</p>
-                        )}
+                        {copied === wallet.address && <p className="text-green-500 text-xs mt-1">Copied!</p>}
                       </div>
                     ))}
 
-                    {/* Important Notes - unchanged */}
                     <div className="p-4 bg-primary/10 rounded-xl">
                       <h4 className="font-medium mb-2">Important Notes:</h4>
                       <ul className="text-sm text-muted-foreground space-y-1">
@@ -437,7 +330,6 @@ const Donate = () => {
                       </ul>
                     </div>
 
-                    {/* Contact Us Button - unchanged */}
                     <Button asChild className="w-full">
                       <a href="/contact">Contact Us for Crypto Donations</a>
                     </Button>
@@ -449,36 +341,27 @@ const Donate = () => {
         </div>
       </section>
 
-      {/* Corporate Partnerships - unchanged */}
+      {/* Corporate Partnerships */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-              Corporate Partnerships
-            </h2>
+            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Corporate Partnerships</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Partner with us to create lasting impact through corporate social responsibility initiatives, 
-              employee engagement programs, and strategic partnerships.
+              Partner with us to create lasting impact through corporate social responsibility initiatives, employee engagement programs, and strategic partnerships.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="p-6 rounded-xl border">
                 <h3 className="font-semibold text-lg mb-2">Sponsorship Packages</h3>
-                <p className="text-sm text-muted-foreground">
-                  Custom sponsorship opportunities with brand visibility and impact reporting.
-                </p>
+                <p className="text-sm text-muted-foreground">Custom sponsorship opportunities with brand visibility and impact reporting.</p>
               </div>
               <div className="p-6 rounded-xl border">
                 <h3 className="font-semibold text-lg mb-2">Employee Engagement</h3>
-                <p className="text-sm text-muted-foreground">
-                  Volunteer programs and team-building opportunities with social impact.
-                </p>
+                <p className="text-sm text-muted-foreground">Volunteer programs and team-building opportunities with social impact.</p>
               </div>
               <div className="p-6 rounded-xl border">
                 <h3 className="font-semibold text-lg mb-2">Grant Partnerships</h3>
-                <p className="text-sm text-muted-foreground">
-                  Collaborative funding for specific programs and infrastructure development.
-                </p>
+                <p className="text-sm text-muted-foreground">Collaborative funding for specific programs and infrastructure development.</p>
               </div>
             </div>
 
