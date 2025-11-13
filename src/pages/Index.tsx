@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Zap, Target, Heart } from 'lucide-react';
+import { ArrowRight, ExternalLink, Zap, Target, Heart, Download } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -12,6 +12,13 @@ import { programs } from '@/data/programs';
 import { organizationContent } from '@/data/static';
 
 const Index = () => {
+  const voucherProgram = programs.find((program) => program.id === 'uwezo-voucher');
+  const voucherHighlights = [
+    'Blockchain-protected vouchers keep girls in class with dignity every month.',
+    'Attendance, SRHR workshops, and community service unlock essentials within minutes.',
+    'Partner kiosks redeem pads, supplies, and mentorship touchpoints while tracking impact.'
+  ];
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -86,7 +93,7 @@ const Index = () => {
               Our Programs
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Three innovative programs working together to create lasting change in STEM education, 
+              Four innovative programs working together to create lasting change in civic participation, STEM education, 
               community empowerment, and sustainable development.
             </p>
           </div>
@@ -112,6 +119,70 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {voucherProgram && (
+        <section className="py-12 md:py-20 bg-gradient-to-br from-secondary/10 via-background to-background">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              <div>
+                <p className="text-secondary font-semibold mb-2">Featured Initiative</p>
+                <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-4">
+                  Uwezo Voucher: Dignity Meets Attendance
+                </h2>
+                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                  {voucherProgram.summary}
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {voucherHighlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start space-x-3">
+                      <div className="w-3 h-3 rounded-full bg-secondary mt-2" />
+                      <p className="text-muted-foreground text-sm">{highlight}</p>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="cta-primary">
+                    <Link to={`/programs/${voucherProgram.slug}`}>
+                      Explore Uwezo Voucher
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                  {voucherProgram.downloadUrl && (
+                    <Button asChild variant="outline" size="lg">
+                      <a
+                        href={voucherProgram.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center"
+                      >
+                        <span className="mr-2">📄</span>
+                        Download Concept Note
+                        <Download className="w-4 h-4 ml-2" />
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </div>
+              <div className="relative">
+                <div className="rounded-3xl overflow-hidden shadow-2xl border border-border/50">
+                  <img
+                    src={voucherProgram.heroImage}
+                    alt={voucherProgram.heroImageAlt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 rounded-2xl p-4">
+                    <p className="text-sm font-semibold text-primary">
+                      Scholarships in a wallet: vouchers redeemed on-site within minutes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Impact Stats */}
       <ImpactStats />

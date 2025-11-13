@@ -16,7 +16,7 @@ interface NewsletterSignupProps {
 const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   variant = 'inline',
   title = 'Our Partners',
-  description = 'Together, we share a vision — building connections that inspire, empower, and create lasting impact in every step we take.',
+  description = 'Together, we share a vision - building connections that inspire, empower, and create lasting impact in every step we take.',
   showInterests = false
 }) => {
   const [formData, setFormData] = useState({

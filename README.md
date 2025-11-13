@@ -4,7 +4,7 @@
 
 ## 📌 About Uwezo-Connect-Hub
 
-**Uwezo-Connect-Hub** is a community-driven platform aimed at enhancing connectivity—both digital and social—for underserved communities. It facilitates collaboration, resource sharing, and engagement across members, organizations, and stakeholders.
+**Uwezo-Connect-Hub** is a community-driven platform aimed at enhancing connectivity - both digital and social - for underserved communities. It facilitates collaboration, resource sharing, and engagement across members, organizations, and stakeholders.
 
 This platform enables:  
 ✅ Seamless connection and communication among users.  
@@ -17,12 +17,12 @@ This platform enables:
 
 ## 🚀 Features
 
-✨ **Responsive & Interactive UI** – Clean animations, hover feedback, and accessible components.  
-🌐 **Real-Time Updates** – Live state management powered by React + TypeScript.  
-👥 **User Management** – Profiles, roles (e.g., admin, member), and authentication mechanisms.  
-🔗 **APIs Integration** – External data integration via RESTful endpoints or GraphQL.  
-🗂 **Resource & Events Module** – Add/manage postings with search and categorization.  
-🚀 **Deployment-ready** – Configured for development and production builds via Vite.
+✨ **Responsive & Interactive UI** - Clean animations, hover feedback, and accessible components.  
+🌐 **Real-Time Updates** - Live state management powered by React + TypeScript.  
+👥 **User Management** - Profiles, roles (e.g., admin, member), and authentication mechanisms.  
+🔗 **APIs Integration** - External data integration via RESTful endpoints or GraphQL.  
+🗂 **Resource & Events Module** - Add/manage postings with search and categorization.  
+🚀 **Deployment-ready** - Configured for development and production builds via Vite.
 
 ---
 

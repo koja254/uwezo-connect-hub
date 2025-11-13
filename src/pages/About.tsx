@@ -354,7 +354,7 @@ const About = () => {
               <div>
                 <h3 className="font-poppins text-2xl font-bold mb-6">Our Story</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Uwezo Link Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities, girls missing school due to lack of sanitary products, communities struggling with climate change impacts, and youth excluded from the digital economy despite their natural innovation abilities.
+                  Uwezo Link Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities, girls missing school due to lack of sanitary products, communities struggling with climate change impacts, youth excluded from the digital economy despite their natural innovation abilities, and the glaring democracy gaps revealed by the 2024 Gen Z movement.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   The Uwezo Link Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
@@ -469,7 +469,7 @@ const About = () => {
         </h2>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
           At Uwezo Link Initiative, we believe that meaningful change happens when technology,
-          education, and community empowerment come together. Our work directly supports four
+          education, inclusive democracy, and community empowerment come together. Our work directly supports five
           core SDGs, while contributing to many others as interconnected outcomes:
         </p>
       </div>

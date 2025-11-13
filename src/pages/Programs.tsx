@@ -9,6 +9,52 @@ import { Button } from '@/components/ui/button';
 import { programs } from '@/data/programs';
 
 const Programs = () => {
+  const featuredProgram = programs.find((program) => program.id === 'uwezo-kwa-youth') ?? programs[0];
+  const otherPrograms = programs.filter((program) => program.id !== featuredProgram?.id);
+  const youthProgram = programs.find((program) => program.id === 'uwezo-kwa-youth');
+  const voucherProgram = programs.find((program) => program.id === 'uwezo-voucher');
+  const fabLabProgram = programs.find((program) => program.id === 'uwezo-fab-lab');
+  const teachingProgram = programs.find((program) => program.id === 'uwezo-teaching');
+
+  const integrationSteps = [
+    {
+      id: 'uwezo-kwa-youth',
+      order: 1,
+      title: 'Civic Energy & Literacy',
+      description: 'Uwezo kwa Youth channels protest momentum into civic literacy, voter registration, and inclusive dialogue spaces.',
+      program: youthProgram,
+      accentClass: 'text-primary',
+      badgeClass: 'bg-primary/20',
+    },
+    {
+      id: 'uwezo-voucher',
+      order: 2,
+      title: 'Motivation & Dignity',
+      description: 'Uwezo Voucher keeps learners in school through blockchain-powered incentives and SRHR support.',
+      program: voucherProgram,
+      accentClass: 'text-secondary',
+      badgeClass: 'bg-secondary/20',
+    },
+    {
+      id: 'uwezo-fab-lab',
+      order: 3,
+      title: 'Hands-on Creation',
+      description: 'Fab Lab transforms e-waste into climate tech, letting students prototype tangible solutions.',
+      program: fabLabProgram,
+      accentClass: 'text-accent',
+      badgeClass: 'bg-accent/20',
+    },
+    {
+      id: 'uwezo-teaching',
+      order: 4,
+      title: 'Scaling Knowledge',
+      description: 'Uwezo Teaching deploys mobile educators and alumni mentors to spread STEM and civic leadership.',
+      program: teachingProgram,
+      accentClass: 'text-foreground',
+      badgeClass: 'bg-muted/50',
+    },
+  ].filter((step) => step.program);
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -17,7 +63,7 @@ const Programs = () => {
       <Hero
         title="Our Programs"
         subtitle="Innovation in Action"
-        description="Three interconnected programs working together to democratize STEM education, foster innovation, and build sustainable communities through technology and hands-on learning."
+        description="Four interconnected programs working together to democratize civic participation, STEM education, and sustainable community innovation."
         primaryCTA={{
           text: "Contact Us",
           href: "/contact"
@@ -40,22 +86,23 @@ const Programs = () => {
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               Our programs are designed to work synergistically, creating a comprehensive ecosystem 
-              of STEM education that addresses multiple aspects of learning, from motivation and 
-              engagement to hands-on skill development and community outreach.
+              that moves from civic literacy to hands-on innovation and long-term leadership.
             </p>
           </div>
 
           {/* Featured Program */}
           <div className="mb-16">
-            <ProgramCard 
-              program={programs[0]} 
-              variant="featured"
-            />
+            {featuredProgram && (
+              <ProgramCard 
+                program={featuredProgram} 
+                variant="featured"
+              />
+            )}
           </div>
 
           {/* Other Programs Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {programs.slice(1).map((program) => (
+            {otherPrograms.map((program) => (
               <ProgramCard 
                 key={program.id} 
                 program={program}
@@ -76,78 +123,37 @@ const Programs = () => {
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Each program complements the others, creating multiple entry points for students 
-                and comprehensive pathways for skill development and community engagement.
+                and comprehensive pathways for civic engagement, skill development, and community impact.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Student Journey Flow */}
-              <div className="relative">
-                <div className="p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300">
-                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
-                    <span className="font-bold text-primary">1</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {integrationSteps.map((step, index) => (
+                <div key={step.id} className="relative">
+                  <div className="p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300 h-full flex flex-col">
+                    <div className={`w-12 h-12 ${step.badgeClass} rounded-xl flex items-center justify-center mb-4`}>
+                      <span className={`font-bold ${step.accentClass}`}>{step.order}</span>
+                    </div>
+                    <h3 className="font-poppins font-semibold text-lg mb-3">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-4 flex-1">
+                      {step.description}
+                    </p>
+                    <Link 
+                      to={step.program ? `/programs/${step.program.slug}` : '/programs'} 
+                      className={`text-sm font-medium hover:opacity-80 transition-colors inline-flex items-center ${step.accentClass}`}
+                    >
+                      Learn More <ArrowRight className="w-3 h-3 ml-1" />
+                    </Link>
                   </div>
-                  <h3 className="font-poppins font-semibold text-lg mb-3">Motivation & Engagement</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    Students start with the Uwezo Voucher program, earning rewards for academic achievements 
-                    and building digital literacy skills through blockchain-based incentives.
-                  </p>
-                  <Link 
-                    to={`/programs/${programs[0].slug}`} 
-                    className="text-primary text-sm font-medium hover:text-primary/80 transition-colors inline-flex items-center"
-                  >
-                    Learn More <ArrowRight className="w-3 h-3 ml-1" />
-                  </Link>
+                  
+                  {/* Connector Arrow */}
+                  {index < integrationSteps.length - 1 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                      <ArrowRight className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                  )}
                 </div>
-                
-                {/* Connector Arrow (hidden on mobile) */}
-                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                  <ArrowRight className="w-6 h-6 text-muted-foreground" />
-                </div>
-              </div>
-
-              <div className="relative">
-                <div className="p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300">
-                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4">
-                    <span className="font-bold text-secondary">2</span>
-                  </div>
-                  <h3 className="font-poppins font-semibold text-lg mb-3">Hands-on Creation</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    Motivated students advance to the Fab Lab, where they transform e-waste into 
-                    innovative solutions while learning electronics, programming, and sustainable design.
-                  </p>
-                  <Link 
-                    to={`/programs/${programs[1].slug}`} 
-                    className="text-secondary text-sm font-medium hover:text-secondary/80 transition-colors inline-flex items-center"
-                  >
-                    Learn More <ArrowRight className="w-3 h-3 ml-1" />
-                  </Link>
-                </div>
-                
-                {/* Connector Arrow (hidden on mobile) */}
-                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                  <ArrowRight className="w-6 h-6 text-muted-foreground" />
-                </div>
-              </div>
-
-              <div>
-                <div className="p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300">
-                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4">
-                    <span className="font-bold text-accent">3</span>
-                  </div>
-                  <h3 className="font-poppins font-semibold text-lg mb-3">Community Impact</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    Skilled students become mentors and teachers, joining our mobile education teams 
-                    to share knowledge and expand our reach to new communities.
-                  </p>
-                  <Link 
-                    to={`/programs/${programs[2].slug}`} 
-                    className="text-accent text-sm font-medium hover:text-accent/80 transition-colors inline-flex items-center"
-                  >
-                    Learn More <ArrowRight className="w-3 h-3 ml-1" />
-                  </Link>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

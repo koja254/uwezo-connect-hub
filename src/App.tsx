@@ -13,6 +13,7 @@ import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
 import ProgramDetail from "./pages/ProgramDetail";
 import ScrollToTop from "./components/ui/scroll-to-top";
+import UwezoKwaYouth from "./pages/UwezoKwaYouth";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/programs/uwezo-kwa-youth" element={<UwezoKwaYouth />} />
           <Route path="/programs/:slug" element={<ProgramDetail />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/team" element={<Team />} />

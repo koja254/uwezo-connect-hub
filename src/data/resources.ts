@@ -3,7 +3,7 @@ import { Resource } from '@/types';
 export const resources: Resource[] = [
   {
     id: 'fablabs',
-    title: 'Fabrication Laboratories – Fab Labs – Tools for Sustainable Development',
+    title: 'Fabrication Laboratories - Fab Labs - Tools for Sustainable Development',
     slug: 'fablabs',
     type: 'report',
     summary: 'Explores how fab labs serve as open high-tech workshops for sustainable development, STEM education, and local entrepreneurship.',
