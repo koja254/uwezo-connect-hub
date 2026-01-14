@@ -293,6 +293,30 @@
   .shadow-hero {
     box-shadow: var(--shadow-hero);
   }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-snap-row {
+    @apply flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory;
+  }
+
+  .mobile-snap-item {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-snap-item {
+      flex-basis: 70%;
+    }
+  }
 }
 
 /* Keyframes */

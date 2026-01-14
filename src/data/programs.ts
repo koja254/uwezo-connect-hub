@@ -50,14 +50,14 @@ Uwezo kwa Youth transforms protest momentum into long-term democratic participat
   },
   {
     id: 'uwezo-voucher',
-    title: 'Uwezo Voucher - Bridging Education & Dignity',
+    title: 'Uwezo Eco Loop - Bridging Education & Dignity',
     slug: 'uwezo-voucher',
     summary: 'Blockchain-powered solution addressing period poverty and promoting education equity',
     description: `Meet Amina, a bright 15-year-old from rural Kenya who dreams of becoming a doctor. Every month, Amina misses 3-5 days of school because her family cannot afford sanitary pads. This story repeats across countless communities, where period poverty becomes a barrier to education and future opportunities.
 
 "A girl's education should never stop because of her period."
 
-The Uwezo Voucher program uses blockchain technology to create a sustainable solution. Students earn digital vouchers for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These vouchers can be redeemed for sanitary products, school supplies, and other necessities at partner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
+The Uwezo Eco Loop program uses blockchain technology to create a sustainable solution. Students earn digital vouchers for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These vouchers can be redeemed for sanitary products, school supplies, and other necessities at partner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
     heroImage: '/images/img-21.png',
     heroImageAlt: 'Students in a school corridor receiving assistance',
     keyFeatures: [
@@ -81,14 +81,14 @@ The Uwezo Voucher program uses blockchain technology to create a sustainable sol
     ],
     gallery: [
       { src: '/images/image-03.jpg', alt: 'QR ID card and voucher redemption illustration' },
-      { src: '/images/image-04.jpg', alt: 'Girls attending SRHR workshop' },
-      { src: '/images/programs.jpg', alt: 'Youth coding on laptops in a rural lab' },
-      { src: '/images/pads.png', alt: 'Youth girls holding pads' },
+      { src: '/images/image-04.jpg', alt: 'Students learning IT skills' },
+      { src: '/images/programs.jpg', alt: 'Youth in  a classroom' },
+      { src: '/images/pads.png', alt: 'Girls holding pads' },
       { src: '/images/sanitary.jpg', alt: 'Sanitary pads' }
     ],
     ctaText: 'View Concept Note',
     ctaAction: 'participate',
-    downloadUrl: '/downloads/uwezo_voucher_concept_note.pdf'
+    downloadUrl: '/downloads/uwezo_eco_loop.pdf'
   },
   {
     id: 'uwezo-fab-lab',
@@ -123,7 +123,7 @@ Uwezo Fab Lab is a community-driven innovation hub where young people learn to d
     ],
     gallery: [
       { src: '/images/image-06.jpg', alt: 'Recycled electronics parts on a workbench' },
-      { src: '/images/image-07.jpg', alt: 'Students testing an IoT soil moisture sensor' },
+      { src: '/images/image-07.jpeg', alt: 'Students in a farm' },
       { src: '/images/image-08.jpg', alt: 'Solar-powered water pump prototype in farm' },
       { src: '/images/image-12.jpg', alt: 'Close-up of hands assembling electronics' }
     ],
@@ -163,9 +163,9 @@ Uwezo Teaching is our education and training program, offering STEM and AI cours
       { metric: 'Local Educators', value: '10+', description: 'Teachers trained to continue programs locally' }
     ],
     gallery: [
-      { src: '/images/image-10.jpg', alt: 'Classroom robotics workshop for girls' },
-      { src: '/images/programs.jpg', alt: 'Youth coding on laptops in a rural lab' },
-      { src: '/images/image-18.jpg', alt: 'Volunteers working with local community' }
+      { src: '/images/image-10.jpg', alt: 'Classroom robotics workshop for students' },
+      { src: '/images/programs.jpg', alt: 'Youth in a classroom' },
+      { src: '/images/image-18.jpg', alt: 'Children learning in local community' }
     ],
     ctaText: 'View Concept Note',
     ctaAction: 'participate',

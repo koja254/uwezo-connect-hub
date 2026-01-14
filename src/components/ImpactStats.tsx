@@ -6,6 +6,7 @@ const ImpactStats = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [animatedValues, setAnimatedValues] = useState<{ [key: string]: number }>({});
   const sectionRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedRef = useRef(false);
 
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     GraduationCap,
@@ -30,51 +31,84 @@ const ImpactStats = () => {
   };
 
   useEffect(() => {
+    let animationFrameId: number | null = null;
+
+    const startAnimation = () => {
+      if (hasAnimatedRef.current) {
+        return;
+      }
+      hasAnimatedRef.current = true;
+      setIsVisible(true);
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targetValues: { [key: string]: number } = {};
+      const initialValues: { [key: string]: number } = {};
+
+      impactStats.forEach((stat) => {
+        const targetValue = extractNumber(stat.value);
+        targetValues[stat.label] = targetValue;
+        initialValues[stat.label] = prefersReducedMotion ? targetValue : 0;
+      });
+
+      setAnimatedValues(initialValues);
+
+      if (prefersReducedMotion) {
+        return;
+      }
+
+      const startTime = performance.now();
+      const duration = 1600;
+
+      const animate = (timestamp: number) => {
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+
+        setAnimatedValues(() => {
+          const nextValues: { [key: string]: number } = {};
+          impactStats.forEach((stat) => {
+            nextValues[stat.label] = Math.round(targetValues[stat.label] * eased);
+          });
+          return nextValues;
+        });
+
+        if (progress < 1) {
+          animationFrameId = window.requestAnimationFrame(animate);
+        }
+      };
+
+      animationFrameId = window.requestAnimationFrame(animate);
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      startAnimation();
+      return () => {
+        if (animationFrameId) {
+          window.cancelAnimationFrame(animationFrameId);
+        }
+      };
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-
-          const initialValues: { [key: string]: number } = {};
-          impactStats.forEach((stat) => {
-            initialValues[stat.label] = 0;
-          });
-          setAnimatedValues(initialValues);
-
-          impactStats.forEach((stat) => {
-            const targetValue = extractNumber(stat.value);
-            const duration = 2000;
-            const steps = 60;
-            const increment = targetValue / steps;
-            let currentValue = 0;
-            let step = 0;
-
-            const timer = setInterval(() => {
-              step++;
-              currentValue = Math.min(currentValue + increment, targetValue);
-
-              setAnimatedValues((prev) => ({
-                ...prev,
-                [stat.label]: Math.round(currentValue),
-              }));
-
-              if (step >= steps || currentValue >= targetValue) {
-                clearInterval(timer);
-                setAnimatedValues((prev) => ({
-                  ...prev,
-                  [stat.label]: targetValue,
-                }));
-              }
-            }, duration / steps);
-          });
+        if (entry.isIntersecting) {
+          startAnimation();
         }
       },
       { threshold: 0.3 }
     );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, [isVisible]);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, []);
 
   return (
     <section ref={sectionRef} className="py-16 md:py-24 bg-gradient-primary relative overflow-hidden">
@@ -92,7 +126,7 @@ const ImpactStats = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-poppins text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Our Impact by the Numbers
+            Our Projected Impact by the Numbers
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
             Every statistic represents lives changed, communities empowered, and a sustainable future being built through education and innovation.
@@ -100,13 +134,13 @@ const ImpactStats = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 lg:gap-12 md:overflow-visible md:pb-0">
           {impactStats.map((stat, index) => {
             const Icon = iconMap[stat.icon] || Users; // fallback icon
             const animatedValue = animatedValues[stat.label] || 0;
 
             return (
-              <div key={stat.label} className="text-center group animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+              <div key={stat.label} className="mobile-snap-item text-center group animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
                 {/* Icon */}
                 <div className="w-16 h-16 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110">
                   <Icon className="w-8 h-8 text-white" />

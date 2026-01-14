@@ -73,7 +73,7 @@ const Programs = () => {
           href: "/donate"
         }}
         backgroundImage="/images/programs.jpg"
-        imageAlt="Youth coding on laptops in a rural lab"
+        imageAlt="Youth in a classroom"
         size="medium"
       />
 
@@ -101,12 +101,13 @@ const Programs = () => {
           </div>
 
           {/* Other Programs Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
             {otherPrograms.map((program) => (
               <ProgramCard 
                 key={program.id} 
                 program={program}
                 variant="default"
+                className="mobile-snap-item"
               />
             ))}
           </div>
@@ -127,9 +128,9 @@ const Programs = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
               {integrationSteps.map((step, index) => (
-                <div key={step.id} className="relative">
+                <div key={step.id} className="relative mobile-snap-item">
                   <div className="p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300 h-full flex flex-col">
                     <div className={`w-12 h-12 ${step.badgeClass} rounded-xl flex items-center justify-center mb-4`}>
                       <span className={`font-bold ${step.accentClass}`}>{step.order}</span>
@@ -187,8 +188,8 @@ const Programs = () => {
 
               <div className="p-6 bg-card rounded-2xl border border-border">
                 <img
-                  src="/images/image-07.jpg"
-                  alt="Students testing an IoT soil moisture sensor"
+                  src="/images/image-07.jpeg"
+                  alt="Students in a farm"
                   className="w-full h-40 object-cover rounded-lg mb-4"
                 />
                 <h3 className="font-poppins font-semibold text-lg mb-2">Smart Farming Project</h3>

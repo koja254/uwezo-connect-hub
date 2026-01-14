@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Zap, Target, Heart, Download } from 'lucide-react';
+import { ArrowRight, Zap, Target, Heart } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -12,13 +12,6 @@ import { programs } from '@/data/programs';
 import { organizationContent } from '@/data/static';
 
 const Index = () => {
-  const voucherProgram = programs.find((program) => program.id === 'uwezo-voucher');
-  const voucherHighlights = [
-    'Blockchain-protected vouchers keep girls in class with dignity every month.',
-    'Attendance, SRHR workshops, and community service unlock essentials within minutes.',
-    'Partner kiosks redeem pads, supplies, and mentorship touchpoints while tracking impact.'
-  ];
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -61,9 +54,9 @@ const Index = () => {
             </div>
             
             {/* Core Values Preview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 mb-12">
               {organizationContent.coreValues.slice(0, 3).map((value, index) => (
-                <div key={index} className="text-center group">
+                <div key={index} className="mobile-snap-item text-center group">
                   <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:bg-primary/30 transition-all duration-300">
                     {index === 0 && <Zap className="w-8 h-8 text-primary" />}
                     {index === 1 && <Target className="w-8 h-8 text-primary" />}
@@ -99,12 +92,13 @@ const Index = () => {
           </div>
 
           {/* Programs Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 mb-12">
             {programs.map((program, index) => (
               <ProgramCard 
                 key={program.id} 
                 program={program}
                 variant={index === 0 ? 'featured' : 'default'}
+                className="mobile-snap-item"
               />
             ))}
           </div>
@@ -119,70 +113,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {voucherProgram && (
-        <section className="py-12 md:py-20 bg-gradient-to-br from-secondary/10 via-background to-background">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-              <div>
-                <p className="text-secondary font-semibold mb-2">Featured Initiative</p>
-                <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-4">
-                  Uwezo Voucher: Dignity Meets Attendance
-                </h2>
-                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                  {voucherProgram.summary}
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {voucherHighlights.map((highlight) => (
-                    <li key={highlight} className="flex items-start space-x-3">
-                      <div className="w-3 h-3 rounded-full bg-secondary mt-2" />
-                      <p className="text-muted-foreground text-sm">{highlight}</p>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg" className="cta-primary">
-                    <Link to={`/programs/${voucherProgram.slug}`}>
-                      Explore Uwezo Voucher
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
-                  </Button>
-                  {voucherProgram.downloadUrl && (
-                    <Button asChild variant="outline" size="lg">
-                      <a
-                        href={voucherProgram.downloadUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center"
-                      >
-                        <span className="mr-2">📄</span>
-                        Download Concept Note
-                        <Download className="w-4 h-4 ml-2" />
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
-              <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-2xl border border-border/50">
-                  <img
-                    src={voucherProgram.heroImage}
-                    alt={voucherProgram.heroImageAlt}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 rounded-2xl p-4">
-                    <p className="text-sm font-semibold text-primary">
-                      Scholarships in a wallet: vouchers redeemed on-site within minutes.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Impact Stats */}
       <ImpactStats />
@@ -199,9 +129,9 @@ const Index = () => {
               a more inclusive and innovative future through STEM education.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0 mb-12">
               {/* Volunteer */}
-              <div className="p-6 rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 group">
+              <div className="mobile-snap-item p-6 rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 group">
                 <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/30 transition-colors">
                   <Heart className="w-6 h-6 text-primary" />
                 </div>
@@ -215,7 +145,7 @@ const Index = () => {
               </div>
 
               {/* Partner */}
-              <div className="p-6 rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 group">
+              <div className="mobile-snap-item p-6 rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 group">
                 <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-secondary/30 transition-colors">
                   <Target className="w-6 h-6 text-secondary" />
                 </div>
@@ -229,7 +159,7 @@ const Index = () => {
               </div>
 
               {/* Donate */}
-              <div className="p-6 rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 group bg-gradient-to-br from-accent/5 to-accent/10">
+              <div className="mobile-snap-item p-6 rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 group bg-gradient-to-br from-accent/5 to-accent/10">
                 <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/30 transition-colors">
                   <Zap className="w-6 h-6 text-accent" />
                 </div>
@@ -251,17 +181,16 @@ const Index = () => {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-  <Link
-    to="/contact"
-    onClick={() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-  >
-    Contact Us
-    <ExternalLink className="w-4 h-4 ml-2" />
-  </Link>
-</Button>
-
+                <Link
+                  to="/contact"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Contact Us
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

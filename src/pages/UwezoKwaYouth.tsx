@@ -68,11 +68,11 @@ const impactStats = [
 ];
 
 const galleryImages = [
-  { src: '/images/img-28.jpeg', alt: 'Facilitators briefing youth groups outdoors' },
-  { src: '/images/img-29.jpeg', alt: 'Rural civic education circle' },
-  { src: '/images/img-30.jpeg', alt: 'Youth sharing civic pledges on placards' },
-  { src: '/images/img-31.jpeg', alt: 'Digital civic drop recording session' },
-  { src: '/images/img-32.jpeg', alt: 'Peer facilitators coordinating via mobile devices' },
+  { src: '/images/img-28.jpeg', alt: 'A youth participating in a demonstration' },
+  { src: '/images/img-29.jpeg', alt: 'A youth group in Central Nairobi' },
+  { src: '/images/img-30.jpeg', alt: 'A youth airing his grievances' },
+  { src: '/images/img-31.jpeg', alt: 'Different youth airing their grievances' },
+  { src: '/images/img-32.jpeg', alt: 'A police officer dispersing a crowd' },
 ];
 
 const UwezoKwaYouth = () => {
@@ -156,9 +156,9 @@ const UwezoKwaYouth = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
             {overviewSteps.map((step, index) => (
-              <Card key={step.title} className="h-full">
+              <Card key={step.title} className="mobile-snap-item h-full">
                 <CardContent className="p-6 flex flex-col space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-primary/15 flex items-center justify-center font-bold text-primary">
                     {index + 1}
@@ -226,9 +226,9 @@ const UwezoKwaYouth = () => {
               Clean metrics connected to democratic outcomes we can track each quarter.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
             {impactStats.map(({ label, value, detail, Icon }) => (
-              <Card key={label} className="text-center">
+              <Card key={label} className="mobile-snap-item text-center">
                 <CardContent className="p-8 flex flex-col items-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
                     <Icon className="w-8 h-8 text-primary" />

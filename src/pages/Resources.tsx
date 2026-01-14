@@ -29,11 +29,11 @@ const Resources = () => {
       {/* Resources Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
             {resources.map((resource) => (
               <div
                 key={resource.id}
-                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
+                className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center group-hover:bg-primary/30 transition-colors">

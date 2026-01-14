@@ -141,9 +141,9 @@ const ProgramDetail = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
               {program.howItWorks.map((step, index) => (
-                <div key={step.step} className="relative">
+                <div key={step.step} className="relative mobile-snap-item">
                   <Card className="h-full">
                     <CardContent className="p-6 text-center">
                       <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -174,15 +174,15 @@ const ProgramDetail = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Program Impact</h2>
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Projected Impact</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Real numbers, real impact. See how this program is making a difference in communities.
+                Real numbers, real impact. See how this program will make a difference in communities.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
               {program.impact.map((stat, index) => (
-                <Card key={index} className="text-center">
+                <Card key={index} className="mobile-snap-item text-center">
                   <CardContent className="p-8">
                     <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
                       {stat.value}
@@ -208,9 +208,9 @@ const ProgramDetail = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0">
               {program.gallery.map((image, index) => (
-                <div key={index} className="relative group overflow-hidden rounded-2xl">
+                <div key={index} className="relative group overflow-hidden rounded-2xl mobile-snap-item">
                   <img
                     src={image.src}
                     alt={image.alt}

@@ -444,9 +444,9 @@ const About = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
               {organizationContent.coreValues.map((value, index) => (
-                <div key={index} className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300">
+                <div key={index} className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300">
                   <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4">
                     <CheckCircle className="w-7 h-7 text-white" />
                   </div>
@@ -474,14 +474,14 @@ const About = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
         {organizationContent.sdgCommitments.map((sdg, index) => {
           const IconComponent = sdg.icon ? (Icons as any)[sdg.icon] : null;
 
           return (
             <div
               key={index}
-              className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
+              className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
             >
               {IconComponent && (
                 <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">

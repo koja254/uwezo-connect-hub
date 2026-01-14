@@ -34,7 +34,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     {
       id: 'partner-1',
       image: '/images/partner1.png',
-      imageAlt: 'Youth coding on laptops in a rural lab',
+      imageAlt: 'Youth in a classroom',
       name: 'Partner One',
       link: 'https://kenyapovertyaction.org.uk/' 
     },

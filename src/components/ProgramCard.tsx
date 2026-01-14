@@ -9,12 +9,14 @@ interface ProgramCardProps {
   program: Program;
   variant?: 'default' | 'featured' | 'compact';
   showCTA?: boolean;
+  className?: string;
 }
 
 const ProgramCard: React.FC<ProgramCardProps> = ({ 
   program, 
   variant = 'default',
-  showCTA = true 
+  showCTA = true,
+  className
 }) => {
   const variantClasses = {
     default: 'col-span-1',
@@ -28,8 +30,10 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
     compact: 'h-40'
   };
 
+  const cardClasses = ['program-card group', variantClasses[variant], className].filter(Boolean).join(' ');
+
   return (
-    <div className={`program-card group ${variantClasses[variant]}`}>
+    <div className={cardClasses}>
       {/* Program Image */}
       <div className={`relative overflow-hidden ${imageHeightClasses[variant]}`}>
         <img

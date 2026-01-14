@@ -203,11 +203,11 @@ const Team = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
             {teamMembers.filter(member => member.category === 'leadership').map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 text-center hover:shadow-card-hover transition-shadow duration-300"
+                className="mobile-snap-item bg-card rounded-2xl border border-border p-6 text-center hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="w-24 h-24 mx-auto mb-4">
                   <img
@@ -260,7 +260,7 @@ const Team = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
             {[
               {
                 id: 'kevin',
@@ -277,7 +277,7 @@ const Team = () => {
             ].map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
+                className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
@@ -306,7 +306,7 @@ const Team = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
             {[
               {
                 id: 'muna',
@@ -329,7 +329,7 @@ const Team = () => {
             ].map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
+                className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
@@ -358,7 +358,7 @@ const Team = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
             {[
               {
                 id: 'evans',
@@ -369,7 +369,7 @@ const Team = () => {
             ].map((member) => (
               <div
                 key={member.id}
-                className="bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
+                className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center text-white font-bold">
@@ -400,8 +400,8 @@ const Team = () => {
               any single organization.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="text-center">
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 mb-12">
+              <div className="mobile-snap-item text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-2xl flex items-center justify-center">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
@@ -411,7 +411,7 @@ const Team = () => {
                 </p>
               </div>
               
-              <div className="text-center">
+              <div className="mobile-snap-item text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-secondary/20 rounded-2xl flex items-center justify-center">
                   <Heart className="w-8 h-8 text-secondary" />
                 </div>
@@ -421,7 +421,7 @@ const Team = () => {
                 </p>
               </div>
               
-              <div className="text-center">
+              <div className="mobile-snap-item text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-accent/20 rounded-2xl flex items-center justify-center">
                   <Heart className="w-8 h-8 text-accent" />
                 </div>

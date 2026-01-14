@@ -29,7 +29,7 @@ export const resources: Resource[] = [
     category: 'Research',
     content: 'This policy brief examines structural issues like public expenditure, curriculum challenges, teacher gaps, and inequalities (socio-economic, geographic, and gender) affecting STEM education in Africa, proposing recommendations for improvement.',
     image: '/images/image-10.jpg',
-    imageAlt: 'Classroom robotics workshop for girls',
+    imageAlt: 'Classroom robotics workshop for students',
     publishedAt: '2022-07-01',
     author: 'Rumbidzai Adebayo',
     downloadUrl: '/downloads/un_stem_report.pdf',
@@ -85,5 +85,29 @@ export const resources: Resource[] = [
     author: 'Unknown',
     downloadUrl: '/downloads/IoT innovation in rural water supply in sub-Saharan Africa (1).pdf',
     tags: ['iot', 'water-supply', 'africa', 'technology']
+  },
+  {
+    id: 'uwezo_link_policy_framework',
+    title: 'Uwezo Link Initiative Policy Framework',
+    slug: 'uwezo_link_policy_framework',
+    type: 'report',
+    summary: 'Defines governance, safeguarding, financial management, and data protection standards guiding Uwezo Link Initiative’s youth-led STEM programs in Kenya.',
+    description: 'Defines governance, safeguarding, financial management, and data protection standards guiding Uwezo Link Initiative’s youth-led STEM programs in Kenya.',
+    date: '2025-11-01',
+    category: 'Governance',
+    content: 'Outlines the institutional policies governing Uwezo Link Initiative, including child safeguarding, human resource management, financial controls, gender-responsive STEM education, environmental sustainability, and compliance with Kenyan legal frameworks such as the Children Act (2022), Employment Act (2007), and Data Protection Act (2019).',
+    image: '/images/image-09.jpg',
+    imageAlt: 'Community STEM learning and youth innovation workshop',
+    publishedAt: '2025-11-01',
+    author: 'Uwezo Link Initiative',
+    downloadUrl: '/downloads/uwezo_link_policy_framework.pdf',
+    tags: [
+      'policy',
+      'governance',
+      'child-safeguarding',
+      'stem-education',
+      'youth',
+      'kenya'
+    ]
   }
 ];
