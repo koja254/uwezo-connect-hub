@@ -1,0 +1,550 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Users, Target, Heart, Lightbulb, Globe, CheckCircle, Send } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { organizationContent } from '@/data/static';
+import { useToast } from '@/hooks/use-toast';
+import * as Icons from 'lucide-react'
+
+const GetInvolvedForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    interest: '',
+    experience: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.interest) {
+      toast({
+        title: "Error",
+        description: "Name, email, and interest are required.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setIsSubmitting(true);
+
+    const maxRetries = 2;
+    let attempts = 0;
+
+    while (attempts < maxRetries) {
+      try {
+        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            'form-name': 'get-involved',
+            ...formData
+          }),
+        });
+
+        if (response.ok) {
+          toast({
+            title: "Success!",
+            description: "Your submission has been received.",
+          });
+          setFormData({ name: '', email: '', phone: '', interest: '', experience: '', message: '' });
+          return;
+        } else {
+          const errorText = await response.text();
+          throw new Error(`Submission failed: ${response.status} ${errorText}`);
+        }
+      } catch (error) {
+        attempts++;
+        console.error(`Attempt ${attempts} failed:`, error);
+        if (attempts === maxRetries) {
+          toast({
+            title: "Error",
+            description: "There was a problem submitting. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      }
+    }
+    setIsSubmitting(false);
+  };
+
+  return (
+    <form method="POST" name="get-involved" onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <Label htmlFor="name">Full Name</Label>
+        <Input
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value.trim() })}
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="phone">Phone</Label>
+        <Input
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value.trim() })}
+        />
+      </div>
+      <div>
+        <Label htmlFor="interest">How would you like to get involved?</Label>
+        <select
+          id="interest"
+          name="interest"
+          value={formData.interest}
+          onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+          className="w-full border border-input bg-background rounded-md px-3 py-2 text-sm"
+          required
+        >
+          <option value="">Select your interest</option>
+          <option value="volunteer">Volunteer</option>
+          <option value="mentor">Mentor Students</option>
+          <option value="teach">Teach/Workshop Leader</option>
+          <option value="fundraising">Fundraising</option>
+          <option value="marketing">Marketing & Outreach</option>
+          <option value="tech">Technical Support</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <Label htmlFor="experience">Relevant Experience</Label>
+        <Textarea
+          id="experience"
+          name="experience"
+          value={formData.experience}
+          onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+          placeholder="Tell us about your background and skills..."
+        />
+      </div>
+      <div>
+        <Label htmlFor="message">Additional Message</Label>
+        <Textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          placeholder="Anything else you'd like us to know?"
+        />
+      </div>
+      <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
+        {isSubmitting ? 'Submitting...' : <><Send className="w-4 h-4 mr-2" />Submit Application</>}
+      </Button>
+    </form>
+  );
+};
+
+const PartnershipForm = () => {
+  const [formData, setFormData] = useState({
+    organizationName: '',
+    contactName: '',
+    email: '',
+    phone: '',
+    partnershipType: '',
+    description: '',
+    resources: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.organizationName || !formData.contactName || !formData.email || !formData.description) {
+      toast({
+        title: "Error",
+        description: "Required fields are missing.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setIsSubmitting(true);
+
+    const maxRetries = 2;
+    let attempts = 0;
+
+    while (attempts < maxRetries) {
+      try {
+        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            'form-name': 'partnership',
+            ...formData
+          }),
+        });
+
+        if (response.ok) {
+          toast({
+            title: "Success!",
+            description: "Your submission has been received.",
+          });
+          setFormData({ organizationName: '', contactName: '', email: '', phone: '', partnershipType: '', description: '', resources: '' });
+          return;
+        } else {
+          const errorText = await response.text();
+          throw new Error(`Submission failed: ${response.status} ${errorText}`);
+        }
+      } catch (error) {
+        attempts++;
+        console.error(`Attempt ${attempts} failed:`, error);
+        if (attempts === maxRetries) {
+          toast({
+            title: "Error",
+            description: "There was a problem submitting. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      }
+    }
+    setIsSubmitting(false);
+  };
+
+  return (
+    <form method="POST" name="partnership" onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <Label htmlFor="organizationName">Organization Name</Label>
+        <Input
+          id="organizationName"
+          name="organizationName"
+          value={formData.organizationName}
+          onChange={(e) => setFormData({ ...formData, organizationName: e.target.value })}
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="contactName">Contact Person</Label>
+        <Input
+          id="contactName"
+          name="contactName"
+          value={formData.contactName}
+          onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value.trim() })}
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="phone">Phone</Label>
+        <Input
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value.trim() })}
+        />
+      </div>
+      <div>
+        <Label htmlFor="partnershipType">Partnership Type</Label>
+        <select
+          id="partnershipType"
+          name="partnershipType"
+          value={formData.partnershipType}
+          onChange={(e) => setFormData({ ...formData, partnershipType: e.target.value })}
+          className="w-full border border-input bg-background rounded-md px-3 py-2 text-sm"
+          required
+        >
+          <option value="">Select partnership type</option>
+          <option value="funding">Funding Partnership</option>
+          <option value="program">Program Collaboration</option>
+          <option value="corporate">Corporate Partnership</option>
+          <option value="academic">Academic Institution</option>
+          <option value="government">Government Agency</option>
+          <option value="ngo">NGO Partnership</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <Label htmlFor="description">Partnership Description</Label>
+        <Textarea
+          id="description"
+          name="description"
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          placeholder="Describe the partnership opportunity..."
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="resources">Resources Available</Label>
+        <Textarea
+          id="resources"
+          name="resources"
+          value={formData.resources}
+          onChange={(e) => setFormData({ ...formData, resources: e.target.value })}
+          placeholder="What resources can your organization contribute?"
+        />
+      </div>
+      <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
+        {isSubmitting ? 'Submitting...' : <><Send className="w-4 h-4 mr-2" />Submit Partnership Proposal</>}
+      </Button>
+    </form>
+  );
+};
+
+const About = () => {
+  return (
+    <div className="min-h-screen">
+      <Header />
+
+      <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold mb-6">
+              Who We Are
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
+              Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible, and are working tirelessly to make it happen.
+            </p>
+            <img
+              src="/images/image-02.jpg"
+              alt="Students in a school corridor receiving assistance"
+              className="rounded-2xl shadow-card mx-auto max-w-2xl w-full"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-8">
+                Our Mission
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+              <div>
+                <h3 className="font-poppins text-2xl font-bold mb-6">Our Story</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Uwezo Link Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities, girls missing school due to lack of sanitary products, communities struggling with climate change impacts, youth excluded from the digital economy despite their natural innovation abilities, and the glaring democracy gaps revealed by the 2024 Gen Z movement.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  The Uwezo Link Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions; we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Target className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Targeted Impact</h4>
+                    <p className="text-muted-foreground text-sm">
+                      We focus on underserved communities where our programs can make the greatest difference.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Lightbulb className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Innovation First</h4>
+                    <p className="text-muted-foreground text-sm">
+                      We embrace new technologies and methodologies to maximize learning outcomes.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Global Perspective</h4>
+                    <p className="text-muted-foreground text-sm">
+                      Our local solutions are designed with global challenges and opportunities in mind.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="bg-card rounded-2xl border border-border p-8">
+                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                  <Target className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-poppins text-2xl font-bold mb-4">Our Vision</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  A future where every young person, regardless of gender, background, or location; has the resources, knowledge, and opportunities to thrive in a changing world.
+                </p>
+              </div>
+
+              <div className="bg-card rounded-2xl border border-border p-8">
+                <div className="w-16 h-16 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
+                  <Heart className="w-8 h-8 text-secondary" />
+                </div>
+                <h3 className="font-poppins text-2xl font-bold mb-4">Our Mission</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+                Our Core Values
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                These principles guide every decision we make and every program we implement,
+                ensuring our work remains aligned with our mission and values.
+              </p>
+            </div>
+
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
+              {organizationContent.coreValues.map((value, index) => (
+                <div key={index} className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300">
+                  <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4">
+                    <CheckCircle className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-poppins font-semibold text-lg mb-3">{value.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+                Our Commitment to the UN Sustainable Development Goals (SDGs)
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                At Uwezo Link Initiative, we believe that meaningful change happens when technology,
+                education, inclusive democracy, and community empowerment come together. Our work directly supports five
+                core SDGs, while contributing to many others as interconnected outcomes:
+              </p>
+            </div>
+
+            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
+              {organizationContent.sdgCommitments.map((sdg, index) => {
+                const IconComponent = sdg.icon ? Icons[sdg.icon as keyof typeof Icons] as React.ElementType : null;
+
+                return (
+                  <div
+                    key={index}
+                    className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
+                  >
+                    {IconComponent && (
+                      <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <IconComponent className="w-7 h-7 text-white" />
+                      </div>
+                    )}
+                    <h3 className="font-poppins font-semibold text-lg mb-3">{sdg.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{sdg.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+              Join Our Mission
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
+              Whether you're an individual looking to volunteer, an organization interested in partnership,
+              or a supporter wanting to contribute, there are many ways to get involved with our work.
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="cta-primary">
+                    Get Involved
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Get Involved with Uwezo Link</DialogTitle>
+                  </DialogHeader>
+                  <GetInvolvedForm />
+                </DialogContent>
+              </Dialog>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="lg">
+                    Explore Partnership
+                    <Users className="w-4 h-4 ml-2" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Partnership Opportunities</DialogTitle>
+                  </DialogHeader>
+                  <PartnershipForm />
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default About;

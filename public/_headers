@@ -1,0 +1,3 @@
+# Ensure JavaScript files have the correct MIME type
+/assets/*.js
+  Content-Type: application/javascript
