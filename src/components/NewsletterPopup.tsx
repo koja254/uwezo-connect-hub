@@ -13,6 +13,8 @@ export const NewsletterPopup: React.FC = () => {
 
   useEffect(() => {
     // Check if user already dismissed or subscribed
+    const isSubscribed = localStorage.getItem('uwezo_newsletter_subscribed');
+    if (isSubscribed) return;
     const isDismissed = localStorage.getItem('uwezo_newsletter_dismissed');
     if (isDismissed) return;
 
@@ -72,7 +74,7 @@ export const NewsletterPopup: React.FC = () => {
           title: "Thank You!",
           description: "You've successfully subscribed to our newsletter.",
         });
-        localStorage.setItem('uwezo_newsletter_dismissed', 'true');
+        localStorage.setItem('uwezo_newsletter_subscribed', 'true');
         setIsOpen(false);
       } else {
         throw new Error();

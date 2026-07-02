@@ -286,17 +286,22 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="border-t border-bg/10 py-6">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs font-mono uppercase tracking-wider">
-            <div className="text-bg/60">
-              © {currentYear} The Uwezo Network Initiative. All rights reserved. | 
-              <a 
-                href="/downloads/uwezo_link_terms_and_conditions.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-bg/60 hover:text-coral transition-colors ml-1"
-              >
-                Terms & Conditions
-              </a>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-mono uppercase tracking-wider">
+            <div className="text-bg/60 space-y-2">
+              <div>
+                © {currentYear} The Uwezo Network Initiative. All rights reserved. | 
+                <a 
+                  href="/downloads/uwezo_link_terms_and_conditions.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-bg/60 hover:text-coral transition-colors ml-1 inline-block"
+                >
+                  Terms & Conditions
+                </a>
+              </div>
+              <div className="text-[10px] text-bg/45 normal-case tracking-normal">
+                Compliant with the Kenya Data Protection Act, 2019. Bound by strict Child Protection and Safeguarding Policies across all educational operations.
+              </div>
             </div>
             
             <div className="flex items-center space-x-1 text-bg/60">

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Download, FileText, Sparkles, FolderLock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Download, FileText, FolderLock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SectionDivider from '@/components/SectionDivider';
@@ -7,7 +8,23 @@ import { Button } from '@/components/ui/button';
 import { resources } from '@/data/resources';
 
 const Resources = () => {
-  const [activeTab, setActiveTab] = useState<'reports' | 'publications' | 'assets'>('reports');
+  const location = useLocation();
+  
+  const getInitialTab = () => {
+    if (location.pathname.includes('/reports')) return 'reports';
+    if (location.pathname.includes('/publications')) return 'publications';
+    if (location.pathname.includes('/assets')) return 'assets';
+    return 'reports';
+  };
+
+  const [activeTab, setActiveTab] = useState<'reports' | 'publications' | 'assets'>(getInitialTab());
+
+  // Sync tab with pathname changes
+  useEffect(() => {
+    if (location.pathname.includes('/reports')) setActiveTab('reports');
+    else if (location.pathname.includes('/publications')) setActiveTab('publications');
+    else if (location.pathname.includes('/assets')) setActiveTab('assets');
+  }, [location.pathname]);
 
   // Filter resource items
   const reports = resources.filter(r => r.type === 'report');

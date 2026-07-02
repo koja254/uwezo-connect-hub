@@ -15,9 +15,6 @@ import CivicPowerInMotion from "./pages/CivicPowerInMotion";
 import ProgramDetail from "./pages/ProgramDetail";
 
 import Resources from "./pages/Resources";
-import Reports from "./pages/Reports";
-import Publications from "./pages/Publications";
-import Assets from "./pages/Assets";
 
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
@@ -53,9 +50,9 @@ const App = () => {
             <Route path="/programs/:slug" element={<ProgramDetail />} />
 
             <Route path="/resources" element={<Resources />} />
-            <Route path="/resources/reports" element={<Reports />} />
-            <Route path="/resources/publications" element={<Publications />} />
-            <Route path="/resources/assets" element={<Assets />} />
+            <Route path="/resources/reports" element={<Resources />} />
+            <Route path="/resources/publications" element={<Resources />} />
+            <Route path="/resources/assets" element={<Resources />} />
 
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />

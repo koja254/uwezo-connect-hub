@@ -3,89 +3,86 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Info, History, Users } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
+import SectionDivider from '@/components/SectionDivider';
 
 const WhoWeAreIndex = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-bg text-ink">
       <Header />
       
-      <Hero
-        title="Who We Are"
-        subtitle="The Uwezo Network Initiative"
-        description="We are a national NGO in Kenya dedicated to transforming lives through technology, education, health equity, environmental conservation, and poverty relief."
-        primaryCTA={{
-          text: "About Our Mission",
-          href: "/who-we-are/about-us"
-        }}
-        secondaryCTA={{
-          text: "Meet Our Team",
-          href: "/who-we-are/our-team"
-        }}
-        backgroundImage="/images/image-02.jpg"
-        imageAlt="Uwezo Network Team and Community"
-        size="medium"
-      />
+      {/* Hero Section */}
+      <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[50vh] flex items-center justify-center bg-paper">
+        <div className="container mx-auto px-4 z-10 max-w-4xl text-center space-y-6">
+          <span className="font-mono text-xs uppercase tracking-widest text-coral-deep font-bold bg-coral/20 px-3 py-1 rounded-full border border-ink/20">
+            THE UWEZO NETWORK INITIATIVE
+          </span>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
+            Who We Are
+          </h1>
+          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
+            "A registered National NGO in Kenya bridging high-level tech capability with community empowerment."
+          </p>
+        </div>
+      </section>
 
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-              Empowering Communities Across Kenya
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Discover who we are, where we came from, and the passionate team of innovators, educators, and advocates driving our mission forward.
-            </p>
+      {/* Directory Grid */}
+      <section className="py-16 md:py-24 bg-bg">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl font-bold">Explore Our Organization</h2>
+            <p className="text-ink-soft text-sm font-mono uppercase tracking-wider mt-1">Get to know our leadership, mission, and milestones</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
             {/* About Us */}
-            <div className="p-8 bg-card rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+            <div className="border-2 border-ink p-8 bg-paper shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
-                  <Info className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 bg-mint/20 border border-ink rounded-full flex items-center justify-center mb-6">
+                  <Info className="w-6 h-6 text-ink" />
                 </div>
-                <h3 className="font-poppins font-semibold text-xl mb-3">About Us</h3>
-                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                  Learn about our mission, vision, core values, and our direct alignment with the UN Sustainable Development Goals.
+                <h3 className="font-serif font-bold text-2xl mb-3 text-ink">About Us</h3>
+                <p className="text-ink-soft text-sm leading-relaxed mb-6 font-sans">
+                  Learn about our core mission, vision statement, operational values, and SDG commitments.
                 </p>
               </div>
-              <Link to="/who-we-are/about-us" className="text-sm font-semibold text-primary hover:underline inline-flex items-center">
-                Explore About Us <ArrowRight className="w-4 h-4 ml-1" />
+              <Link to="/who-we-are/about-us" className="text-xs font-mono uppercase tracking-wider text-ink hover:text-coral-deep inline-flex items-center font-bold">
+                Read About Us <ArrowRight className="w-4 h-4 ml-1.5" />
               </Link>
             </div>
 
             {/* Our History */}
-            <div className="p-8 bg-card rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+            <div className="border-2 border-ink p-8 bg-paper shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-6">
-                  <History className="w-6 h-6 text-secondary" />
+                <div className="w-12 h-12 bg-coral/20 border border-ink rounded-full flex items-center justify-center mb-6">
+                  <History className="w-6 h-6 text-ink" />
                 </div>
-                <h3 className="font-poppins font-semibold text-xl mb-3">Our History</h3>
-                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                  From a small community group in Nairobi to a registered national NGO, trace our journey of growth and transformation.
+                <h3 className="font-serif font-bold text-2xl mb-3 text-ink">Our History</h3>
+                <p className="text-ink-soft text-sm leading-relaxed mb-6 font-sans">
+                  Trace our journey from a local Community-Based Organization to a registered National NGO.
                 </p>
               </div>
-              <Link to="/who-we-are/our-history" className="text-sm font-semibold text-secondary hover:underline inline-flex items-center">
-                Explore Our History <ArrowRight className="w-4 h-4 ml-1" />
+              <Link to="/who-we-are/our-history" className="text-xs font-mono uppercase tracking-wider text-ink hover:text-coral-deep inline-flex items-center font-bold">
+                Read Our Story <ArrowRight className="w-4 h-4 ml-1.5" />
               </Link>
             </div>
 
             {/* Our Team */}
-            <div className="p-8 bg-card rounded-2xl border border-border hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+            <div className="border-2 border-ink p-8 bg-paper shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-6">
-                  <Users className="w-6 h-6 text-accent" />
+                <div className="w-12 h-12 bg-lavender/35 border border-ink rounded-full flex items-center justify-center mb-6">
+                  <Users2 className="w-6 h-6 text-ink" />
                 </div>
-                <h3 className="font-poppins font-semibold text-xl mb-3">Our Team</h3>
-                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                  Meet the strategic visionaries, field staff, advisory board, and volunteers steering our grassroots impact.
+                <h3 className="font-serif font-bold text-2xl mb-3 text-ink">Our Team</h3>
+                <p className="text-ink-soft text-sm leading-relaxed mb-6 font-sans">
+                  Meet our founders, strategic advisory consultants, field team, and volunteer network.
                 </p>
               </div>
-              <Link to="/who-we-are/our-team" className="text-sm font-semibold text-accent hover:underline inline-flex items-center">
-                Meet Our Team <ArrowRight className="w-4 h-4 ml-1" />
+              <Link to="/who-we-are/our-team" className="text-xs font-mono uppercase tracking-wider text-ink hover:text-coral-deep inline-flex items-center font-bold">
+                Meet the Builders <ArrowRight className="w-4 h-4 ml-1.5" />
               </Link>
             </div>
+
           </div>
         </div>
       </section>
