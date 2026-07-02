@@ -75,7 +75,7 @@ const galleryImages = [
   { src: '/images/img-32.jpeg', alt: 'A police officer dispersing a crowd' },
 ];
 
-const UwezoKwaYouth = () => {
+const CivicPowerInMotion = () => {
   return (
     <div className="min-h-screen">
       <Header />
@@ -93,12 +93,12 @@ const UwezoKwaYouth = () => {
 
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-3xl text-white space-y-6">
-            <p className="uppercase tracking-[0.3em] text-sm text-white/70">Uwezo kwa Youth</p>
+            <p className="uppercase tracking-[0.3em] text-sm text-white/70">Civic Power in Motion</p>
             <h1 className="font-poppins text-4xl md:text-5xl font-bold leading-tight">
               From the Streets to the Ballot - Turning Youth Energy into Civic Power
             </h1>
             <p className="text-lg md:text-xl text-white/90 leading-relaxed">
-              The 2024 Gen Z movement showed Kenya the power of youth voices. Yet beyond digital activism lies a deeper need - civic literacy, inclusion, and leadership. Uwezo kwa Youth transforms that energy into lasting participation, reaching youth in villages, schools, estates, and online spaces.
+              The 2024 Gen Z movement showed Kenya the power of youth voices. Yet beyond digital activism lies a deeper need - civic literacy, inclusion, and leadership. Civic Power in Motion transforms that energy into lasting participation, reaching youth in villages, schools, estates, and online spaces.
             </p>
             <Button asChild size="lg" className="cta-accent inline-flex items-center space-x-2">
               <a href="/downloads/UwezokwaYouth.pdf" target="_blank" rel="noopener noreferrer">
@@ -290,4 +290,4 @@ const UwezoKwaYouth = () => {
   );
 };
 
-export default UwezoKwaYouth;
+export default CivicPowerInMotion;

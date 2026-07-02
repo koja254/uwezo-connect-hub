@@ -3,13 +3,13 @@ import { ImpactStat, DonationTier, SocialLink, CryptoToken } from '@/types';
 export const impactStats: ImpactStat[] = [
   {
     label: 'Students Empowered',
-    value: '200+',
+    value: '500+',
     description: 'Young learners across rural Kenya',
     icon: 'GraduationCap'
   },
   {
     label: 'Communities Reached',
-    value: '15+',
+    value: '25+',
     description: 'Villages and schools served',
     icon: 'MapPin'
   },
@@ -21,7 +21,7 @@ export const impactStats: ImpactStat[] = [
   },
   {
     label: 'Local Educators Trained',
-    value: '15+',
+    value: '30+',
     description: 'Teachers equipped with STEM skills',
     icon: 'Users'
   }
@@ -38,7 +38,7 @@ export const donationTiers: DonationTier[] = [
     impact: [
       'Three months of dignity and school attendance',
       'Access to SRHR education workshops',
-      'Uwezo Eco Loop rewards for participation'
+      'Days for Dignity rewards for participation'
     ]
   },
   {
@@ -76,7 +76,7 @@ export const donationTiers: DonationTier[] = [
     description: 'Sustained support for ongoing community programs',
     impact: [
       'Regular SRHR workshops',
-      'Fab Lab operations',
+      'Tech for Tomorrow Maker Lab operations',
       'Teacher training sessions'
     ]
   },
@@ -99,27 +99,27 @@ export const donationTiers: DonationTier[] = [
 export const socialLinks: SocialLink[] = [
   {
     platform: 'Twitter',
-    url: 'https://twitter.com/uwezolink',
+    url: 'https://twitter.com/uwezonetwork',
     icon: 'Twitter'
   },
   {
     platform: 'LinkedIn',
-    url: 'https://linkedin.com/company/uwezo-link-initiative',
+    url: 'https://linkedin.com/company/uwezo-network-initiative',
     icon: 'Linkedin'
   },
   {
     platform: 'Facebook',
-    url: 'https://facebook.com/uwezolink',
+    url: 'https://facebook.com/uwezonetwork',
     icon: 'Facebook'
   },
   {
     platform: 'Instagram',
-    url: 'https://instagram.com/uwezolink',
+    url: 'https://instagram.com/uwezonetwork',
     icon: 'Instagram'
   },
   {
     platform: 'YouTube',
-    url: 'https://youtube.com/@uwezolink',
+    url: 'https://youtube.com/@uwezonetwork',
     icon: 'Youtube'
   }
 ];
@@ -191,7 +191,7 @@ export const organizationContent = {
   sdgCommitments: [
     {
       title: "SDG 4 - Quality Education",
-      description: "Through Uwezo Teaching, we provide STEM and AI training to youth and girls, equipping them with future-ready skills and bridging the digital divide in underserved communities.",
+      description: "Through Tech for Tomorrow, we provide STEM, digital skills, and AI training to youth and girls, equipping them with future-ready skills and bridging the digital divide in underserved communities.",
       icon: "GraduationCap"
     },
     {
@@ -201,7 +201,7 @@ export const organizationContent = {
     },
     {
       title: "SDG 9 - Industry, Innovation, and Infrastructure",
-      description: "Through initiatives like Uwezo Fab Lab, we foster grassroots innovation, support local manufacturing, and empower communities to build sustainable, tech-enabled solutions.",
+      description: "Through advanced modules in mobile fabrication and IoT hardware prototyping under Tech for Tomorrow, we foster grassroots innovation and local hardware capability.",
       icon: "Cpu"
     },
     {
@@ -211,12 +211,11 @@ export const organizationContent = {
     },
     {
       title: "SDG 16 - Peace, Justice, and Strong Institutions",
-      description: "Through Uwezo kwa Youth we equip young people with accessible civic information so decision-making stays needs-based, inclusive, participatory, and representative at every level.",
+      description: "Through Civic Power in Motion we equip young people with accessible civic information so decision-making stays needs-based, inclusive, participatory, and representative at every level.",
       icon: "Shield"
     }
   ],
 
-  
   howWeWork: [
     {
       phase: "Listen & Learn",

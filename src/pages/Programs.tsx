@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download, BookOpen, Layers } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -9,50 +9,41 @@ import { Button } from '@/components/ui/button';
 import { programs } from '@/data/programs';
 
 const Programs = () => {
-  const featuredProgram = programs.find((program) => program.id === 'uwezo-kwa-youth') ?? programs[0];
+  const featuredProgram = programs.find((program) => program.id === 'civic-power-in-motion') ?? programs[0];
   const otherPrograms = programs.filter((program) => program.id !== featuredProgram?.id);
-  const youthProgram = programs.find((program) => program.id === 'uwezo-kwa-youth');
-  const voucherProgram = programs.find((program) => program.id === 'uwezo-voucher');
-  const fabLabProgram = programs.find((program) => program.id === 'uwezo-fab-lab');
-  const teachingProgram = programs.find((program) => program.id === 'uwezo-teaching');
+
+  const daysForDignity = programs.find((program) => program.id === 'days-for-dignity');
+  const techForTomorrow = programs.find((program) => program.id === 'tech-for-tomorrow');
+  const civicPower = programs.find((program) => program.id === 'civic-power-in-motion');
 
   const integrationSteps = [
     {
-      id: 'uwezo-kwa-youth',
+      id: 'civic-power-in-motion',
       order: 1,
       title: 'Civic Energy & Literacy',
-      description: 'Uwezo kwa Youth channels protest momentum into civic literacy, voter registration, and inclusive dialogue spaces.',
-      program: youthProgram,
-      accentClass: 'text-primary',
-      badgeClass: 'bg-primary/20',
+      description: 'Civic Power in Motion channels protest momentum into daily civic engagement and inclusive dialog labs.',
+      program: civicPower,
+      accentClass: 'text-coral-deep',
+      badgeClass: 'bg-coral/20',
     },
     {
-      id: 'uwezo-voucher',
+      id: 'days-for-dignity',
       order: 2,
       title: 'Motivation & Dignity',
-      description: 'Uwezo Voucher keeps learners in school through blockchain-powered incentives and SRHR support.',
-      program: voucherProgram,
-      accentClass: 'text-secondary',
-      badgeClass: 'bg-secondary/20',
+      description: 'Days for Dignity keeps girls in school through attendance-linked reward matrices and hygiene workshops.',
+      program: daysForDignity,
+      accentClass: 'text-lavender',
+      badgeClass: 'bg-lavender/25',
     },
     {
-      id: 'uwezo-fab-lab',
+      id: 'tech-for-tomorrow',
       order: 3,
-      title: 'Hands-on Creation',
-      description: 'Fab Lab transforms e-waste into climate tech, letting students prototype tangible solutions.',
-      program: fabLabProgram,
-      accentClass: 'text-accent',
-      badgeClass: 'bg-accent/20',
-    },
-    {
-      id: 'uwezo-teaching',
-      order: 4,
-      title: 'Scaling Knowledge',
-      description: 'Uwezo Teaching deploys mobile educators and alumni mentors to spread STEM and civic leadership.',
-      program: teachingProgram,
-      accentClass: 'text-foreground',
-      badgeClass: 'bg-muted/50',
-    },
+      title: 'Skills & Maker Labs',
+      description: 'Tech for Tomorrow bridges the digital divide through code hubs and advanced IoT hardware prototypes.',
+      program: techForTomorrow,
+      accentClass: 'text-mint',
+      badgeClass: 'bg-mint/30',
+    }
   ].filter((step) => step.program);
 
   return (
@@ -62,18 +53,18 @@ const Programs = () => {
       {/* Hero Section */}
       <Hero
         title="Our Programs"
-        subtitle="Innovation in Action"
-        description="Four interconnected programs working together to democratize civic participation, STEM education, and sustainable community innovation."
+        subtitle="Sectors of Operation"
+        description="Three interconnected programs combining education, environmental conservation, health equity, and inclusive civic tech across Kenya."
         primaryCTA={{
           text: "Contact Us",
           href: "/contact"
         }}
         secondaryCTA={{
-          text: "Support Our Work",
+          text: "Support Our NGO",
           href: "/donate"
         }}
         backgroundImage="/images/programs.jpg"
-        imageAlt="Youth in a classroom"
+        imageAlt="Youth in a classroom collaborating"
         size="medium"
       />
 
@@ -81,17 +72,16 @@ const Programs = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-8">
-              Transforming Education Through Innovation
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+              Empowering Through Co-Designed Solutions
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Our programs are designed to work synergistically, creating a comprehensive ecosystem 
-              that moves from civic literacy to hands-on innovation and long-term leadership.
+            <p className="text-lg text-ink-soft leading-relaxed">
+              Our initiatives build on one another, moving from inclusive civic literacy to health equity and hands-on technological capability.
             </p>
           </div>
 
           {/* Featured Program */}
-          <div className="mb-16">
+          <div className="mb-16 max-w-5xl mx-auto">
             {featuredProgram && (
               <ProgramCard 
                 program={featuredProgram} 
@@ -101,13 +91,12 @@ const Programs = () => {
           </div>
 
           {/* Other Programs Grid */}
-          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {otherPrograms.map((program) => (
               <ProgramCard 
                 key={program.id} 
                 program={program}
                 variant="default"
-                className="mobile-snap-item"
               />
             ))}
           </div>
@@ -115,44 +104,38 @@ const Programs = () => {
       </section>
 
       {/* Program Integration */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-16 md:py-24 bg-paper border-y border-ink/10">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-8">
-                How Our Programs Work Together
+              <h2 className="font-serif text-4xl font-bold mb-6">
+                How Our Programs Integrate
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Each program complements the others, creating multiple entry points for students 
-                and comprehensive pathways for civic engagement, skill development, and community impact.
+              <p className="text-base text-ink-soft max-w-2xl mx-auto leading-relaxed">
+                By nesting civic education, menstrual hygiene support, and tech makerspaces together, we provide multiple pathways of growth for school children and youth.
               </p>
             </div>
 
-            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {integrationSteps.map((step, index) => (
-                <div key={step.id} className="relative mobile-snap-item">
-                  <div className="p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300 h-full flex flex-col">
-                    <div className={`w-12 h-12 ${step.badgeClass} rounded-xl flex items-center justify-center mb-4`}>
-                      <span className={`font-bold ${step.accentClass}`}>{step.order}</span>
+                <div key={step.id} className="relative">
+                  <div className="p-8 bg-bg rounded-xl border-[1.5px] border-ink hover:shadow-[4px_4px_0_#1F1A17] transition-all duration-200 h-full flex flex-col justify-between">
+                    <div>
+                      <div className={`w-12 h-12 ${step.badgeClass} rounded-xl flex items-center justify-center border border-ink mb-6`}>
+                        <span className="font-mono font-bold text-ink">{step.order}</span>
+                      </div>
+                      <h3 className="font-serif font-bold text-2xl mb-3 text-ink">{step.title}</h3>
+                      <p className="text-ink-soft text-sm mb-6 leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
-                    <h3 className="font-poppins font-semibold text-lg mb-3">{step.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-4 flex-1">
-                      {step.description}
-                    </p>
                     <Link 
                       to={step.program ? `/programs/${step.program.slug}` : '/programs'} 
-                      className={`text-sm font-medium hover:opacity-80 transition-colors inline-flex items-center ${step.accentClass}`}
+                      className="text-xs font-mono uppercase tracking-wider text-ink hover:text-coral-deep inline-flex items-center"
                     >
-                      Learn More <ArrowRight className="w-3 h-3 ml-1" />
+                      Learn More <ArrowRight className="w-3 h-3 ml-1.5" />
                     </Link>
                   </div>
-                  
-                  {/* Connector Arrow */}
-                  {index < integrationSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                      <ArrowRight className="w-6 h-6 text-muted-foreground" />
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -164,51 +147,50 @@ const Programs = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-8">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
               Real Impact, Real Stories
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-12">
-              Our programs have transformed thousands of lives, created innovative solutions to 
-              community challenges, and built a network of young leaders across Kenya.
+            <p className="text-base text-ink-soft leading-relaxed mb-12">
+              Our initiatives have transformed thousands of lives, co-created sustainable climate tools, and built a network of young civic leaders across Kenya.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="p-6 bg-card rounded-2xl border border-border">
+              <div className="p-6 bg-card border-[1.5px] border-ink rounded-lg shadow-sm">
                 <img
                   src="/images/image-10.jpg"
                   alt="Classroom robotics workshop for girls"
-                  className="w-full h-40 object-cover rounded-lg mb-4"
+                  className="w-full h-44 object-cover rounded border border-ink mb-4"
+                  loading="lazy"
                 />
-                <h3 className="font-poppins font-semibold text-lg mb-2">Grace's Solar Innovation</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Started in our Voucher program, Grace now leads a team in the Fab Lab building 
-                  solar-powered water purification systems for her community.
+                <h3 className="font-serif font-bold text-xl mb-2 text-ink">Grace's Solar Innovation</h3>
+                <p className="text-ink-soft text-sm leading-relaxed">
+                  Starting with our Days for Dignity voucher project, Grace now co-creates solar-powered water pumps under our Tech for Tomorrow modules.
                 </p>
               </div>
 
-              <div className="p-6 bg-card rounded-2xl border border-border">
+              <div className="p-6 bg-card border-[1.5px] border-ink rounded-lg shadow-sm">
                 <img
                   src="/images/image-07.jpeg"
                   alt="Students in a farm"
-                  className="w-full h-40 object-cover rounded-lg mb-4"
+                  className="w-full h-44 object-cover rounded border border-ink mb-4"
+                  loading="lazy"
                 />
-                <h3 className="font-poppins font-semibold text-lg mb-2">Smart Farming Project</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Students created IoT sensors to help local farmers optimize water usage, 
-                  combining technology with traditional agricultural knowledge.
+                <h3 className="font-serif font-bold text-xl mb-2 text-ink">Smart Agriculture Project</h3>
+                <p className="text-ink-soft text-sm leading-relaxed">
+                  Students assembled IoT soil sensors to help community farmers optimize irrigation, combining tech literacy with climate resilience.
                 </p>
               </div>
             </div>
 
-            <Button asChild size="lg" className="cta-primary">
+            <Button asChild className="btn-neo bg-ink text-bg border-ink">
               <Link
                 to="/resources"
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
-                Read More Success Stories
-                <ArrowRight className="w-4 h-4 ml-2" />
+                Read Success Publications
+                <BookOpen className="w-4 h-4 ml-2" />
               </Link>
             </Button>
           </div>

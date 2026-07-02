@@ -354,10 +354,10 @@ const About = () => {
               <div>
                 <h3 className="font-poppins text-2xl font-bold mb-6">Our Story</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Uwezo Link Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities, girls missing school due to lack of sanitary products, communities struggling with climate change impacts, youth excluded from the digital economy despite their natural innovation abilities, and the glaring democracy gaps revealed by the 2024 Gen Z movement.
+                  The Uwezo Network Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities, girls missing school due to lack of sanitary products, communities struggling with climate change impacts, youth excluded from the digital economy despite their natural innovation abilities, and the glaring democracy gaps revealed by the 2024 Gen Z movement.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The Uwezo Link Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
+                  The Uwezo Network Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions; we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
@@ -468,7 +468,7 @@ const About = () => {
           Our Commitment to the UN Sustainable Development Goals (SDGs)
         </h2>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          At Uwezo Link Initiative, we believe that meaningful change happens when technology,
+          At The Uwezo Network Initiative, we believe that meaningful change happens when technology,
           education, inclusive democracy, and community empowerment come together. Our work directly supports five
           core SDGs, while contributing to many others as interconnected outcomes:
         </p>
@@ -518,7 +518,7 @@ const About = () => {
                 </DialogTrigger>
                 <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
                   <DialogHeader>
-                    <DialogTitle>Get Involved with Uwezo Link</DialogTitle>
+                    <DialogTitle>Get Involved with The Uwezo Network</DialogTitle>
                   </DialogHeader>
                   <GetInvolvedForm />
                 </DialogContent>

@@ -1,175 +1,125 @@
 import { Program } from '@/types';
 
 const programPriority: Record<string, number> = {
-  'uwezo-voucher': 0,
-  'uwezo-kwa-youth': 1,
-  'uwezo-fab-lab': 2,
-  'uwezo-teaching': 3,
+  'days-for-dignity': 0,
+  'tech-for-tomorrow': 1,
+  'civic-power-in-motion': 2,
 };
 
 const programDefinitions: Program[] = [
   {
-    id: 'uwezo-kwa-youth',
-    title: 'Uwezo kwa Youth - Civic Power in Motion',
-    slug: 'uwezo-kwa-youth',
-    summary: 'From the streets to the ballot, we turn Gen Z protest energy into continuous, inclusive civic participation.',
-    description: `The 2024 Gen Z movement showed Kenya what happens when young people insist on accountability. Yet many of those powerful voices still lack civic literacy, remain unregistered, or are disconnected from decision-making spaces - especially young women and persons with disabilities.
+    id: 'days-for-dignity',
+    title: 'Days for Dignity - Health & Education Equity',
+    slug: 'days-for-dignity',
+    summary: 'A data-driven health and education initiative utilizing inclusion matrices to ensure consistent classroom attendance and the fair, localized distribution of sanitary materials to rural school-going girls.',
+    description: `A girl's education should never stop because of her period. Yet every month, thousands of bright girls miss 3-5 days of school because their families cannot afford sanitary pads. Days for Dignity addresses this gap through an innovative, data-driven reward system.
 
-Uwezo kwa Youth transforms protest momentum into long-term democratic participation. Through micro-workshops, inclusive toolkits, digital civic drops, and an automated voter activation bot, we reach youth where they are - online, in matatus, at the market, and in village social halls - so that showing up for the republic becomes a daily practice, not just a viral moment.`,
-    heroImage: '/images/img-27.jpeg',
-    heroImageAlt: 'Kenyan youth peacefully demonstrating with placards',
-    keyFeatures: [
-      'Youth-led civic labs rooted in local realities',
-      'Peer facilitator network spanning urban and rural communities',
-      'Accessible learning formats for PWDs and young women',
-      'WhatsApp, TikTok, and community radio civic drops',
-      'Data-driven outreach mapped against Electoral Management Bodies registration gaps'
-    ],
-    howItWorks: [
-      { step: 1, title: 'Micro-Workshops', description: 'Pop-up sessions in schools, estates, and village centers led by trained peer facilitators.' },
-      { step: 2, title: 'Inclusion Toolkit', description: 'Braille, sign language, and easy-read civic guides keep every learner in the conversation.' },
-      { step: 3, title: 'Digital Civic Drops', description: 'Weekly short-form audio/visual lessons pushed via WhatsApp, TikTok, and community radio.' },
-      { step: 4, title: 'Voter Activation Bot', description: 'Automated guide that nudges youth to register, verify details, and learn about issues that matter.' }
-    ],
-    impact: [
-      { metric: 'Youth Reached', value: '1.5M', description: 'Young people targeted across counties' },
-      { metric: 'Peer Facilitators', value: '200', description: 'Local champions trained and active' },
-      { metric: 'Voter Registrations', value: '800K+', description: 'Projected new voters guided by the bot' }
-    ],
-    gallery: [
-      { src: '/images/img-27.jpeg', alt: 'Youth activists holding placards' },
-      { src: '/images/img-28.jpeg', alt: 'Community workshop with young facilitators' },
-      { src: '/images/img-29.jpeg', alt: 'Rural outreach team engaging students' },
-      { src: '/images/img-30.jpeg', alt: 'Inclusive civic education session' },
-      { src: '/images/img-31.jpeg', alt: 'Digital literacy and civic tech session' },
-      { src: '/images/img-32.jpeg', alt: 'Peer facilitators planning outreach' }
-    ],
-    ctaText: 'Download Concept Note',
-    ctaAction: 'participate',
-    downloadUrl: '/downloads/UwezokwaYouth.pdf'
-  },
-  {
-    id: 'uwezo-voucher',
-    title: 'Uwezo Eco Loop - Bridging Education & Dignity',
-    slug: 'uwezo-voucher',
-    summary: 'Blockchain-powered solution addressing period poverty and promoting education equity',
-    description: `Meet Amina, a bright 15-year-old from rural Kenya who dreams of becoming a doctor. Every month, Amina misses 3-5 days of school because her family cannot afford sanitary pads. This story repeats across countless communities, where period poverty becomes a barrier to education and future opportunities.
-
-"A girl's education should never stop because of her period."
-
-The Uwezo Eco Loop program uses blockchain technology to create a sustainable solution. Students earn digital vouchers for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These vouchers can be redeemed for sanitary products, school supplies, and other necessities at partner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
+Students earn digital education and attendance vouchers for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These vouchers are redeemable for sanitary products, school supplies, and other necessities at partner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
     heroImage: '/images/img-21.png',
     heroImageAlt: 'Students in a school corridor receiving assistance',
     keyFeatures: [
-      'Blockchain-based reward system',
-      'QR code ID cards for secure access',
-      'Redeemable educational resources',
-      'SRHR workshop access',
-      'Financial literacy training',
-      'Transparent achievement tracking'
+      'Inclusion matrices for localized distribution',
+      'Attendance and workshop participation tracking',
+      'Redeemable educational resources and pads',
+      'SRHR workshop access and mentorship',
+      'Financial and digital literacy training',
+      'Transparent voucher progress tracking'
     ],
     howItWorks: [
-      { step: 1, title: 'Student Registration', description: 'Students receive QR-coded ID cards linking to their digital wallet' },
-      { step: 2, title: 'Earn Vouchers', description: 'Complete academic tasks, attend classes, and participate in community activities' },
-      { step: 3, title: 'Redeem Rewards', description: 'Exchange vouchers for school supplies, resources, and workshop access' },
-      { step: 4, title: 'Track Progress', description: 'Monitor achievements and build financial literacy skills' }
+      { step: 1, title: 'Inclusion Mapping', description: 'Schools map attendance trends and identify high-need student demographics.' },
+      { step: 2, title: 'Earn Vouchers', description: 'Students participate in SRHR workshops and maintain school attendance.' },
+      { step: 3, title: 'Redeem Materials', description: 'Redeem vouchers for sanitary towels and essential learning materials at local hubs.' },
+      { step: 4, title: 'Impact Verification', description: 'Verify attendance and hygiene metrics to scale support networks.' }
     ],
     impact: [
-      { metric: 'Students Enrolled', value: '200+', description: 'Active participants across rural schools' },
-      { metric: 'Vouchers Earned', value: '1K+', description: 'Total voucher earned by students' },
-      { metric: 'Resources Redeemed', value: '80%', description: 'Student engagement in redemption activities' }
+      { metric: 'Girls Supported', value: '500+', description: 'School-going girls receiving regular materials' },
+      { metric: 'Classroom Days Saved', value: '4.5K+', description: 'School days recovered due to reduced absenteeism' },
+      { metric: 'SRHR Workshops', value: '50+', description: 'Peer-led youth hygiene and safety sessions' }
     ],
     gallery: [
-      { src: '/images/image-03.jpg', alt: 'QR ID card and voucher redemption illustration' },
-      { src: '/images/image-04.jpg', alt: 'Students learning IT skills' },
-      { src: '/images/programs.jpg', alt: 'Youth in  a classroom' },
+      { src: '/images/image-03.jpg', alt: 'Voucher redemption and hygiene materials' },
       { src: '/images/pads.png', alt: 'Girls holding pads' },
-      { src: '/images/sanitary.jpg', alt: 'Sanitary pads' }
+      { src: '/images/sanitary.jpg', alt: 'Sanitary pads distribution' }
     ],
-    ctaText: 'View Concept Note',
+    ctaText: 'Download Concept Note',
     ctaAction: 'participate',
     downloadUrl: '/downloads/uwezo_eco_loop.pdf'
   },
   {
-    id: 'uwezo-fab-lab',
-    title: 'Uwezo Fab Lab - Innovating for Climate & Community',
-    slug: 'uwezo-fab-lab',
-    summary: 'Mobile fabrication laboratory turning e-waste into climate solutions',
-    description: `In Kenya, erratic rainfall and mounting e-waste pose growing challenges. Daniel, a 17-year-old from Machakos, witnessed his family's farm struggle with unpredictable weather patterns while electronics waste accumulated in his community. Through the Uwezo Fab Lab, Daniel learned to transform discarded cell phones and computers into IoT sensors that monitor soil moisture and weather patterns.
+    id: 'tech-for-tomorrow',
+    title: 'Tech for Tomorrow - Digital Economy & Maker Labs',
+    slug: 'tech-for-tomorrow',
+    summary: "Bridging Africa's digital economy gap through education in established community hubs. Features foundational tech literacy alongside advanced modules in mobile fabrication and IoT hardware for climate solutions.",
+    description: `Africa's digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation. Tech for Tomorrow bridges this gap by delivering localized technology education.
 
-"We can't stop the rain, but we can design systems to live with it."
-
-Uwezo Fab Lab is a community-driven innovation hub where young people learn to design and create IoT-powered climate solutions as well as learning about environmental conservation. Using recycled electronics and local materials, we build tools like smart irrigation systems, low-cost environmental sensors, and renewable energy prototypes.`,
-    heroImage: '/images/img-05.png',
-    heroImageAlt: 'Fab Lab workshop with youth building devices',
+From beginner-friendly digital literacy and coding basics to advanced modules in mobile fabrication (Fab Lab) and IoT hardware prototyping, we equip young people to solve local problems. Students learn to build Smart Climate Agriculture prototypes, soil moisture sensors, and solar-powered devices from recycled e-waste.`,
+    heroImage: '/images/img-09.png',
+    heroImageAlt: 'Mobile STEM and IoT teaching session with youth',
     keyFeatures: [
-      'E-waste recycling and repurposing',
-      'IoT and sensor development',
-      'Solar energy solutions',
-      '3D printing and prototyping',
-      'Climate-smart agriculture tech',
-      'Community problem-solving projects'
+      'Digital literacy, coding, and AI bootcamps',
+      'Mobile fabrication and 3D printing modules',
+      'IoT and climate sensor hardware assembly',
+      'E-waste recycling and hardware repurposing',
+      'Local teacher training for sustainable scaling',
+      'Community innovation challenge projects'
     ],
     howItWorks: [
-      { step: 1, title: 'Problem Identification', description: 'Identify community challenges that technology can address' },
-      { step: 2, title: 'Design & Prototype', description: 'Create solutions using recycled materials and sustainable design' },
-      { step: 3, title: 'Build & Test', description: 'Construct and iterate on functional prototypes' },
-      { step: 4, title: 'Deploy & Scale', description: 'Implement solutions in the community and share knowledge' }
+      { step: 1, title: 'Hub Setup & Access', description: 'Establish learning resources and makerspace devices in local community hubs.' },
+      { step: 2, title: 'Tech Literacy Foundation', description: 'Train youth in digital workflows, software development, and AI basics.' },
+      { step: 3, title: 'IoT & Fab Lab Specialization', description: 'Build hardware solutions using e-waste, microcontrollers, and climate sensors.' },
+      { step: 4, title: 'Deploy Prototypes', description: 'Install student-designed devices in local farms or community centers.' }
     ],
     impact: [
-      { metric: 'E-waste Processed', value: '5+ Tons', description: 'Electronics diverted from landfills' },
-      { metric: 'Prototypes Built', value: '9+', description: 'Student-created technological solutions' },
-      { metric: 'Community Projects', value: '6', description: 'Active deployments serving local needs' }
+      { metric: 'Hub Graduates', value: '350+', description: 'Youth certified in IT and IoT hardware basics' },
+      { metric: 'E-waste Recycled', value: '5+ Tons', description: 'Electronic waste diverted and repurposed for learning' },
+      { metric: 'Climate Sensors Deployed', value: '15+', description: 'Environmental monitoring stations built by students' }
     ],
     gallery: [
-      { src: '/images/image-06.jpg', alt: 'Recycled electronics parts on a workbench' },
-      { src: '/images/image-07.jpeg', alt: 'Students in a farm' },
-      { src: '/images/image-08.jpg', alt: 'Solar-powered water pump prototype in farm' },
-      { src: '/images/image-12.jpg', alt: 'Close-up of hands assembling electronics' }
+      { src: '/images/img-05.png', alt: 'Students building microcontrollers' },
+      { src: '/images/image-04.jpg', alt: 'Youth coding in the lab' },
+      { src: '/images/image-06.jpg', alt: 'E-waste parts on a workbench' },
+      { src: '/images/image-08.jpg', alt: 'Smart solar irrigation setup' }
     ],
-    ctaText: 'View Concept Note',
+    ctaText: 'Explore Maker Curriculum',
     ctaAction: 'partner',
-    downloadUrl: '/downloads/uwezo-fab_lab.pdf'
+    downloadUrl: '/downloads/uwezo_teaching_stem_ai.pdf'
   },
   {
-    id: 'uwezo-teaching',
-    title: 'Uwezo Teaching - Learning for the Future',
-    slug: 'uwezo-teaching',
-    summary: 'Community-based education addressing Africa\'s digital economy gap',
-    description: `Mary, a recent secondary school graduate from Turkana, possesses natural problem-solving abilities but has never touched a computer. Across Africa, the digital economy is rapidly expanding, yet millions of young people lack access to the skills needed to participate in this transformation.
+    id: 'civic-power-in-motion',
+    title: 'Civic Power in Motion - Youth Democratic Labs',
+    slug: 'civic-power-in-motion',
+    summary: 'Turning youth advocacy into continuous, inclusive civic participation. Leveraging digital networks and public transparency data pipelines to empower Gen Z voices from the grassroots to national policy.',
+    description: `Young people hold the key to democratic accountability and progressive governance. Civic Power in Motion transforms protest momentum and raw youth energy into systematic civic action.
 
-"We are not just teaching code; we are teaching possibility."
-
-Uwezo Teaching is our education and training program, offering STEM and AI courses from beginner-friendly basics to advanced certification programs. We partner with local schools, universities, and online platforms to make high-quality tech education accessible to all.`,
-    heroImage: '/images/img-09.png',
-    heroImageAlt: 'Mobile STEM teaching session with kids',
+Through inclusive micro-workshops, digital civic drops, and interactive transparency bots, we make daily governance accessible. Our platform helps young people—including young women and persons with disabilities—register to vote, verify local government budget details, and actively contribute to policy formulation.`,
+    heroImage: '/images/img-27.jpeg',
+    heroImageAlt: 'Kenyan youth participating in civic leadership workshop',
     keyFeatures: [
-      'Mobile teaching units',
-      'Hands-on STEM workshops',
-      'Robotics and coding bootcamps',
-      'Teacher training programs',
-      'Community mentorship networks',
-      'Curriculum adaptation for local contexts'
+      'Youth-led civic labs mapping local issues',
+      'Peer facilitator network active in urban & rural spaces',
+      'Inclusive toolkits (braille, audio, sign language support)',
+      'Digital civic drops pushing lessons on WhatsApp & TikTok',
+      'Public transparency data pipelines and budget tracking tools'
     ],
     howItWorks: [
-      { step: 1, title: 'Community Outreach', description: 'Identify and connect with underserved communities' },
-      { step: 2, title: 'Setup Mobile Lab', description: 'Deploy portable teaching equipment and learning materials' },
-      { step: 3, title: 'Deliver Workshops', description: 'Conduct intensive hands-on learning sessions' },
-      { step: 4, title: 'Build Local Capacity', description: 'Train local educators and establish ongoing support networks' }
+      { step: 1, title: 'Civic Lab Mobilization', description: 'Train peer facilitators to host pop-up labs in local neighborhoods.' },
+      { step: 2, title: 'Digital Knowledge Drops', description: 'Deploy short-form interactive content detailing civil rights and budgets.' },
+      { step: 3, title: 'Transparency Tracking', description: 'Use public data platforms to audit municipal project expenditures.' },
+      { step: 4, title: 'Policy Advocacy', description: 'Consolidate youth recommendations to pitch directly to policymakers.' }
     ],
     impact: [
-      { metric: 'Communities Reached', value: '5+', description: 'Rural and underserved areas served' },
-      { metric: 'Students Trained', value: '100+', description: 'Direct beneficiaries of mobile education' },
-      { metric: 'Local Educators', value: '10+', description: 'Teachers trained to continue programs locally' }
+      { metric: 'Youth Reached', value: '1.5M', description: 'Aspirants and citizens engaged via digital channels' },
+      { metric: 'Peer Facilitators', value: '200+', description: 'Active community leaders conducting workshops' },
+      { metric: 'Audited Projects', value: '12', description: 'Community spending reports published by youth' }
     ],
     gallery: [
-      { src: '/images/image-10.jpg', alt: 'Classroom robotics workshop for students' },
-      { src: '/images/programs.jpg', alt: 'Youth in a classroom' },
-      { src: '/images/image-18.jpg', alt: 'Children learning in local community' }
+      { src: '/images/img-27.jpeg', alt: 'Youth activists collaborating' },
+      { src: '/images/img-28.jpeg', alt: 'Civic workshop planning' },
+      { src: '/images/img-29.jpeg', alt: 'Community dialogue session' }
     ],
-    ctaText: 'View Concept Note',
+    ctaText: 'Download Policy Note',
     ctaAction: 'participate',
-    downloadUrl: '/downloads/uwezo_teaching_stem_ai.pdf'
+    downloadUrl: '/downloads/UwezokwaYouth.pdf'
   }
 ];
 

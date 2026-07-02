@@ -305,7 +305,7 @@ const BoardCard = ({ member, featured = false }: { member: TeamMember, featured?
   );
 };
 
-const Team = () => {
+const OurTeam = () => {
   const leadershipTeam = teamMembers.filter(m => m.category === 'leadership');
   const boardMembers = teamMembers.filter(m => m.category === 'board');
   const kpaReps = teamMembers.filter(m => m.category === 'kpa');
@@ -383,7 +383,7 @@ const Team = () => {
               Advisory Board & Secretariat
             </h2>
             <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
-              The strategic visionaries and operational champions steering Uwezo Link's grassroots impact and continuous growth.
+              The strategic visionaries and operational champions steering The Uwezo Network's grassroots impact and continuous growth.
             </p>
           </div>
 
@@ -481,4 +481,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default OurTeam;
