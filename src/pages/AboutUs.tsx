@@ -1,542 +1,176 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Target, Heart, Lightbulb, Globe, CheckCircle, Send } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Eye, ShieldAlert, Sparkles, Star, Lightbulb, Heart, Target } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SectionDivider from '@/components/SectionDivider';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { organizationContent } from '@/data/static';
-import { useToast } from '@/hooks/use-toast';
-import * as Icons from 'lucide-react'
+import { Link } from 'react-router-dom';
 
-const GetInvolvedForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    interest: '',
-    experience: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.interest) {
-      toast({
-        title: "Error",
-        description: "Name, email, and interest are required.",
-        variant: "destructive",
-      });
-      return;
+const AboutUs = () => {
+  const values = [
+    {
+      title: "Co-Designed Solutions",
+      description: "We do not deploy systems from comfortable boardrooms. We sit with local kiosks, schools, and youth to build models that respect their daily offline realities.",
+      color: "bg-mint",
+      icon: <Target className="w-6 h-6 text-ink" />
+    },
+    {
+      title: "Radical Transparency",
+      description: "Aid works best when it is accountable. Our digital tracking maps every shilling straight from sponsor allocation to local vendor payouts.",
+      color: "bg-lavender",
+      icon: <Lightbulb className="w-6 h-6 text-ink" />
+    },
+    {
+      title: "Empowering Autonomy",
+      description: "Handouts create dependencies. By utilizing Learn-to-Earn structures, we return autonomy and dignity back into the hands of communities.",
+      color: "bg-butter",
+      icon: <Heart className="w-6 h-6 text-ink" />
     }
-    setIsSubmitting(true);
-
-    const maxRetries = 2;
-    let attempts = 0;
-
-    while (attempts < maxRetries) {
-      try {
-        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            'form-name': 'get-involved',
-            ...formData
-          }),
-        });
-
-        if (response.ok) {
-          toast({
-            title: "Success!",
-            description: "Your submission has been received.",
-          });
-          setFormData({ name: '', email: '', phone: '', interest: '', experience: '', message: '' });
-          return;
-        } else {
-          const errorText = await response.text();
-          throw new Error(`Submission failed: ${response.status} ${errorText}`);
-        }
-      } catch (error) {
-        attempts++;
-        console.error(`Attempt ${attempts} failed:`, error);
-        if (attempts === maxRetries) {
-          toast({
-            title: "Error",
-            description: "There was a problem submitting. Please try again later.",
-            variant: "destructive",
-          });
-        }
-      }
-    }
-    setIsSubmitting(false);
-  };
+  ];
 
   return (
-    <form method="POST" name="get-involved" onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <Label htmlFor="name">Full Name</Label>
-        <Input
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={(e) => setFormData({...formData, name: e.target.value})}
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value.trim()})}
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="phone">Phone</Label>
-        <Input
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value.trim()})}
-        />
-      </div>
-      <div>
-        <Label htmlFor="interest">How would you like to get involved?</Label>
-        <select
-          id="interest"
-          name="interest"
-          value={formData.interest}
-          onChange={(e) => setFormData({...formData, interest: e.target.value})}
-          className="w-full border border-input bg-background rounded-md px-3 py-2 text-sm"
-          required
-        >
-          <option value="">Select your interest</option>
-          <option value="volunteer">Volunteer</option>
-          <option value="mentor">Mentor Students</option>
-          <option value="teach">Teach/Workshop Leader</option>
-          <option value="fundraising">Fundraising</option>
-          <option value="marketing">Marketing & Outreach</option>
-          <option value="tech">Technical Support</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div>
-        <Label htmlFor="experience">Relevant Experience</Label>
-        <Textarea
-          id="experience"
-          name="experience"
-          value={formData.experience}
-          onChange={(e) => setFormData({...formData, experience: e.target.value})}
-          placeholder="Tell us about your background and skills..."
-        />
-      </div>
-      <div>
-        <Label htmlFor="message">Additional Message</Label>
-        <Textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={(e) => setFormData({...formData, message: e.target.value})}
-          placeholder="Anything else you'd like us to know?"
-        />
-      </div>
-      <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
-        {isSubmitting ? 'Submitting...' : <><Send className="w-4 h-4 mr-2" />Submit Application</>}
-      </Button>
-    </form>
-  );
-};
-
-const PartnershipForm = () => {
-  const [formData, setFormData] = useState({
-    organizationName: '',
-    contactName: '',
-    email: '',
-    phone: '',
-    partnershipType: '',
-    description: '',
-    resources: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.organizationName || !formData.contactName || !formData.email || !formData.description) {
-      toast({
-        title: "Error",
-        description: "Required fields are missing.",
-        variant: "destructive",
-      });
-      return;
-    }
-    setIsSubmitting(true);
-
-    const maxRetries = 2;
-    let attempts = 0;
-
-    while (attempts < maxRetries) {
-      try {
-        const response = await fetch('https://uwezo-backend.onrender.com/webhook', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            'form-name': 'partnership',
-            ...formData
-          }),
-        });
-
-        if (response.ok) {
-          toast({
-            title: "Success!",
-            description: "Your submission has been received.",
-          });
-          setFormData({ organizationName: '', contactName: '', email: '', phone: '', partnershipType: '', description: '', resources: '' });
-          return;
-        } else {
-          const errorText = await response.text();
-          throw new Error(`Submission failed: ${response.status} ${errorText}`);
-        }
-      } catch (error) {
-        attempts++;
-        console.error(`Attempt ${attempts} failed:`, error);
-        if (attempts === maxRetries) {
-          toast({
-            title: "Error",
-            description: "There was a problem submitting. Please try again later.",
-            variant: "destructive",
-          });
-        }
-      }
-    }
-    setIsSubmitting(false);
-  };
-
-  return (
-    <form method="POST" name="partnership" onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <Label htmlFor="organizationName">Organization Name</Label>
-        <Input
-          id="organizationName"
-          name="organizationName"
-          value={formData.organizationName}
-          onChange={(e) => setFormData({...formData, organizationName: e.target.value})}
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="contactName">Contact Person</Label>
-        <Input
-          id="contactName"
-          name="contactName"
-          value={formData.contactName}
-          onChange={(e) => setFormData({...formData, contactName: e.target.value})}
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value.trim()})}
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="phone">Phone</Label>
-        <Input
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value.trim()})}
-        />
-      </div>
-      <div>
-        <Label htmlFor="partnershipType">Partnership Type</Label>
-        <select
-          id="partnershipType"
-          name="partnershipType"
-          value={formData.partnershipType}
-          onChange={(e) => setFormData({...formData, partnershipType: e.target.value})}
-          className="w-full border border-input bg-background rounded-md px-3 py-2 text-sm"
-          required
-        >
-          <option value="">Select partnership type</option>
-          <option value="funding">Funding Partnership</option>
-          <option value="program">Program Collaboration</option>
-          <option value="corporate">Corporate Partnership</option>
-          <option value="academic">Academic Institution</option>
-          <option value="government">Government Agency</option>
-          <option value="ngo">NGO Partnership</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div>
-        <Label htmlFor="description">Partnership Description</Label>
-        <Textarea
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={(e) => setFormData({...formData, description: e.target.value})}
-          placeholder="Describe the partnership opportunity..."
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="resources">Resources Available</Label>
-        <Textarea
-          id="resources"
-          name="resources"
-          value={formData.resources}
-          onChange={(e) => setFormData({...formData, resources: e.target.value})}
-          placeholder="What resources can your organization contribute?"
-        />
-      </div>
-      <Button type="submit" className="w-full cta-primary" disabled={isSubmitting}>
-        {isSubmitting ? 'Submitting...' : <><Send className="w-4 h-4 mr-2" />Submit Partnership Proposal</>}
-      </Button>
-    </form>
-  );
-};
-
-const About = () => {
-  return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-bg">
       <Header />
-      
-      <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-poppins text-4xl md:text-5xl font-bold mb-6">
-              Who We Are
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Behind every program, every innovation, and every impact story, there is a team of passionate individuals who believe change is possible, and are working tirelessly to make it happen.
-            </p>
-            <img 
-              src="/images/image-02.jpg" 
-              alt="Students in a school corridor receiving assistance"
-              className="rounded-2xl shadow-card mx-auto max-w-2xl w-full"
-              loading="lazy"
-            />
-          </div>
+
+      {/* Hero Section */}
+      <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[60vh] flex items-center justify-center">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 z-0 opacity-15">
+          <img
+            src="/images/image-02.jpg"
+            alt="The Uwezo Network team working"
+            className="w-full h-full object-cover grayscale"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071';
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 z-10 max-w-4xl text-center space-y-6">
+          <span className="font-mono text-xs uppercase tracking-widest text-coral-deep font-bold bg-coral/20 px-3 py-1 rounded-full border border-coral/30">
+            WHO WE ARE
+          </span>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
+            Bridging Tech & Grassroots Realities
+          </h1>
+          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
+            "True representation means translating high-level policy into structural resources back home."
+          </p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-8">
-                Our Mission
-              </h2>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.
+      {/* Philosophy & Sticky Note Section */}
+      <section className="py-16 md:py-24 bg-bg">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            
+            {/* Main narrative */}
+            <div className="lg:col-span-2 space-y-6">
+              <h2 className="font-serif text-3xl md:text-4xl font-bold">Our Philosophy</h2>
+              <p className="text-ink-soft text-lg leading-relaxed font-sans">
+                We believe that digital infrastructure must be inclusive, safe, and community-led. The digital divide cannot be solved by simply dumping hardware in schools. True digital equity requires addressing the basic human barriers that stand in the way of learning.
+              </p>
+              <p className="text-ink-soft text-lg leading-relaxed font-sans">
+                If a girl misses school due to period poverty, a computer lab is useless to her. By combining offline-first voucher loyalty systems with digital makerspaces and civic dialogue networks, we build an ecosystem of support where access, health, and literacy reinforce one another.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-              <div>
-                <h3 className="font-poppins text-2xl font-bold mb-6">Our Story</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  The Uwezo Network Initiative emerged from witnessing the daily challenges faced by young people in marginalized communities, girls missing school due to lack of sanitary products, communities struggling with climate change impacts, youth excluded from the digital economy despite their natural innovation abilities, and the glaring democracy gaps revealed by the 2024 Gen Z movement.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  The Uwezo Network Initiative team blends tech innovators, educators, climate champions, and community advocates. Founded by passionate individuals who believe that technology should serve humanity's most pressing needs, we create bridges between cutting-edge innovation and grassroots community development.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Our approach is rooted in the belief that sustainable change happens when communities are empowered with tools, knowledge, and opportunities. We don't impose solutions; we co-create them with the people we serve, ensuring programs are culturally relevant, environmentally sustainable, and economically viable.
-                </p>
-              </div>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Target className="w-6 h-6 text-primary" />
+            {/* Floating digital sticky note */}
+            <div className="border-2 border-ink bg-butter p-6 shadow-[5px_5px_0_#1F1A17] rotate-[2deg] relative">
+              <div className="tape-accent bg-coral-deep" />
+              <h3 className="font-mono text-xs uppercase tracking-wider text-ink font-bold mb-3">Our Theory of Success</h3>
+              <p className="font-hand text-xl text-ink leading-snug">
+                "We don't build tech to replace communities. We build tech to serve them, making aid accountable, restoring dignity, and leaving a lasting legacy."
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Vision, Mission, Values Grid */}
+      <section className="py-16 md:py-24 bg-paper border-y-[1.5px] border-ink">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl font-bold mb-4">Our Core Pillars</h2>
+            <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">How we stay grounded as we scale nationally</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {values.map((val, idx) => (
+              <div key={idx} className={`border-2 border-ink p-8 shadow-[4px_4px_0_#1F1A17] ${val.color} flex flex-col justify-between`}>
+                <div>
+                  <div className="w-12 h-12 bg-bg border border-ink rounded-full flex items-center justify-center mb-6">
+                    {val.icon}
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">Targeted Impact</h4>
-                    <p className="text-muted-foreground text-sm">
-                      We focus on underserved communities where our programs can make the greatest difference.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Lightbulb className="w-6 h-6 text-secondary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">Innovation First</h4>
-                    <p className="text-muted-foreground text-sm">
-                      We embrace new technologies and methodologies to maximize learning outcomes.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Globe className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">Global Perspective</h4>
-                    <p className="text-muted-foreground text-sm">
-                      Our local solutions are designed with global challenges and opportunities in mind.
-                    </p>
-                  </div>
+                  <h3 className="font-serif font-bold text-2xl mb-3 text-ink">
+                    {val.title}
+                  </h3>
+                  <p className="text-ink-soft text-sm leading-relaxed mb-6 font-sans">
+                    {val.description}
+                  </p>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Vision and Mission Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+            <div className="border-2 border-ink bg-bg p-8 shadow-[4px_4px_0_#1F1A17]">
+              <div className="w-12 h-12 bg-coral/20 border border-ink rounded-full flex items-center justify-center mb-6">
+                <Eye className="w-6 h-6 text-ink" />
+              </div>
+              <h3 className="font-serif font-bold text-2xl mb-3">Our Vision</h3>
+              <p className="text-ink-soft text-sm leading-relaxed font-sans">
+                A future where every youth in Kenya—regardless of geographical constraints, economic barriers, or gender—has the resources, technical skills, and democratic agency to shape their own destiny.
+              </p>
+            </div>
+            <div className="border-2 border-ink bg-bg p-8 shadow-[4px_4px_0_#1F1A17]">
+              <div className="w-12 h-12 bg-mint/20 border border-ink rounded-full flex items-center justify-center mb-6">
+                <Sparkles className="w-6 h-6 text-ink" />
+              </div>
+              <h3 className="font-serif font-bold text-2xl mb-3">Our Mission</h3>
+              <p className="text-ink-soft text-sm leading-relaxed font-sans">
+                Co-designing digital and social infrastructures that eliminate period poverty, bridge the digital divide through AI and STEM learning, and turn civic energy into structured participation.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="bg-card rounded-2xl border border-border p-8">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                  <Target className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-poppins text-2xl font-bold mb-4">Our Vision</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  A future where every young person, regardless of gender, background, or location; has the resources, knowledge, and opportunities to thrive in a changing world.
-                </p>
-              </div>
+      <SectionDivider />
+
+      {/* Founder's Vision Section */}
+      <section className="py-16 md:py-24 bg-bg">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="border-2 border-ink bg-lavender p-8 md:p-12 shadow-[6px_6px_0_#1F1A17] relative">
+            <div className="tape-accent bg-butter" />
+            <div className="flex flex-col md:flex-row items-center gap-8">
               
-              <div className="bg-card rounded-2xl border border-border p-8">
-                <div className="w-16 h-16 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
-                  <Heart className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="font-poppins text-2xl font-bold mb-4">Our Mission</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Empower marginalized communities through technology, education, and innovation to promote equity, sustainability, and opportunity.
-                </p>
+              {/* Profile Image placeholder frame */}
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-ink overflow-hidden bg-paper shrink-0">
+                <img
+                  src="/images/sharly-avatar.jpg"
+                  alt="Sharly Moraa, Founder"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFE3A8" stroke="%231F1A17" stroke-width="4"/><text x="50" y="60" font-size="28" font-family="serif" text-anchor="middle" fill="%231F1A17">SM</text></svg>';
+                  }}
+                />
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-                Our Core Values
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                These principles guide every decision we make and every program we implement, 
-                ensuring our work remains aligned with our mission and values.
-              </p>
-            </div>
-
-            <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
-              {organizationContent.coreValues.map((value, index) => (
-                <div key={index} className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-shadow duration-300">
-                  <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4">
-                    <CheckCircle className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="font-poppins font-semibold text-lg mb-3">{value.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+              <div className="space-y-4">
+                <blockquote className="font-serif text-xl md:text-2xl italic text-ink leading-relaxed">
+                  "We founded this initiative to bridge the gap between technical innovation and grassroots advocacy. Code is powerful, but only when it is written alongside the communities using it to live with dignity."
+                </blockquote>
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-wider font-bold text-ink">Sharly Moraa</h4>
+                  <p className="text-xs text-ink-soft">Founder, The Uwezo Network Initiative</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+              </div>
 
-
-      <section className="py-16">
-  <div className="container mx-auto px-4">
-    <div className="max-w-6xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-          Our Commitment to the UN Sustainable Development Goals (SDGs)
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          At The Uwezo Network Initiative, we believe that meaningful change happens when technology,
-          education, inclusive democracy, and community empowerment come together. Our work directly supports five
-          core SDGs, while contributing to many others as interconnected outcomes:
-        </p>
-      </div>
-
-      <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
-        {organizationContent.sdgCommitments.map((sdg, index) => {
-          const IconComponent = sdg.icon ? (Icons as any)[sdg.icon] : null;
-
-          return (
-            <div
-              key={index}
-              className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
-            >
-              {IconComponent && (
-                <div className="w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <IconComponent className="w-7 h-7 text-white" />
-                </div>
-              )}
-              <h3 className="font-poppins font-semibold text-lg mb-3">{sdg.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{sdg.description}</p>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </div>
-</section>
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
-              Join Our Mission
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
-              Whether you're an individual looking to volunteer, an organization interested in partnership, 
-              or a supporter wanting to contribute, there are many ways to get involved with our work.
-            </p>
-
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="lg" className="cta-primary">
-                    Get Involved
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle>Get Involved with The Uwezo Network</DialogTitle>
-                  </DialogHeader>
-                  <GetInvolvedForm />
-                </DialogContent>
-              </Dialog>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" size="lg">
-                    Explore Partnership
-                    <Users className="w-4 h-4 ml-2" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle>Partnership Opportunities</DialogTitle>
-                  </DialogHeader>
-                  <PartnershipForm />
-                </DialogContent>
-              </Dialog>
             </div>
           </div>
         </div>
@@ -547,4 +181,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutUs;

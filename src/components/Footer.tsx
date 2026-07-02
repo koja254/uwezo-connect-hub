@@ -137,7 +137,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6" onClick={() => window.scrollTo(0, 0)}>
               <img
-                src="/images/new-uwezo-logo.png"
+                src="/images/new-uwezo-logo.jpeg"
                 alt="Uwezo Logo"
                 className="w-10 h-10 object-contain bg-transparent rounded-lg border border-bg"
                 onError={(e) => {
@@ -252,6 +252,11 @@ const Footer = () => {
               <li>
                 <Link to="/contact" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   Partner with Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/careers" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
+                  Careers & Opportunities
                 </Link>
               </li>
             </ul>

@@ -1,99 +1,105 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Download, ExternalLink, BookOpen, FileText, Video } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, FileText, Sparkles, FolderLock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SectionDivider from '@/components/SectionDivider';
 import { Button } from '@/components/ui/button';
 import { resources } from '@/data/resources';
 
 const Resources = () => {
+  const [activeTab, setActiveTab] = useState<'reports' | 'publications' | 'assets'>('reports');
+
+  // Filter resource items
+  const reports = resources.filter(r => r.type === 'report');
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-bg text-ink">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Resources & Learning
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Access our research, reports, guides, and educational materials to learn more about 
-              STEM education, blockchain technology, and community development in Kenya.
-            </p>
-          </div>
+      <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[50vh] flex items-center justify-center bg-paper">
+        <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
+          <span className="font-mono text-xs uppercase tracking-widest text-coral-deep font-bold bg-coral/20 px-3 py-1 rounded-full border border-ink/20">
+            RESOURCE DIRECTORY
+          </span>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
+            Reports & Assets
+          </h1>
+          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
+            "Access our audited research, publications, guides, and corporate brand assets here."
+          </p>
         </div>
       </section>
 
-      {/* Resources Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="mobile-snap-row no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
-            {resources.map((resource) => (
-              <div
-                key={resource.id}
-                className="mobile-snap-item bg-card rounded-2xl border border-border p-6 hover:shadow-card-hover transition-all duration-300 group"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-                    {resource.type === 'report' && <FileText className="w-6 h-6 text-primary" />}
-                    {(resource.type === 'download' || resource.type === 'blog') && <BookOpen className="w-6 h-6 text-primary" />}
-                    {resource.type === 'video' && <Video className="w-6 h-6 text-primary" />}
+      {/* Tabs Menu */}
+      <section className="py-8 bg-bg border-b border-ink/10 sticky top-16 z-30">
+        <div className="container mx-auto px-4 max-w-lg flex justify-center gap-4">
+          <button
+            onClick={() => setActiveTab('reports')}
+            className={`px-4 py-2 font-mono text-xs uppercase tracking-wider border-[1.5px] border-ink transition-all shadow-[2px_2px_0_#1F1A17] ${activeTab === 'reports' ? 'bg-coral text-ink' : 'bg-paper text-ink-soft'}`}
+          >
+            Reports
+          </button>
+          <button
+            onClick={() => setActiveTab('publications')}
+            className={`px-4 py-2 font-mono text-xs uppercase tracking-wider border-[1.5px] border-ink transition-all shadow-[2px_2px_0_#1F1A17] ${activeTab === 'publications' ? 'bg-mint text-ink' : 'bg-paper text-ink-soft'}`}
+          >
+            Publications
+          </button>
+          <button
+            onClick={() => setActiveTab('assets')}
+            className={`px-4 py-2 font-mono text-xs uppercase tracking-wider border-[1.5px] border-ink transition-all shadow-[2px_2px_0_#1F1A17] ${activeTab === 'assets' ? 'bg-lavender text-ink' : 'bg-paper text-ink-soft'}`}
+          >
+            Assets (Media Kit)
+          </button>
+        </div>
+      </section>
+
+      {/* Content Area */}
+      <section className="py-16 md:py-24 bg-bg min-h-[50vh]">
+        <div className="container mx-auto px-4 max-w-5xl">
+          
+          {/* Reports Panel */}
+          {activeTab === 'reports' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {reports.map((report) => (
+                <div key={report.id} className="border-2 border-ink bg-paper p-6 shadow-[4px_4px_0_#1F1A17] hover:shadow-[6px_6px_0_#1F1A17] transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 bg-coral/20 border border-ink rounded flex items-center justify-center mb-4">
+                      <FileText className="w-5 h-5 text-ink" />
+                    </div>
+                    <h3 className="font-serif font-bold text-2xl mb-2 text-ink">{report.title}</h3>
+                    <p className="text-ink-soft text-sm mb-4 leading-relaxed font-sans">{report.description}</p>
+                    <div className="flex items-center justify-between text-xs font-mono text-ink-soft/70 mb-6">
+                      <span>{report.date}</span>
+                      <span>{report.category}</span>
+                    </div>
                   </div>
-                  <span className="text-xs font-medium px-2 py-1 bg-muted rounded-full text-muted-foreground capitalize">
-                    {resource.type}
-                  </span>
+                  
+                  <Button asChild className="w-full btn-neo bg-ink text-bg border-ink py-2 text-xs font-mono uppercase tracking-wider">
+                    <a href={report.downloadUrl} target="_blank" rel="noopener noreferrer">
+                      <Download className="w-4 h-4 mr-2" />
+                      View Document (PDF)
+                    </a>
+                  </Button>
                 </div>
-                
-                <h3 className="font-poppins font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                  {resource.title}
-                </h3>
-                
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                  {resource.description}
-                </p>
-                
-                <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
-                  <span>{resource.date}</span>
-                  <span>{resource.category}</span>
-                </div>
-                
-                <Button asChild className="w-full" variant="outline">
-                  <a href={resource.downloadUrl} target="_blank" rel="noopener noreferrer">
-                    <Download className="w-4 h-4 mr-2" />
-                    Access Resource
-                  </a>
-                </Button>
+              ))}
+            </div>
+          )}
+
+          {/* Publications & Assets Panel (Coming Soon) */}
+          {(activeTab === 'publications' || activeTab === 'assets') && (
+            <div className="max-w-md mx-auto border-2 border-ink p-8 bg-paper text-center space-y-6 shadow-[5px_5px_0_#1F1A17] rotate-[-1deg]">
+              <div className="w-14 h-14 bg-butter border border-ink rounded-full flex items-center justify-center mx-auto shadow-[3px_3px_0_#1F1A17]">
+                <FolderLock className="w-6 h-6 text-ink animate-pulse" />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <h3 className="font-serif text-3xl font-bold">Coming Soon</h3>
+              <p className="text-ink-soft text-sm leading-relaxed font-sans">
+                Our team is currently preparing these brand resources and outreach guides. Sign up to our newsletter list to receive notice when they go live.
+              </p>
+            </div>
+          )}
 
-      {/* Newsletter Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-poppins text-3xl font-bold mb-4">
-              Stay Updated with New Resources
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Be the first to access our latest research, guides, and educational materials.
-            </p>
-            <Button asChild size="lg" className="cta-primary">
-  <Link
-    to="/contact"
-    onClick={() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-  >
-    Subscribe to Updates
-    <ExternalLink className="w-4 h-4 ml-2" />
-  </Link>
-</Button>
-
-          </div>
         </div>
       </section>
 

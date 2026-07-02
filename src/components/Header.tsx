@@ -52,7 +52,7 @@ const Header = () => {
             <div className="relative">
               <span className="absolute inset-0 bg-coral rounded-full scale-105 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <img
-                src="/images/new-uwezo-logo.png"
+                src="/images/new-uwezo-logo.jpeg"
                 alt="Uwezo Logo"
                 className="w-10 h-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
