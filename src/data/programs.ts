@@ -9,7 +9,7 @@ const programPriority: Record<string, number> = {
 const programDefinitions: Program[] = [
   {
     id: 'days-for-dignity',
-    title: 'Days for Dignity - Health & Education Equity',
+    title: 'Days for Dignity - Health & Education Equity (Formerly known as Uwezo Voucher)',
     slug: 'days-for-dignity',
     summary: 'A data-driven health and education initiative utilizing inclusion matrices to ensure consistent classroom attendance and the fair, localized distribution of sanitary materials to rural school-going girls.',
     description: `A girl's education should never stop because of her period. Yet every month, thousands of bright girls miss 3-5 days of school because their families cannot afford sanitary pads. Days for Dignity addresses this gap through an innovative, data-driven reward system.
@@ -88,8 +88,8 @@ From beginner-friendly digital literacy and coding basics to advanced modules in
     id: 'civic-power-in-motion',
     title: 'Civic Power in Motion - Youth Democratic Labs',
     slug: 'civic-power-in-motion',
-    summary: 'Turning youth advocacy into continuous, inclusive civic participation. Leveraging digital networks and public transparency data pipelines to empower Gen Z voices from the grassroots to national policy.',
-    description: `Young people hold the key to democratic accountability and progressive governance. Civic Power in Motion transforms protest momentum and raw youth energy into systematic civic action.
+    summary: 'Turning youth advocacy into continuous, inclusive civic participation. Leveraging digital networks and public transparency data pipelines to empower youth voices from the grassroots to national policy.',
+    description: `Young people hold the key to democratic accountability and progressive governance. Civic Power in Motion transforms community energy and raw youth advocacy into systematic civic action.
 
 Through inclusive micro-workshops, digital civic drops, and interactive transparency bots, we make daily governance accessible. Our platform helps young people—including young women and persons with disabilities—register to vote, verify local government budget details, and actively contribute to policy formulation.`,
     heroImage: '/images/img-27.jpeg',

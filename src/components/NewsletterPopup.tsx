@@ -56,6 +56,22 @@ export const NewsletterPopup: React.FC = () => {
     e.preventDefault();
     if (!email) return;
 
+    // Client-side rate limiting to prevent spam / DDoS
+    const now = Date.now();
+    const lastSubmit = localStorage.getItem('last_submit_newsletter');
+    if (lastSubmit) {
+      const elapsed = now - parseInt(lastSubmit, 10);
+      if (elapsed < 15000) {
+        toast({
+          title: "Too Many Requests",
+          description: "Please wait 15 seconds before subscribing again.",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+    localStorage.setItem('last_submit_newsletter', now.toString());
+
     setIsSubmitting(true);
     try {
       const response = await fetch('https://uwezo-backend.onrender.com/webhook', {

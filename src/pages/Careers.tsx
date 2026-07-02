@@ -49,6 +49,22 @@ export const Careers: React.FC = () => {
       return;
     }
 
+    // Client-side rate limiting to prevent spam / DDoS
+    const now = Date.now();
+    const lastSubmit = localStorage.getItem('last_submit_careers');
+    if (lastSubmit) {
+      const elapsed = now - parseInt(lastSubmit, 10);
+      if (elapsed < 15000) {
+        toast({
+          title: "Too Many Requests",
+          description: "Please wait 15 seconds before submitting another application.",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+    localStorage.setItem('last_submit_careers', now.toString());
+
     setIsSubmitting(true);
 
     // Simulate file renaming to first_last_cv.pdf

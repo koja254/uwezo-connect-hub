@@ -42,6 +42,9 @@ const ProgramDetail = () => {
             <h1 className="font-serif text-5xl md:text-7xl font-bold text-bg">
               Days for Dignity
             </h1>
+            <span className="font-mono text-xs uppercase tracking-wider text-coral/80 block mt-1">
+              (Formerly known as Uwezo Voucher)
+            </span>
             <p className="font-serif text-xl italic text-bg/85 max-w-2xl mx-auto leading-relaxed border-l-2 border-coral pl-4">
               "We leverage technology through an offline-first digital loyalty system to replace stigmatizing handouts, returning dignity to girls."
             </p>

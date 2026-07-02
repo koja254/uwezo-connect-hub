@@ -31,6 +31,23 @@ const Contact = () => {
       });
       return;
     }
+
+    // Client-side rate limiting to prevent spam / DDoS
+    const now = Date.now();
+    const lastSubmit = localStorage.getItem('last_submit_contact');
+    if (lastSubmit) {
+      const elapsed = now - parseInt(lastSubmit, 10);
+      if (elapsed < 15000) {
+        toast({
+          title: "Too Many Requests",
+          description: "Please wait 15 seconds before sending another message.",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+    localStorage.setItem('last_submit_contact', now.toString());
+
     setIsSubmitting(true);
 
     const maxRetries = 2;
@@ -209,9 +226,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-serif font-bold text-xl mb-1">Email</h3>
-                    <p className="text-ink-soft text-sm leading-relaxed font-sans">
-                      <span className="block font-bold">General:</span> info@uwezonetwork.org / info@uwezolinkinitiative.org
-                      <span className="block font-bold mt-1">Partnerships:</span> partnerships@uwezonetwork.org
+                    <p className="text-ink-soft text-sm leading-relaxed font-sans select-text">
+                      <span className="block font-bold select-text">General:</span> info@uwezonetwork.org / info@uwezolinkinitiative.org
+                      <span className="block font-bold mt-1 select-text">Partnerships:</span> partnerships@uwezonetwork.org
                     </p>
                   </div>
                 </div>

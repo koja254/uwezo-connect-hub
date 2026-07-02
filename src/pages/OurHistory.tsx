@@ -67,7 +67,7 @@ const OurHistory = () => {
             <div className="text-center">
               <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">From CBO to National NGO</h2>
               <p className="text-ink-soft text-lg max-w-2xl mx-auto leading-relaxed">
-                Initially founded as the grassroots CBO **Uwezo Link Initiative**, we quickly realized that period poverty, civic isolation, and the digital divide are interconnected national crises.
+                The **Uwezo Link Initiative** started as a community-based organization, and is now **The Uwezo Network Initiative**, a fully registered national NGO in Kenya. We address period poverty, civic isolation, and the digital divide as interconnected national crises.
               </p>
             </div>
 
