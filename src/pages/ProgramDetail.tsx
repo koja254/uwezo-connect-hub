@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, CheckCircle, Download, Activity, Heart, ShieldCheck, Cpu, Code2, GraduationCap, Users2, Landmark } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle, Download, Activity, Heart, ShieldCheck, Cpu, Code2, GraduationCap, Users, Landmark } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SectionDivider from '@/components/SectionDivider';
@@ -123,7 +123,7 @@ const ProgramDetail = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="border border-bg/10 p-6 text-center rounded bg-bg/5">
-                  <Users2 className="w-8 h-8 mx-auto text-coral mb-3" />
+                  <Users className="w-8 h-8 mx-auto text-coral mb-3" />
                   <div className="text-3xl font-bold text-bg">342</div>
                   <div className="text-[10px] font-mono uppercase tracking-wider text-bg/60 mt-1">Active Students</div>
                 </div>

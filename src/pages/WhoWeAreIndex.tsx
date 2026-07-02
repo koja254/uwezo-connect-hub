@@ -71,7 +71,7 @@ const WhoWeAreIndex = () => {
             <div className="border-2 border-ink p-8 bg-paper shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 bg-lavender/35 border border-ink rounded-full flex items-center justify-center mb-6">
-                  <Users2 className="w-6 h-6 text-ink" />
+                  <Users className="w-6 h-6 text-ink" />
                 </div>
                 <h3 className="font-serif font-bold text-2xl mb-3 text-ink">Our Team</h3>
                 <p className="text-ink-soft text-sm leading-relaxed mb-6 font-sans">

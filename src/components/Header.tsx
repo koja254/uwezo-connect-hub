@@ -164,7 +164,7 @@ const Header = () => {
                           onClick={() => window.scrollTo(0, 0)}
                         >
                           <div className="text-sm font-semibold">Civic Power in Motion</div>
-                          <p className="text-xs text-ink-soft leading-snug">Inclusive Gen Z democratic participation</p>
+                          <p className="text-xs text-ink-soft leading-snug">Inclusive youth democratic participation</p>
                         </Link>
                       </NavigationMenuLink>
                     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, Send, CheckCircle2, ShieldCheck, Users2, Activity } from 'lucide-react';
+import { ArrowRight, Heart, Send, CheckCircle2, ShieldCheck, Users, Activity } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SectionDivider from '@/components/SectionDivider';
@@ -156,7 +156,7 @@ const Index = () => {
             {/* Girls Mentored */}
             <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between items-center text-center">
               <div className="w-12 h-12 bg-coral border border-ink rounded-full flex items-center justify-center mb-4">
-                <Users2 className="w-6 h-6 text-ink" />
+                <Users className="w-6 h-6 text-ink" />
               </div>
               <div>
                 <div className="font-serif text-5xl font-bold mb-2">342</div>
