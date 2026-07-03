@@ -3,43 +3,68 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Index from "./pages/Index";
-import About from "./pages/About";
+import WhoWeAreIndex from "./pages/WhoWeAreIndex";
+import AboutUs from "./pages/AboutUs";
+import OurHistory from "./pages/OurHistory";
+import OurTeam from "./pages/OurTeam";
+
 import Programs from "./pages/Programs";
+import CivicPowerInMotion from "./pages/CivicPowerInMotion";
+import ProgramDetail from "./pages/ProgramDetail";
+
 import Resources from "./pages/Resources";
-import Team from "./pages/Team";
+
+import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
+import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
-import ProgramDetail from "./pages/ProgramDetail";
 import ScrollToTop from "./components/ui/scroll-to-top";
-import UwezoKwaYouth from "./pages/UwezoKwaYouth";
+
+import PixelTrail from "./components/PixelTrail";
+import NewsletterPopup from "./components/NewsletterPopup";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-      <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/programs" element={<Programs />} />
-          <Route path="/programs/uwezo-kwa-youth" element={<UwezoKwaYouth />} />
-          <Route path="/programs/:slug" element={<ProgramDetail />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/donate" element={<Donate />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <PixelTrail />
+          <NewsletterPopup />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/who-we-are" element={<WhoWeAreIndex />} />
+            <Route path="/who-we-are/about-us" element={<AboutUs />} />
+            <Route path="/who-we-are/our-history" element={<OurHistory />} />
+            <Route path="/who-we-are/our-team" element={<OurTeam />} />
+
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/programs/civic-power-in-motion" element={<CivicPowerInMotion />} />
+            <Route path="/programs/:slug" element={<ProgramDetail />} />
+
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/reports" element={<Resources />} />
+            <Route path="/resources/publications" element={<Resources />} />
+            <Route path="/resources/assets" element={<Resources />} />
+
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="/careers" element={<Careers />} />
+            
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

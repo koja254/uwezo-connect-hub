@@ -85,32 +85,32 @@ const Footer = () => {
   const socialLinks = [
     {
       platform: 'Twitter',
-      url: 'https://x.com/uwezofoundation?s=21&t=37kvQaGNhrmEbI6X267VvQ'
+      url: 'https://twitter.com/uwezonetwork'
     },
     {
       platform: 'LinkedIn',
-      url: 'https://www.linkedin.com/company/uwezo-link-initiative/'
+      url: 'https://linkedin.com/company/uwezo-network-initiative/'
     },
     {
       platform: 'Instagram',
-      url: 'https://www.instagram.com/uwezo_link?igsh=d2prZ2FzaXBweDFs'
+      url: 'https://instagram.com/uwezonetwork'
     }
   ];
 
   return (
-    <footer className="bg-neutral-dark text-white">
+    <footer className="bg-ink text-bg">
       {/* Newsletter Section */}
-      <div className="border-b border-white/10">
+      <div className="border-b border-bg/10">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
-              <Mail className="w-8 h-8 text-white" />
+            <div className="w-16 h-16 bg-coral rounded-full flex items-center justify-center border border-ink mx-auto mb-6">
+              <Mail className="w-8 h-8 text-ink" />
             </div>
-            <h3 className="font-poppins text-3xl font-bold mb-4">
+            <h3 className="font-serif text-3xl md:text-4xl font-bold mb-4">
               Stay Connected with Our Mission
             </h3>
-            <p className="text-lg text-white/80 mb-8">
-              Get the latest updates on our programs, success stories, and opportunities to make a difference in STEM education.
+            <p className="text-base text-bg/85 mb-8">
+              Get the latest updates on our programs, success stories, and opportunities to make a difference in technology, health equity, and environmental conservation.
             </p>
             
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -119,10 +119,10 @@ const Footer = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20"
+                className="flex-1 bg-bg/10 border-bg/20 text-bg placeholder:text-bg/60 focus:bg-bg/20"
                 required
               />
-              <Button type="submit" className="cta-accent shrink-0" disabled={isSubmitting}>
+              <Button type="submit" className="btn-neo shrink-0 bg-coral text-ink border-ink font-mono text-xs uppercase tracking-wider" disabled={isSubmitting}>
                 {isSubmitting ? 'Submitting...' : 'Subscribe'}
               </Button>
             </form>
@@ -135,37 +135,56 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Organization Info */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center space-x-3 mb-6" onClick={() => window.scrollTo(0, 0)}>
-              <img
-                src="/images/image-24.png"
-                alt="Uwezo Logo"
-                className="w-10 h-10 bg-transparent rounded-lg flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-all duration-300"
-              />
-              <div>
-                <span className="font-poppins font-bold text-xl">Uwezo Link</span>
-                <div className="text-sm text-white/80">Initiative</div>
-              </div>
-            </Link>
+            <div className="flex items-center justify-between mb-6">
+              <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <img
+                  src="/images/new-uwezo-logo.jpeg"
+                  alt="Uwezo Logo"
+                  className="w-10 h-10 object-contain bg-transparent rounded-lg border border-bg"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFB4A2" stroke="%231F1A17" stroke-width="6"/><text x="50" y="60" font-size="36" font-family="serif" text-anchor="middle" fill="%231F1A17">U</text></svg>';
+                  }}
+                />
+                <div>
+                  <span className="font-serif font-bold text-xl leading-none">The Uwezo Network</span>
+                  <div className="text-xs uppercase font-mono tracking-widest text-bg/85">Initiative</div>
+                </div>
+              </Link>
+
+              {/* Scroll to Top Button */}
+              <button 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="btn-neo bg-bg text-ink border-2 border-ink p-2 text-xs font-mono shadow-[2px_2px_0_#1F1A17] hover:shadow-[4px_4px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-1 font-bold shrink-0"
+                title="Scroll to Top"
+              >
+                <span>↑ TOP</span>
+              </button>
+            </div>
             
-            <p className="text-white/80 text-sm leading-relaxed mb-6">
-              Empowering young people in marginalized communities through innovative STEM education, hands-on learning, and sustainable development practices.
+            <p className="text-bg/80 text-sm leading-relaxed mb-6">
+              A National NGO in Kenya co-designing development solutions with communities through tech education, environmental action, and health dignity.
             </p>
 
             {/* Contact Info */}
             <div className="space-y-3 text-sm">
               <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-accent shrink-0" />
-                <span className="text-white/80">Nairobi, Kenya</span>
+                <MapPin className="w-4 h-4 text-coral shrink-0" />
+                <span className="text-bg/80">Nairobi, Kenya</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Mail className="w-4 h-4 text-coral shrink-0 mt-1" />
+                <div className="flex flex-col">
+                  <a href="mailto:info@uwezolinkinitiative.org" className="text-bg/80 hover:text-coral transition-colors">
+                    info@uwezolinkinitiative.org
+                  </a>
+                  <a href="mailto:uwezolinkinitiative@gmail.com" className="text-bg/80 hover:text-coral transition-colors text-xs opacity-80">
+                    uwezolinkinitiative@gmail.com
+                  </a>
+                </div>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-accent shrink-0" />
-                <a href="mailto:info@uwezolink.org" className="text-white/80 hover:text-accent transition-colors">
-                  info@uwezolinkinitiative.org
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-accent shrink-0" />
-                <a href="tel:+254700000000" className="text-white/80 hover:text-accent transition-colors">
+                <Phone className="w-4 h-4 text-coral shrink-0" />
+                <a href="tel:+254789914719" className="text-bg/80 hover:text-coral transition-colors">
                   +254 789 914 719
                 </a>
               </div>
@@ -174,10 +193,10 @@ const Footer = () => {
 
           {/* Programs */}
           <div>
-            <h4 className="font-poppins font-semibold text-lg mb-6">Programs</h4>
-            <ul className="space-y-3">
+            <h4 className="font-serif font-bold text-xl mb-6">Programs</h4>
+            <ul className="space-y-3 font-mono text-xs uppercase tracking-wider">
               <li>
-                <Link to="/programs" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/programs" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   All Programs
                 </Link>
               </li>
@@ -185,10 +204,10 @@ const Footer = () => {
                 <li key={program.id}>
                   <Link 
                     to={`/programs/${program.slug}`} 
-                    className="text-white/80 hover:text-accent transition-colors text-sm"
+                    className="text-bg/80 hover:text-coral transition-colors"
                     onClick={() => window.scrollTo(0, 0)}
                   >
-                    {program.title}
+                    {program.title.split(' - ')[0]}
                   </Link>
                 </li>
               ))}
@@ -197,31 +216,36 @@ const Footer = () => {
 
           {/* Organization */}
           <div>
-            <h4 className="font-poppins font-semibold text-lg mb-6">Organization</h4>
-            <ul className="space-y-3">
+            <h4 className="font-serif font-bold text-xl mb-6">Organization</h4>
+            <ul className="space-y-3 font-mono text-xs uppercase tracking-wider">
               <li>
-                <Link to="/about" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/who-we-are/about-us" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/who-we-are/our-history" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
+                  Our History
+                </Link>
+              </li>
+              <li>
+                <Link to="/who-we-are/our-team" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   Our Team
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/resources" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   Resources
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
-                  Contact Us
+                <Link to="/blog" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
+                  Blog
                 </Link>
               </li>
               <li>
-                <Link to="/donate" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
-                  Donate
+                <Link to="/contact" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
+                  Contact Us
                 </Link>
               </li>
             </ul>
@@ -229,33 +253,33 @@ const Footer = () => {
 
           {/* Get Involved */}
           <div>
-            <h4 className="font-poppins font-semibold text-lg mb-6">Get Involved</h4>
-            <ul className="space-y-3 mb-6">
+            <h4 className="font-serif font-bold text-xl mb-6">Get Involved</h4>
+            <ul className="space-y-3 font-mono text-xs uppercase tracking-wider mb-6">
               <li>
-                <Link to="/donate" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/donate" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   Make a Donation
                 </Link>
               </li>
               <li>
-                <Link to="/team#volunteer" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/contact" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   Volunteer with Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/contact" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   Partner with Us
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-white/80 hover:text-accent transition-colors text-sm" onClick={() => window.scrollTo(0, 0)}>
-                  Download Resources
+                <Link to="/careers" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
+                  Careers & Opportunities
                 </Link>
               </li>
             </ul>
 
             {/* Social Links */}
             <div>
-              <h5 className="font-medium text-sm mb-3">Follow Us</h5>
+              <h5 className="font-serif font-semibold text-sm mb-3">Follow Us</h5>
               <div className="flex space-x-3">
                 {socialLinks.map((social) => (
                   <a
@@ -263,7 +287,7 @@ const Footer = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-accent hover:text-neutral-dark rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105"
+                    className="w-10 h-10 bg-bg/10 hover:bg-coral hover:text-ink rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 border border-bg/25"
                     aria-label={`Follow us on ${social.platform}`}
                   >
                     {getSocialIcon(social.platform)}
@@ -276,25 +300,30 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-white/10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-white/60">
-              © {currentYear} Uwezo Link Initiative. All rights reserved. | 
-              <a 
-                href="/downloads/uwezo_link_terms_and_conditions.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-white/60 hover:text-accent transition-colors"
-              >
-                Terms and Conditions
-              </a>
+      <div className="border-t border-bg/10 py-6">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-mono uppercase tracking-wider">
+            <div className="text-bg/60 space-y-2">
+              <div>
+                © {currentYear} The Uwezo Network Initiative. All rights reserved. | 
+                <a 
+                  href="/downloads/uwezo_link_terms_and_conditions.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-bg/60 hover:text-coral transition-colors ml-1 inline-block"
+                >
+                  Terms & Conditions
+                </a>
+              </div>
+              <div className="text-[10px] text-bg/45 normal-case tracking-normal">
+                Compliant with the Kenya Data Protection Act, 2019. Bound by strict Child Protection and Safeguarding Policies across all educational operations.
+              </div>
             </div>
             
-            <div className="flex items-center space-x-1 text-sm text-white/60">
+            <div className="flex items-center space-x-1 text-bg/60">
               <span>Made with</span>
-              <Heart className="w-4 h-4 text-pink-500 fill-current animate-pulse" />
-              <span>by <strong>Oj & Bob</strong> - for dreams, learning, and empowerment</span>
+              <Heart className="w-4 h-4 text-coral-deep fill-current animate-pulse" />
+              <span>for communities, learning, and empowerment</span>
             </div>
           </div>
         </div>

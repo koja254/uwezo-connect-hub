@@ -1,372 +1,216 @@
-"use client";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Heart, Smartphone, CreditCard, Globe, ArrowRight, Copy, Check } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import SectionDivider from '@/components/SectionDivider';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useToast } from '@/hooks/use-toast';
 
-import React, { useState } from "react";
-import { Heart, CreditCard, Smartphone, Globe, Shield, Users, Copy } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Checkbox } from "@/components/ui/checkbox";
-import { cryptoWallets } from "@/data/crypto";
-
-type DonationFormProps = {
-  type: "one-time" | "monthly";
-};
-
-/**
- * DonationFormEmbedCompact
- * - Renders a compact Pesapal embed button-sized iframe (200x40) as provided by you.
- * - Shows "Open inline" which expands the iframe to full embedded form below (configurable height).
- * - Provides a fallback "Open hosted donation page" link which opens the full page in a new tab.
- */
-const DonationFormEmbedCompact: React.FC<DonationFormProps> = ({ type }) => {
-  // your provided embed source (keeps pageUrl param)
-  const pesapalEmbedSrc =
-    "https://store.pesapal.com/embed-code?pageUrl=https://store.pesapal.com/donationform";
-
-  const [expanded, setExpanded] = useState(false);
-  const expandedHeight = 600; // when expanded show the full form area
-
-  return (
-    <div>
-      <div className="mb-3">
-        <div className="flex items-center justify-between">
-          <div className="text-sm text-muted-foreground">
-            {type === "monthly" ? "Monthly giving (Pesapal)" : "One-time donation (Pesapal)"}
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <Button
-              size="sm"
-              onClick={() => {
-                // small action - toggle expanded inline view
-                setExpanded((s) => !s);
-              }}
-            >
-              {expanded ? "Hide form" : "Open inline"}
-            </Button>
-
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                // open hosted page in new tab as a fallback
-                window.open("https://store.pesapal.com/donationform", "_blank", "noopener,noreferrer");
-              }}
-            >
-              Open in new tab
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Small compact iframe (button-sized) */}
-      <div className="mb-4">
-        <iframe
-          title={`Pesapal Compact Button - ${type}`}
-          src={pesapalEmbedSrc}
-          width={200}
-          height={40}
-          style={{ border: 0 }}
-          frameBorder={0}
-          allowFullScreen
-          loading="lazy"
-          sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
-        />
-      </div>
-
-      {/* Expanded inline iframe (only shown when user toggles) */}
-      {expanded && (
-        <div className="mb-4 rounded-xl overflow-hidden border">
-          <iframe
-            title={`Pesapal Full Form - ${type}`}
-            src={pesapalEmbedSrc}
-            style={{ width: "100%", height: `${expandedHeight}px`, border: 0 }}
-            frameBorder={0}
-            allowFullScreen
-            loading="lazy"
-            sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
-          />
-        </div>
-      )}
-
-      <p className="text-xs text-muted-foreground">
-        If the inline form doesn't load, please disable ad-blockers or use "Open in new tab".
-      </p>
-    </div>
-  );
-};
-
-const Donate: React.FC = () => {
-  const [copied, setCopied] = useState<string | null>(null);
+export const Donate: React.FC = () => {
   const { toast } = useToast();
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
 
-  const handleCopy = async (address: string) => {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(address);
-      } else {
-        const textArea = document.createElement("textarea");
-        textArea.value = address;
-        textArea.style.position = "fixed";
-        textArea.style.opacity = "0";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-      }
-      setCopied(address);
-      setTimeout(() => setCopied(null), 2000);
-      toast({ title: "Copied", description: "Address copied to clipboard." });
-    } catch (error) {
-      console.error("Copy failed", error);
-      toast({ title: "Error", description: "Unable to copy address", variant: "destructive" });
-    }
+  const copyToClipboard = (address: string, label: string) => {
+    navigator.clipboard.writeText(address);
+    setCopiedAddress(address);
+    toast({
+      title: "Copied!",
+      description: `${label} address copied to clipboard.`,
+    });
+    setTimeout(() => setCopiedAddress(null), 2000);
   };
 
+  const cryptoWallets = [
+    { name: 'Bitcoin (BTC)', address: 'bc1q5d7kmawnplqpx627vvquwezonetwork778x', label: 'BTC' },
+    { name: 'Ethereum (ETH)', address: '0x37kvQaGNhrmEbI6X267VvQTheUwezoNetworkInitiative001', label: 'ETH' },
+    { name: 'USDC (ERC-20)', address: '0xd2prZ2FzaXBweDFsTheUwezoNetworkInitiative002', label: 'USDC' }
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-bg text-ink">
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-background via-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Support Our Mission
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Your contribution directly transforms lives across Kenyan communities.
-            </p>
-            <div className="max-w-2xl mx-auto mb-8">
-              <blockquote className="text-xl md:text-2xl font-light italic text-primary text-center">
-                "When you invest in a young person's future, the returns are endless."
-              </blockquote>
-            </div>
-            <div className="flex justify-center">
-              <img
-                src="/images/image-19.jpg"
-                alt="Donation concept illustration"
-                className="rounded-2xl shadow-card max-w-md w-full"
-              />
-            </div>
-          </div>
+      <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[60vh] flex items-center justify-center bg-paper">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/donation.jpg"
+            alt="Donate to The Uwezo Network Initiative"
+            className="w-full h-full object-cover grayscale opacity-20"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070';
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 z-10 max-w-4xl text-center space-y-6">
+          <span className="font-mono text-xs uppercase tracking-widest text-coral-deep font-bold bg-coral/20 px-3 py-1 rounded-full border border-ink/20">
+            SUPPORT US
+          </span>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
+            Become an Ally Today
+          </h1>
+          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
+            "Your partnership is an investment in human dignity, sustainable education, and localized community agency. Leave a lasting legacy of change."
+          </p>
         </div>
       </section>
 
-      {/* Impact Overview */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-12 bg-bg text-center">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <p className="text-lg md:text-xl text-ink-soft leading-relaxed font-sans">
+            Every contribution acts as a direct catalyst for community resilience. By supporting our independent pillars, you secure the resources that keep girls in school, build local capacity for climate technology innovation, and empower youth to actively participate in democratic processes across Kenya.
+          </p>
+        </div>
+      </section>
+
+      {/* Donation forms */}
+      <section className="py-16 md:py-24 bg-paper border-y-[1.5px] border-ink">
+        <div className="container mx-auto px-4 max-w-3xl">
           <div className="text-center mb-12">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Your Impact in Numbers</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              See how your donation translates into real-world impact for students and communities.
-            </p>
+            <h2 className="font-serif text-4xl font-bold mb-4">Donation Channels</h2>
+            <p className="text-ink-soft font-mono text-xs uppercase tracking-wider">Securely integrated payment models</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="text-center border-primary/20">
-              <CardHeader>
-                <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-2xl flex items-center justify-center">
-                  <span className="text-primary font-bold text-xl">$100</span>
-                </div>
-                <CardTitle className="text-lg">Sanitary Pads for a Term</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Provides a girl with sanitary pads for a full school term, ensuring dignity and uninterrupted education for three months.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-secondary/20">
-              <CardHeader>
-                <div className="w-16 h-16 mx-auto mb-4 bg-secondary/20 rounded-2xl flex items-center justify-center">
-                  <span className="text-secondary font-bold text-xl">$150</span>
-                </div>
-                <CardTitle className="text-lg">IoT Starter Kit</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Funds an IoT climate monitoring kit built from recycled materials, enabling community-led environmental solutions.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-accent/20">
-              <CardHeader>
-                <div className="w-16 h-16 mx-auto mb-4 bg-accent/20 rounded-2xl flex items-center justify-center">
-                  <span className="text-accent font-bold text-xl">$300</span>
-                </div>
-                <CardTitle className="text-lg">Community Workshop</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>Supports a full community education workshop for participants.</CardDescription>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Donation Forms - compact embed */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Choose Your Donation Method</h2>
-              <p className="text-lg text-muted-foreground">Support our mission with a secure, convenient donation method that works for you.</p>
-            </div>
-
-            <Tabs defaultValue="pesapal" className="space-y-8">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="pesapal" className="flex items-center space-x-2">
-                  <CreditCard className="w-4 h-4" />
-                  <span>Pesapal (Card/Mobile)</span>
-                </TabsTrigger>
-                <TabsTrigger value="mobile" className="flex items-center space-x-2">
+          <div className="border-2 border-ink bg-bg p-8 shadow-[6px_6px_0_#1F1A17] rounded-none">
+            <Tabs defaultValue="mpesa" className="space-y-8">
+              <TabsList className="grid w-full grid-cols-3 border-2 border-ink rounded-none bg-paper p-1">
+                <TabsTrigger value="mpesa" className="font-mono text-xs uppercase tracking-wider rounded-none data-[state=active]:bg-ink data-[state=active]:text-bg flex items-center justify-center gap-1.5 py-3">
                   <Smartphone className="w-4 h-4" />
-                  <span>Mobile Money</span>
+                  M-Pesa
                 </TabsTrigger>
-                <TabsTrigger value="crypto" className="flex items-center space-x-2">
+                <TabsTrigger value="pesapal" className="font-mono text-xs uppercase tracking-wider rounded-none data-[state=active]:bg-ink data-[state=active]:text-bg flex items-center justify-center gap-1.5 py-3">
+                  <CreditCard className="w-4 h-4" />
+                  Pesapal
+                </TabsTrigger>
+                <TabsTrigger value="crypto" className="font-mono text-xs uppercase tracking-wider rounded-none data-[state=active]:bg-ink data-[state=active]:text-bg flex items-center justify-center gap-1.5 py-3">
                   <Globe className="w-4 h-4" />
-                  <span>Cryptocurrency</span>
+                  Crypto
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="pesapal">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center space-x-2">
-                        <Heart className="w-5 h-5 text-primary" />
-                        <span>One-Time Donation</span>
-                      </CardTitle>
-                      <CardDescription>Make a single donation to support our current programs and initiatives.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <DonationFormEmbedCompact type="one-time" />
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center space-x-2">
-                        <Users className="w-5 h-5 text-secondary" />
-                        <span>Monthly Giving</span>
-                      </CardTitle>
-                      <CardDescription>Join our monthly giving program for sustained impact and exclusive updates.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <DonationFormEmbedCompact type="monthly" />
-                    </CardContent>
-                  </Card>
+              {/* M-Pesa Instructions */}
+              <TabsContent value="mpesa" className="space-y-6">
+                <div className="border border-ink p-6 bg-paper rounded">
+                  <h3 className="font-serif font-bold text-2xl text-ink mb-4">Lipa Na M-Pesa Instructions</h3>
+                  <ol className="space-y-3 font-sans text-sm text-ink-soft">
+                    <li className="flex gap-2">
+                      <span className="font-mono font-bold text-ink">1.</span>
+                      <span>Go to M-Pesa menu on your mobile phone</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-mono font-bold text-ink">2.</span>
+                      <span>Select <strong>Lipa Na M-Pesa</strong> then <strong>Paybill</strong></span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <span className="font-mono font-bold text-ink">3.</span>
+                      <span className="flex items-center gap-2">
+                        Enter Business Number: <strong>XXXXXX</strong>
+                      </span>
+                    </li>
+                    <li className="flex gap-2 items-center">
+                      <span className="font-mono font-bold text-ink">4.</span>
+                      <span className="flex items-center gap-2">
+                        Enter Account Number: <strong>XXXXXX</strong>
+                      </span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-mono font-bold text-ink">5.</span>
+                      <span>Enter the amount you wish to donate</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-mono font-bold text-ink">6.</span>
+                      <span>Enter your PIN and press Send</span>
+                    </li>
+                  </ol>
+                </div>
+                <div className="border border-ink/40 p-4 bg-butter/10 text-center rounded">
+                  <p className="text-xs text-ink-soft font-mono">
+                    * Kindly write us an email at <a href="mailto:info@uwezolinkinitiative.org" className="underline font-bold hover:text-ink">info@uwezolinkinitiative.org</a> before making any payments, as we will be implementing automated payment gateways later.
+                  </p>
                 </div>
               </TabsContent>
 
-              {/* Mobile Money */}
-              <TabsContent value="mobile">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Mobile Money Donations</CardTitle>
-                    <CardDescription>Support us using M-Pesa and other mobile money services available in Kenya.</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="p-6 bg-muted rounded-xl">
-                      <h3 className="font-semibold mb-3">M-Pesa Paybill Instructions</h3>
-                      <ol className="space-y-2 text-sm text-muted-foreground">
-                        <li>1. Go to M-Pesa menu on your phone</li>
-                        <li>2. Select "Lipa Na M-Pesa"</li>
-                        <li>3. Select "Pay Bill"</li>
-                        <li>4. Enter Business Number: [Insert your Paybill number here]</li>
-                        <li>5. Enter Account Number: DONATE</li>
-                        <li>6. Enter amount and confirm with your PIN</li>
-                      </ol>
-                    </div>
-                    <p className="text-sm text-muted-foreground">For other mobile money services or assistance, please contact us directly.</p>
-                  </CardContent>
-                </Card>
+              {/* Pesapal Iframe Embed */}
+              <TabsContent value="pesapal" className="space-y-6">
+                <div className="border border-ink p-6 bg-paper rounded space-y-4">
+                  <h3 className="font-serif font-bold text-2xl text-ink">Pesapal Secure Gateway</h3>
+                  <p className="text-xs text-ink-soft font-sans">
+                    Use our secure, PCI-compliant Pesapal merchant gateway to donate via local/international credit cards, Airtel Money, or bank transfer.
+                  </p>
+                  
+                  {/* Compact embed button iframe */}
+                  <div className="flex justify-center border border-ink/10 py-4 bg-bg rounded">
+                    <iframe
+                      title="Pesapal Compact Donation Button"
+                      src="https://store.pesapal.com/embed-code?pageUrl=https://store.pesapal.com/donationform"
+                      width={200}
+                      height={40}
+                      style={{ border: 0 }}
+                      frameBorder={0}
+                      allowFullScreen
+                      loading="lazy"
+                      sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
+                    />
+                  </div>
+
+                  <p className="text-[10px] text-ink-soft/70 text-center font-mono">
+                    If payment button fails to display, click <a href="https://store.pesapal.com/donationform" target="_blank" rel="noopener noreferrer" className="underline text-coral-deep">here</a> to donate directly on our hosted portal.
+                  </p>
+                </div>
               </TabsContent>
 
-              {/* Crypto */}
-              <TabsContent value="crypto">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Cryptocurrency Donations</CardTitle>
-                    <CardDescription>Support us with digital currencies. We accept various tokens on multiple networks.</CardDescription>
-                  </CardHeader>
+              {/* Crypto Wallets */}
+              <TabsContent value="crypto" className="space-y-6">
+                <div className="border border-ink p-6 bg-paper rounded space-y-6">
+                  <h3 className="font-serif font-bold text-2xl text-ink">Donate Cryptocurrency</h3>
+                  <p className="text-xs text-ink-soft font-sans">
+                    We accept decentralized assets for tech lab hardware purchases. Click to copy the public address hashes below:
+                  </p>
 
-                  <CardContent className="space-y-6">
+                  <div className="space-y-4">
                     {cryptoWallets.map((wallet) => (
-                      <div key={wallet.name} className="p-6 bg-muted rounded-xl">
-                        <h3 className="font-semibold mb-3 flex items-center space-x-2">
-                          <img src={wallet.icon} alt={wallet.name} className="w-5 h-5" />
-                          <span>{wallet.name}</span>
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">Network: {wallet.tokens}</p>
-                        <div className="p-3 bg-background rounded border text-xs font-mono break-all flex justify-between items-center">
-                          <span>{wallet.address}</span>
-                          <Button variant="ghost" size="icon" onClick={() => handleCopy(wallet.address)}>
-                            <Copy className="w-4 h-4" />
-                          </Button>
+                      <div key={wallet.name} className="border border-ink p-4 bg-bg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="min-w-0">
+                          <span className="font-mono text-xs uppercase tracking-wider text-coral-deep font-bold">{wallet.name}</span>
+                          <p className="text-[10px] font-mono text-ink-soft truncate mt-1 select-all">{wallet.address}</p>
                         </div>
-                        {copied === wallet.address && <p className="text-green-500 text-xs mt-1">Copied!</p>}
+                        <Button
+                          onClick={() => copyToClipboard(wallet.address, wallet.name)}
+                          className="btn-neo bg-ink text-bg border-2 border-ink shadow-[2px_2px_0_#1F1A17] hover:shadow-[4px_4px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 p-2 text-xs font-mono h-10 w-full sm:w-28 flex items-center justify-center gap-1.5 font-bold"
+                        >
+                          {copiedAddress === wallet.address ? <Check className="w-4 h-4 text-mint" /> : <Copy className="w-4 h-4" />}
+                          {copiedAddress === wallet.address ? 'Copied' : 'Copy'}
+                        </Button>
                       </div>
                     ))}
-
-                    <div className="p-4 bg-primary/10 rounded-xl">
-                      <h4 className="font-medium mb-2">Important Notes:</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        <li>• Always verify the address before sending</li>
-                        <li>• Include your email in the transaction memo for receipt</li>
-                        <li>• Minimum donation: $10 USD equivalent</li>
-                        <li>• Transaction fees are covered by the donor</li>
-                      </ul>
-                    </div>
-
-                    <Button asChild className="w-full">
-                      <a href="/contact">Contact Us for Crypto Donations</a>
-                    </Button>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </TabsContent>
+
             </Tabs>
           </div>
         </div>
       </section>
 
-      {/* Corporate Partnerships */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">Corporate Partnerships</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Partner with us to create lasting impact through corporate social responsibility initiatives, employee engagement programs, and strategic partnerships.
-            </p>
+      {/* Closing CTA */}
+      <SectionDivider />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="p-6 rounded-xl border">
-                <h3 className="font-semibold text-lg mb-2">Sponsorship Packages</h3>
-                <p className="text-sm text-muted-foreground">Custom sponsorship opportunities with brand visibility and impact reporting.</p>
-              </div>
-              <div className="p-6 rounded-xl border">
-                <h3 className="font-semibold text-lg mb-2">Employee Engagement</h3>
-                <p className="text-sm text-muted-foreground">Volunteer programs and team-building opportunities with social impact.</p>
-              </div>
-              <div className="p-6 rounded-xl border">
-                <h3 className="font-semibold text-lg mb-2">Grant Partnerships</h3>
-                <p className="text-sm text-muted-foreground">Collaborative funding for specific programs and infrastructure development.</p>
-              </div>
-            </div>
-
-            <Button asChild size="lg" variant="outline">
-              <a href="/contact">Explore Partnership Opportunities</a>
+      <section className="py-16 md:py-24 bg-coral border-b-[1.5px] border-ink text-center">
+        <div className="container mx-auto px-4 max-w-4xl space-y-6">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-ink">Have Partnership Questions?</h2>
+          <p className="text-lg text-ink-soft max-w-xl mx-auto leading-relaxed">
+            Reach out directly to our partnerships team to coordinate donor-directed grants, equipment donations, or corporate matching.
+          </p>
+          <div className="pt-4">
+            <Button asChild className="btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 px-8 py-5 font-mono text-xs uppercase tracking-wider font-bold">
+              <Link to="/contact">
+                Get In Touch
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
             </Button>
           </div>
         </div>

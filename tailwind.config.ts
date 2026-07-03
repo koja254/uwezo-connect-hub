@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -19,10 +20,27 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+				sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+				hand: ['Caveat', '"Bradley Hand"', 'cursive'],
 				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 				poppins: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
 			},
 			colors: {
+				// new design system colors
+				bg: '#FBF7F2',
+				paper: '#F4EEE4',
+				ink: '#1F1A17',
+				'ink-soft': '#5b524c',
+				coral: '#FFB4A2',
+				'coral-deep': '#F38C7C',
+				lavender: '#D7C7EC',
+				mint: '#BEE3C8',
+				butter: '#FFE3A8',
+				sky: '#C4DEEC',
+
+				// shadcn backward compatibility colors mapped to HSL or exact values
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -155,5 +173,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;

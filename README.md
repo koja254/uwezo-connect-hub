@@ -1,119 +1,106 @@
-# 🌍 Uwezo-Connect-Hub
+# 🌍 The Uwezo Network Initiative Portal
 
-![Uwezo-Connect Hub Logo](/public/images/image-24.png)
+![The Uwezo Network Initiative Logo](/public/images/new-uwezo-logo.jpeg)
 
-## 📌 About Uwezo-Connect-Hub
+**The Uwezo Network Initiative** is a registered National Non-Governmental Organization (NGO) in Kenya that bridges high-level technology capabilities with grassroots community empowerment. We co-design, build, and deploy digital and social infrastructures that eliminate period poverty, bridge the digital divide through AI and STEM learning, and turn youth civic energy into structured public participation.
 
-**Uwezo-Connect-Hub** is a community-driven platform aimed at enhancing connectivity - both digital and social - for underserved communities. It facilitates collaboration, resource sharing, and engagement across members, organizations, and stakeholders.
-
-This platform enables:  
-✅ Seamless connection and communication among users.  
-✅ Resource discovery, curation, and sharing.  
-✅ Event announcements, coordination, and RSVPs.  
-✅ Dashboard insights for admins and community organizers.  
-✅ Integrations with local services and APIs.
+This repository hosts the official frontend portal of the organization, designed with a premium, high-contrast Neo-Brutalist design language.
 
 ---
 
-## 🚀 Features
+## 📌 Core Pillars & Programs
 
-✨ **Responsive & Interactive UI** - Clean animations, hover feedback, and accessible components.  
-🌐 **Real-Time Updates** - Live state management powered by React + TypeScript.  
-👥 **User Management** - Profiles, roles (e.g., admin, member), and authentication mechanisms.  
-🔗 **APIs Integration** - External data integration via RESTful endpoints or GraphQL.  
-🗂 **Resource & Events Module** - Add/manage postings with search and categorization.  
-🚀 **Deployment-ready** - Configured for development and production builds via Vite.
+### 1. 🩸 Days for Dignity (Health Equity & Digital Dignity)
+- **Problem**: Over 65% of girls in rural/slum areas miss school due to a lack of sanitary towels.
+- **Solution**: An offline-first digital voucher and loyalty system that allows girls to redeem sanitary towels securely from local shopkeepers.
+- **Impact**: 100+ girls mentored, 800+ classroom days saved, and 3+ SRHR workshops held.
 
----
+### 2. 💻 Tech for Tomorrow (STEM & AI Learning)
+- **Problem**: 67% of Kenyan youth face unemployment due to systemic digital and computing skill gaps.
+- **Solution**: Rural-friendly mobile makerspaces, hardware labs, and digital literacy instruction directly in public classrooms.
+- **Impact**: 30+ students reached, IoT smart agriculture kits deployed, and a 92% program completion rate.
 
-## 🏗️ Technologies Used
-
-| Technology                           | Purpose                              |
-|--------------------------------------|--------------------------------------|
-| **React + TypeScript + Vite**        | Core frontend framework and tooling  |
-| **Tailwind CSS + shadcn-ui**         | UI styling and component library     |
-| **Node.js + Express (if backend)**   | API server and data handling         |
-| **Netlify**                          | Hosting & continuous deployment      |
+### 3. 🗳️ Civic Power in Motion (Civic & Democratic Engagement)
+- **Problem**: Translating youth online engagement into formal policy representation and county-level accountability.
+- **Solution**: Micro-workshops, inclusive voter registration tools, and budget transparency bots.
+- **Impact**: 25+ community leaders mentored for public offices, and active budget tracking in counties.
 
 ---
 
-## 📂 Project Structure
+## 🚀 Performance Optimizations & Features
+
+- ⚡ **Neo-Brutalist Aesthetic**: Premium custom typography, vibrant color palettes, retro borders, and interactive card designs.
+- 📱 **Mobile-First Responsiveness**: Horizontal scroll-snapping on mobile viewports for all grid components (UN SDGs, Leadership Cards, Blog Articles, Impact Metrics) to optimize vertical space.
+- 🕒 **Dynamic Periodic Counters**: Smooth counting animations on mount that continue to fluctuate/increment from time to time, simulating live, real-time data feeds.
+- 📁 **Optimized Bundle Size**: Deleted 38 unused component files and Shadcn UI primitives, reducing the production CSS bundle size by **38%** (down to `51.86 kB` from `83.91 kB`).
+- 🔒 **Newsletter route tracking**: LocalStorage modal state listening combined with route change detectors to ensure popups close on navigation and respect user dismissal preferences.
+
+---
+
+## 🏗️ Technical Architecture
+
+| Component | Technology |
+|---|---|
+| **Core Framework** | React 18 + TypeScript + Vite |
+| **Styling** | Tailwind CSS (Neo-brutalist theme configuration) |
+| **Icons** | Lucide React |
+| **Animation** | Framer Motion + Custom CSS transitions |
+| **Routing** | React Router DOM v6 |
+
+---
+
+## 📂 Directory Layout
 
 ```bash
 📦 uwezo-connect-hub
-│-- 📁 backend (optional, if applicable)
-│-- 📁 public
-│   └── 📁 images
-│-- 📁 src
-│   ├── 📁 components
-│   ├── 📁 pages
-│   ├── 📁 utils
-│   ├── App.tsx
-│   └── main.tsx
-│-- 📄 README.md
-│-- 📄 package.json
-│-- 📄 tsconfig.json
-│-- 📄 vite.config.ts
+├── 📁 public                 # Static assets (images, PDFs, favicons)
+│   └── 📁 downloads          # Organization policy frameworks and toolkits
+├── 📁 src
+│   ├── 📁 components         # Core reusable components (Header, Footer, LazyImage)
+│   │   └── 📁 ui             # Core Tailwind UI primitives (Button, Input, Dialog, etc.)
+│   ├── 📁 data               # Static databases and datasets (team profiles, program specs)
+│   ├── 📁 hooks              # Custom React hooks (use-toast)
+│   ├── 📁 pages              # Route views (Index, AboutUs, Programs, Blog, Careers)
+│   ├── 📁 types              # Global TypeScript interfaces
+│   ├── 📄 App.tsx            # Routes configuration & global context providers
+│   ├── 📄 index.css          # Design system stylesheet
+│   └── 📄 main.tsx           # Vite entrypoint
+├── 📄 index.html             # HTML shell & Favicon setup
+├── 📄 package.json           # Project dependencies
+└── 📄 vite.config.ts         # Vite compilation settings
 ```
 
-## 🔥 How to Run the Project
+---
 
+## 💻 Setup & Local Development
+
+### 1️⃣ Clone the repository
 ```bash
-# 1️⃣ Clone the repository
 git clone https://github.com/koja254/uwezo-connect-hub.git
 cd uwezo-connect-hub
-
-# 2️⃣ Install dependencies
-npm install
-
-# 3️⃣ Start the development server
-npm run dev
-# The local server should now run at http://localhost:5173/.
-
 ```
 
----
-
-## 💡 Contribution Guidelines
-
-We welcome contributions from developers, designers, and content creators! 🚀
-
+### 2️⃣ Install dependencies
 ```bash
-# 1️⃣ Fork the repository
-# 2️⃣ Create a new branch
-git checkout -b feature-branch
+npm install
+```
 
-# 3️⃣ Make your changes
+### 3️⃣ Start local development server
+```bash
+npm run dev
+```
+The application will run locally at [http://localhost:5173/](http://localhost:5173/).
 
-# 4️⃣ Commit using meaningful messages
-git commit -m "✨ Added new feature"
-
-# 5️⃣ Push to GitHub and open a Pull Request
+### 4️⃣ Verify production build
+```bash
+npm run build
 ```
 
 ---
 
-## 💬 Commit Message Guide
+## 📧 Contacts & General Inquiries
 
-| Emoji | Type   | Description           |
-| ----- | ------ | --------------------- |
-| ✨     | feat   | Adding a new feature  |
-| 🐛    | fix    | Fixing a bug          |
-| 📝    | docs   | Documentation updates |
-| 🎨    | style  | UI improvements       |
-| 🚀    | deploy | Deployment updates    |
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-## 📧 Contact
-
-📩 Email: [info@uwezolinkinitiative.org](mailto:info@uwezolinkinitiative.org)  
-🌍 Website: [uwezolinkinitiative.org](https://689b51b9c619e0fa72707073--gorgeous-seahorse-93fdcc.netlify.app/ )  
-🔗 LinkedIn: Uwezo Link Initiative
-
+- 📩 **General Email**: [info@uwezolinkinitiative.org](mailto:info@uwezolinkinitiative.org)
+- ✉️ **Gmail Secondary**: [uwezolinkinitiative@gmail.com](mailto:uwezolinkinitiative@gmail.com)
+- 📞 **Phone number**: +254 789 914 719
+- 🌍 **Portal Link**: [uwezolinkinitiative.org](https://689b51b9c619e0fa72707073--gorgeous-seahorse-93fdcc.netlify.app/)
