@@ -85,13 +85,14 @@ const Contact = () => {
           const errorText = await response.text();
           throw new Error(`Submission failed: ${response.status} ${errorText}`);
         }
-      } catch (error: any) {
+      } catch (error) {
         attempts++;
         console.error(`Attempt ${attempts} failed:`, error);
         if (attempts === maxRetries) {
+          const isAbortError = error instanceof Error && error.name === 'AbortError';
           toast({
             title: "Error",
-            description: error.name === 'AbortError'
+            description: isAbortError
               ? "Request timed out. Please try again later."
               : "There was a problem sending your message. Please try again later.",
             variant: "destructive",
@@ -194,7 +195,7 @@ const Contact = () => {
                   />
                 </div>
                 
-                <Button type="submit" size="lg" className="w-full btn-neo bg-ink text-bg border-ink py-4 font-mono text-xs uppercase tracking-wider font-bold" disabled={isSubmitting}>
+                <Button type="submit" size="lg" className="w-full btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 py-4 font-mono text-xs uppercase tracking-wider font-bold" disabled={isSubmitting}>
                   {isSubmitting ? 'Sending...' : <><Send className="w-4 h-4 mr-2" />Send Message</>}
                 </Button>
               </form>
@@ -226,12 +227,24 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-serif font-bold text-xl mb-1">Email</h3>
-                    <p className="text-ink-soft text-sm leading-relaxed font-sans select-text">
-                      <span className="block font-bold select-text">General:</span> info@uwezonetwork.org / info@uwezolinkinitiative.org
-                      <span className="block font-bold mt-1 select-text">Partnerships:</span> partnerships@uwezonetwork.org
-                    </p>
+                    <div className="text-ink-soft text-sm leading-relaxed font-sans space-y-1 select-text">
+                      <div>
+                        <span className="font-bold">General:</span>{' '}
+                        <a href="mailto:info@uwezolinkinitiative.org" className="hover:underline select-text">info@uwezolinkinitiative.org</a> /{' '}
+                        <a href="mailto:uwezolinkinitiative@gmail.com" className="hover:underline select-text">uwezolinkinitiative@gmail.com</a>
+                      </div>
+                      <div>
+                        <span className="font-bold">Partnerships:</span>{' '}
+                        <a href="mailto:sharly.moraa@uwezolinkinitiative.org" className="hover:underline select-text">sharly.moraa@uwezolinkinitiative.org</a>
+                      </div>
+                      <div>
+                        <span className="font-bold">Donations:</span>{' '}
+                        <a href="mailto:tevin@uwezolinkinitiative.org" className="hover:underline select-text">tevin@uwezolinkinitiative.org</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
 
                 {/* Phone */}
                 <div className="flex items-start space-x-4">

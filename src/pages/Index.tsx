@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Heart, Send, CheckCircle2, ShieldCheck, Users, Activity } from 'lucide-react';
 import Header from '@/components/Header';
@@ -11,6 +11,43 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { programs } from '@/data/programs';
+
+const CountUp = ({ end, duration = 3500, suffix = "", prefix = "", decimals = 0 }: { end: number; duration?: number; suffix?: string; prefix?: string; decimals?: number }) => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const totalMiliseconds = duration;
+    const steps = decimals > 0 ? 100 : Math.min(end, 60);
+    const incrementTime = totalMiliseconds / steps;
+    const stepValue = end / steps;
+    
+    const timer = setInterval(() => {
+      start += stepValue;
+      if (start >= end) {
+        clearInterval(timer);
+        setCount(end);
+        
+        // Setup dynamic tick from time to time (fluctuation/live updates)
+        const tickTimer = setInterval(() => {
+          setCount(current => {
+            const change = (Math.random() > 0.4 ? 1 : -1) * (decimals > 0 ? 0.1 : 1);
+            const next = current + change;
+            if (next > end * 1.10) return current - change;
+            if (next < end * 0.90) return current + change;
+            return parseFloat(next.toFixed(decimals));
+          });
+        }, 5000 + Math.random() * 5000);
+        
+        return () => clearInterval(tickTimer);
+      } else {
+        setCount(parseFloat(start.toFixed(decimals)));
+      }
+    }, incrementTime);
+    
+    return () => clearInterval(timer);
+  }, [end, duration, decimals]);
+  return <span>{prefix}{count.toFixed(decimals)}{suffix}</span>;
+};
 
 const Index = () => {
   const { toast } = useToast();
@@ -98,7 +135,7 @@ const Index = () => {
           <img
             src="/images/homepage.jpeg"
             alt="The Uwezo Network Initiative communities"
-            className="w-full h-full object-cover grayscale opacity-[0.22] scale-105"
+            className="w-full h-full object-cover grayscale opacity-[0.35] scale-105"
             onError={(e) => {
               (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070';
             }}
@@ -130,13 +167,13 @@ const Index = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6">
-              <Button asChild className="btn-neo bg-ink text-bg border-ink px-8 py-6 font-mono text-xs uppercase tracking-wider">
+              <Button asChild className="btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 px-8 py-6 font-mono text-xs uppercase tracking-wider font-bold">
                 <Link to="/programs" onClick={() => window.scrollTo(0, 0)}>
                   See Our Pillars
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="btn-neo ghost border-ink px-8 py-6 font-mono text-xs uppercase tracking-wider">
+              <Button asChild variant="outline" className="btn-neo ghost border-2 border-ink bg-bg text-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 px-8 py-6 font-mono text-xs uppercase tracking-wider font-bold">
                 <Link to="/donate" onClick={() => window.scrollTo(0, 0)}>
                   Donate & Partner
                 </Link>
@@ -150,13 +187,13 @@ const Index = () => {
       <section className="py-16 md:py-24 bg-bg">
         <div className="container mx-auto px-4 max-w-3xl text-center">
           <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">
-            Human-First Technology
+            Our Approach
           </h2>
           <p className="text-lg md:text-xl text-ink-soft leading-relaxed font-sans mb-8">
-            Meet Amina, who misses school every month due to a lack of basic hygiene products. Or Daniel, who has never had access to a digital maker lab. Or Mary, who wants to adapt local farms to climate change. 
+            We build human-centric systems by embedding technological solutions directly into the daily realities of grassroots communities. Rather than introducing top-down infrastructure, we co-design interfaces, deploy offline-first digital voucher tools that ensure aid accountability, and establish low-barrier makerspaces where youth construct localized tech and climate solutions.
           </p>
           <p className="text-lg md:text-xl text-ink font-serif italic max-w-2xl mx-auto border-l-4 border-coral pl-6 text-left">
-            "The Uwezo Network Initiative connects these communities to opportunity through inclusive design, offline-first digital voucher infrastructures, and sustainable grassroots action."
+            "We believe that technology is only as sustainable as the community that shapes it. Every intervention is designed to protect dignity and expand local agency."
           </p>
         </div>
       </section>
@@ -169,37 +206,43 @@ const Index = () => {
             <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">Real numbers from our first year of operations</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory md:grid md:grid-cols-3 gap-8 md:overflow-x-visible md:pb-0">
             {/* Girls Mentored */}
-            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between items-center text-center">
+            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between items-center text-center snap-start shrink-0 w-[80vw] sm:w-[280px] md:w-auto md:shrink md:snap-none">
               <div className="w-12 h-12 bg-coral border border-ink rounded-full flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-ink" />
               </div>
               <div>
-                <div className="font-serif text-5xl font-bold mb-2">342</div>
+                <div className="font-serif text-5xl font-bold mb-2">
+                  <CountUp end={236} />
+                </div>
                 <div className="font-mono text-xs uppercase tracking-wider text-ink-soft font-bold">Girls Mentored & Supported</div>
               </div>
             </div>
 
             {/* Platform Uptime */}
-            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between items-center text-center">
+            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between items-center text-center snap-start shrink-0 w-[80vw] sm:w-[280px] md:w-auto md:shrink md:snap-none">
               <div className="w-12 h-12 bg-mint border border-ink rounded-full flex items-center justify-center mb-4">
                 <Activity className="w-6 h-6 text-ink" />
               </div>
               <div>
-                <div className="font-serif text-5xl font-bold mb-2">99.9%</div>
+                <div className="font-serif text-5xl font-bold mb-2">
+                  <CountUp end={99.9} decimals={1} suffix="%" />
+                </div>
                 <div className="font-mono text-xs uppercase tracking-wider text-ink-soft font-bold">Offline-First Uptime</div>
               </div>
             </div>
 
             {/* Vendor Payouts */}
-            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between items-center text-center">
+            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] flex flex-col justify-between items-center text-center snap-start shrink-0 w-[80vw] sm:w-[280px] md:w-auto md:shrink md:snap-none">
               <div className="w-12 h-12 bg-lavender border border-ink rounded-full flex items-center justify-center mb-4">
                 <ShieldCheck className="w-6 h-6 text-ink" />
               </div>
               <div>
-                <div className="font-serif text-5xl font-bold mb-2">KES 487K+</div>
-                <div className="font-mono text-xs uppercase tracking-wider text-ink-soft font-bold">Local Vendor Payouts</div>
+                <div className="font-serif text-5xl font-bold mb-2">
+                  <CountUp end={320} prefix="KES " suffix="K+" />
+                </div>
+                <div className="font-mono text-xs uppercase tracking-wider text-ink-soft font-bold">Worth of Vouchers Redeemed</div>
               </div>
             </div>
           </div>
@@ -216,13 +259,28 @@ const Index = () => {
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {/* Kenya Poverty Action */}
-            <div className="border-2 border-ink p-6 bg-bg flex items-center justify-center h-20 shadow-[3px_3px_0_#1F1A17]">
-              <span className="font-serif font-bold text-lg text-ink">Kenya Poverty Action</span>
-            </div>
+            <a 
+              href="https://kenyapovertyaction.org.uk/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="border-2 border-ink p-4 bg-bg flex items-center justify-center h-24 hover:-translate-y-1 transition-transform duration-200 shadow-[3px_3px_0_#1F1A17] group"
+            >
+              <img 
+                src="/images/partner1.png" 
+                alt="Kenya Poverty Action" 
+                className="h-16 object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '';
+                }}
+              />
+            </a>
             
-            {/* Collaborators / Universities */}
-            <div className="border-2 border-ink/40 p-4 bg-bg/50 flex items-center justify-center h-16 grayscale opacity-75">
-              <span className="font-mono text-xs tracking-wider text-ink-soft">Strathmore University Partner</span>
+            {/* Placeholders */}
+            <div className="border border-dashed border-ink/30 px-6 py-4 bg-bg/30 flex items-center justify-center h-24 min-w-[200px]">
+              <span className="font-mono text-xs uppercase tracking-widest text-ink-soft italic">Partner Coming Soon</span>
+            </div>
+            <div className="border border-dashed border-ink/30 px-6 py-4 bg-bg/30 flex items-center justify-center h-24 min-w-[200px]">
+              <span className="font-mono text-xs uppercase tracking-widest text-ink-soft italic">Partner Coming Soon</span>
             </div>
           </div>
         </div>
@@ -237,12 +295,12 @@ const Index = () => {
             <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
               Our Development Pillars
             </h2>
-            <p className="text-ink-soft font-mono text-xs uppercase tracking-wider">Minimal hand-outs, maximum scalable dignity</p>
+            <p className="text-ink-soft font-mono text-xs uppercase tracking-wider">Grassroots agency, scalable social infrastructure</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory md:grid md:grid-cols-3 gap-8 md:overflow-x-visible md:pb-0">
             {programs.map((program) => (
-              <div key={program.id} className="relative group">
+              <div key={program.id} className="relative group snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto md:shrink md:snap-none">
                 <div className="border-2 border-ink bg-bg p-4 shadow-[4px_4px_0_#1F1A17] transition-transform hover:-translate-y-1 h-full flex flex-col justify-between">
                   <div>
                     {/* Image Placeholder Frame */}
@@ -265,7 +323,7 @@ const Index = () => {
                     </p>
                   </div>
 
-                  <Button asChild className="w-full btn-neo bg-ink text-bg border-ink py-2 text-xs font-mono uppercase tracking-wider">
+                  <Button asChild className="w-full btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 py-2 text-xs font-mono uppercase tracking-wider font-bold">
                     <Link to={`/programs/${program.slug}`} onClick={() => window.scrollTo(0, 0)}>
                       Explore Details
                     </Link>
@@ -287,7 +345,7 @@ const Index = () => {
               Make a Direct Difference
             </h2>
             <p className="text-lg text-ink-soft max-w-2xl mx-auto font-sans leading-relaxed">
-              Your support funds digital voucher balances for girls to access pads locally, builds IoT classrooms, and helps run democratic peer labs in Kenya. We eliminate 30% of standard physical logistics costs through pure tech infrastructure.
+              Your support powers school retention and aid accountability by funding tracked digital voucher balances for girls to access sanitary products locally. It drives digital literacy and climate innovation through community tech programs, and empowers youth with over 20% increased civic engagement through active democratic participation labs.
             </p>
             <div className="pt-4">
               <Button asChild className="btn-neo bg-ink text-bg border-ink px-10 py-6 font-mono text-sm uppercase tracking-wider">
@@ -303,89 +361,27 @@ const Index = () => {
 
       {/* Contact Inquiry Section (bg-bg) */}
       <section className="py-16 md:py-24 bg-bg">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="border-2 border-ink p-8 md:p-12 bg-paper shadow-[6px_6px_0_#1F1A17] text-center space-y-6">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 text-ink">
               Let's Work Together
             </h2>
-            <p className="text-ink-soft font-mono text-xs uppercase tracking-wider">Send us an inquiry or explore collaboration</p>
-          </div>
-
-          <div className="border-2 border-ink p-8 bg-paper shadow-[6px_6px_0_#1F1A17]">
-            {submitted ? (
-              <div className="text-center py-12 space-y-4">
-                <div className="w-16 h-16 bg-mint border-2 border-ink rounded-full flex items-center justify-center mx-auto shadow-[3px_3px_0_#1F1A17]">
-                  <CheckCircle2 className="w-8 h-8 text-ink" />
-                </div>
-                <h3 className="font-serif text-2xl font-bold">Message Received!</h3>
-                <p className="text-ink-soft text-sm">Our partnerships team will reach out to you within 24 hours.</p>
-                <Button 
-                  onClick={() => setSubmitted(false)}
-                  className="btn-neo bg-ink text-bg border-ink font-mono text-xs uppercase tracking-wider mt-4"
-                >
-                  Send another message
-                </Button>
-              </div>
-            ) : (
-              <form onSubmit={handleContactSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="font-mono text-xs uppercase tracking-wider text-ink font-bold">Full Name *</label>
-                    <Input
-                      type="text"
-                      placeholder="Jane Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      required
-                      className="bg-bg border-2 border-ink rounded-none px-4 py-3 placeholder:text-ink-soft/50 text-ink focus-visible:ring-0 focus-visible:border-ink"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-mono text-xs uppercase tracking-wider text-ink font-bold">Email Address *</label>
-                    <Input
-                      type="email"
-                      placeholder="jane@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      required
-                      className="bg-bg border-2 border-ink rounded-none px-4 py-3 placeholder:text-ink-soft/50 text-ink focus-visible:ring-0 focus-visible:border-ink"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-mono text-xs uppercase tracking-wider text-ink font-bold">Subject</label>
-                  <Input
-                    type="text"
-                    placeholder="Partnership Opportunities"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                    className="bg-bg border-2 border-ink rounded-none px-4 py-3 placeholder:text-ink-soft/50 text-ink focus-visible:ring-0 focus-visible:border-ink"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-mono text-xs uppercase tracking-wider text-ink font-bold">Your Message *</label>
-                  <Textarea
-                    placeholder="Tell us how we can collaborate..."
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    required
-                    className="bg-bg border-2 border-ink rounded-none px-4 py-3 placeholder:text-ink-soft/50 text-ink focus-visible:ring-0 focus-visible:border-ink"
-                  />
-                </div>
-
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full btn-neo bg-ink text-bg border-ink font-mono text-xs uppercase tracking-wider py-4"
-                >
-                  {isSubmitting ? 'Sending Message...' : 'Send Inquiry'}
-                  <Send className="w-4 h-4 ml-2" />
-                </Button>
-              </form>
-            )}
+            <p className="text-lg text-ink-soft max-w-2xl mx-auto leading-relaxed">
+              We are actively looking for volunteers, partners, and collaborators to make society better. If you share our vision of grassroots-led social change, let's build together. Reach out to discuss partnerships, equipment donations, or volunteer opportunities.
+            </p>
+            <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+              <Button asChild className="btn-neo bg-ink text-bg border-ink px-8 py-5 font-mono text-xs uppercase tracking-wider">
+                <Link to="/contact">
+                  Partner with Us
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="btn-neo ghost border-ink px-8 py-5 font-mono text-xs uppercase tracking-wider">
+                <Link to="/contact">
+                  Volunteer with Us
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

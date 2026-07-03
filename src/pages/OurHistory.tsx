@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SectionDivider from '@/components/SectionDivider';
+import { Button } from '@/components/ui/button';
 
 const timelineEvents = [
   {
@@ -16,7 +17,7 @@ const timelineEvents = [
   {
     year: '2025',
     title: 'Digital Vouchers & Maker Labs',
-    description: 'We launched our offline-first Learn-to-Earn loyalty system and e-waste smart farm kits. Within 12 months, we grew to serve over 300+ students and local shopkeepers in Nairobi.',
+    description: 'We launched our offline-first Learn-to-Earn loyalty system and e-waste smart farm kits. Within 12 months, we grew to serve over 100+ students and local shopkeepers in Nairobi.',
     icon: Award,
     color: 'bg-butter text-ink',
   },
@@ -36,7 +37,7 @@ const OurHistory = () => {
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[60vh] flex items-center justify-center">
-        <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute inset-0 z-0 opacity-[0.45]">
           <img
             src="/images/programs.jpg"
             alt="The Uwezo Network Initiative timeline"
@@ -48,14 +49,14 @@ const OurHistory = () => {
         </div>
 
         <div className="container mx-auto px-4 z-10 max-w-4xl text-center space-y-6">
-          <span className="font-mono text-xs uppercase tracking-widest text-mint font-bold bg-mint/35 px-3 py-1 rounded-full border border-ink/20">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink font-bold bg-mint/35 px-3 py-1 rounded-full border border-ink/20 animate-pulse">
             OUR JOURNEY
           </span>
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
-            The Uwezo NGO Story
+            The Uwezo Story
           </h1>
-          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
-            "True transformation happens when we turn protest energy into structured, localized civic and digital capacity."
+          <p className="font-serif text-xl italic text-ink max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
+            "True community growth is built by turning shared visions into structured, sustainable resources that empower everyday people."
           </p>
         </div>
       </section>
@@ -66,9 +67,14 @@ const OurHistory = () => {
           <div className="space-y-12">
             <div className="text-center">
               <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">From CBO to National NGO</h2>
-              <p className="text-ink-soft text-lg max-w-2xl mx-auto leading-relaxed">
-                The **Uwezo Link Initiative** started as a community-based organization, and is now **The Uwezo Network Initiative**, a fully registered national NGO in Kenya. We address period poverty, civic isolation, and the digital divide as interconnected national crises.
-              </p>
+              <div className="text-ink-soft text-base max-w-3xl mx-auto leading-relaxed text-left space-y-4">
+                <p>
+                  The Uwezo Link Initiative began its journey as a grassroots community-based organization driven by the immediate, visible needs of local neighborhoods. Over time, we realized that bridging systemic gaps in health equity, digital literacy, and civic participation required a more robust, scalable structure. To support national scaling, we transitioned into The Uwezo Network Initiative, which is officially registered as a non-profit organization in Kenya under the Public Benefit Organizations Act. This transition empowers us to coordinate sustainable interventions across multiple counties while maintaining our foundational commitment to community-led design.
+                </p>
+                <p>
+                  Today, we operate as a national public benefit organization, combining technology and education to solve local challenges. By structuring our health, ICT, and youth advocacy programs as independent pillars, we ensure that donors can direct support to specific areas of interest. From keeping schoolgirls in class through menstrual equity to establishing community technology labs, our expansion allows us to drive national impact while remaining accountable to the grassroots networks where our journey first began.
+                </p>
+              </div>
             </div>
 
             {/* Custom Vertical Timeline */}
@@ -107,7 +113,7 @@ const OurHistory = () => {
               "When we started as a Community-Based Organization, our focus was strictly local. But seeing the immense gaps in digital resource equity, female attendance barriers, and voter education across different counties in Kenya, we knew we had to expand our scope."
             </p>
             <p className="text-ink-soft text-sm leading-relaxed font-sans">
-              As a registered National NGO, we are committed to scaling our offline-first Learn-to-Earn matrices, IoT e-waste makerspaces, and civic workshops to reaches youth in every county. We are coding the future, together.
+              As a registered National NGO, we are committed to scaling our offline-first Learn-to-Earn matrices, inclusive digital literacy workshops, and civic dialogues to reach youth in every county. We are coding the future, together.
             </p>
           </div>
         </div>
@@ -123,20 +129,20 @@ const OurHistory = () => {
             <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">Our programs are built around three core UN SDGs</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory md:grid md:grid-cols-3 gap-8 md:overflow-x-visible md:pb-0">
             {/* SDG 4 */}
-            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] hover:-translate-y-1 transition-transform duration-200">
+            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] hover:-translate-y-1 transition-transform duration-200 snap-start shrink-0 w-[80vw] sm:w-[280px] md:w-auto md:shrink md:snap-none">
               <div className="w-12 h-12 bg-coral/20 border border-ink rounded-full flex items-center justify-center mb-6">
                 <BookOpen className="w-6 h-6 text-ink" />
               </div>
               <h3 className="font-serif font-bold text-2xl mb-3">SDG 4: Quality Education</h3>
               <p className="text-ink-soft text-sm leading-relaxed font-sans">
-                Providing Python coding, AI certification, Tinkercad modeling, and Arduino programming kits directly to underprivileged public school children and community workshops.
+                Providing digital literacy training, programming foundations, and hands-on hardware workshops directly to underprivileged students, fostering long-term educational engagement and essential tech skills.
               </p>
             </div>
 
             {/* SDG 5 */}
-            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] hover:-translate-y-1 transition-transform duration-200">
+            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] hover:-translate-y-1 transition-transform duration-200 snap-start shrink-0 w-[80vw] sm:w-[280px] md:w-auto md:shrink md:snap-none">
               <div className="w-12 h-12 bg-butter/25 border border-ink rounded-full flex items-center justify-center mb-6">
                 <Heart className="w-6 h-6 text-ink" />
               </div>
@@ -147,7 +153,7 @@ const OurHistory = () => {
             </div>
 
             {/* SDG 9 */}
-            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] hover:-translate-y-1 transition-transform duration-200">
+            <div className="border-2 border-ink p-8 bg-bg shadow-[4px_4px_0_#1F1A17] hover:-translate-y-1 transition-transform duration-200 snap-start shrink-0 w-[80vw] sm:w-[280px] md:w-auto md:shrink md:snap-none">
               <div className="w-12 h-12 bg-lavender/30 border border-ink rounded-full flex items-center justify-center mb-6">
                 <Landmark className="w-6 h-6 text-ink" />
               </div>
@@ -167,12 +173,12 @@ const OurHistory = () => {
         <div className="container mx-auto px-4 max-w-4xl space-y-6">
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-ink">We Need Your Support</h2>
           <p className="text-lg text-ink-soft max-w-2xl mx-auto leading-relaxed">
-            Your donations directly fund sanitary towel voucher balances and smart classroom electronics. Help us empower the next generation of African tech leaders.
+            Your contributions directly support the security of girls' menstrual health resources and local technological literacy workshops. Partner with us to scale community-led social infrastructures and build long-term local resilience.
           </p>
           <div className="pt-4">
-            <Button asChild className="btn-neo bg-ink text-bg border-ink px-10 py-6 font-mono text-sm uppercase tracking-wider">
+            <Button asChild className="btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 px-10 py-6 font-mono text-sm uppercase tracking-wider font-bold">
               <Link to="/donate" onClick={() => window.scrollTo(0, 0)}>
-                Support Our NGO
+                Support Our Cause
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>

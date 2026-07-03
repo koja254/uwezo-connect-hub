@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,6 +12,13 @@ export const NewsletterPopup: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
+  const location = useLocation();
+
+  // Close popup when location path changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
   useEffect(() => {
     // Check if user already dismissed or subscribed
     const isSubscribed = localStorage.getItem('uwezo_newsletter_subscribed');
@@ -20,6 +28,10 @@ export const NewsletterPopup: React.FC = () => {
 
     // Trigger on scroll (>35% of page)
     const handleScroll = () => {
+      // Recheck local storage in case dismissed in another tab
+      if (localStorage.getItem('uwezo_newsletter_dismissed') || localStorage.getItem('uwezo_newsletter_subscribed')) {
+        return;
+      }
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollHeight <= 0) return;
       const scrollPercent = (window.scrollY / scrollHeight) * 100;
@@ -32,6 +44,10 @@ export const NewsletterPopup: React.FC = () => {
 
     // Trigger on exit intent (mouse leaving window top)
     const handleMouseLeave = (e: MouseEvent) => {
+      // Recheck local storage in case dismissed in another tab
+      if (localStorage.getItem('uwezo_newsletter_dismissed') || localStorage.getItem('uwezo_newsletter_subscribed')) {
+        return;
+      }
       if (e.clientY < 5) {
         setIsOpen(true);
         document.removeEventListener('mouseleave', handleMouseLeave);

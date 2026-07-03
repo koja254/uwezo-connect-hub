@@ -124,13 +124,13 @@ export const Careers: React.FC = () => {
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[50vh] flex items-center justify-center bg-paper">
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
-          <span className="font-mono text-xs uppercase tracking-widest text-coral-deep font-bold bg-coral/20 px-3 py-1 rounded-full border border-ink/20">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink font-bold bg-coral/20 px-3 py-1 rounded-full border border-ink/20 animate-pulse">
             OPPORTUNITIES
           </span>
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
             Join the Movement
           </h1>
-          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
+          <p className="font-serif text-xl italic text-ink max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
             "We believe in human-first technology. Help us build infrastructures of digital dignity and grassroots innovation."
           </p>
         </div>
@@ -212,8 +212,8 @@ export const Careers: React.FC = () => {
                   <option value="Programs">Programs & Mentorship</option>
                   <option value="Technology">Technology, AI & Maker Labs</option>
                   <option value="Operations">Operations (HR, Marketing, Admin)</option>
-                  <option value="Drivers">Drivers & Field Logistics</option>
-                  <option value="Cleaners">Cleaners & General Support</option>
+                  <option value="Drivers">Field Logistics & Operations</option>
+                  <option value="Cleaners">Facilities & General Support Staff</option>
                 </select>
               </div>
 
@@ -258,7 +258,7 @@ export const Careers: React.FC = () => {
               <Button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full btn-neo bg-ink text-bg border-ink py-4 font-mono text-xs uppercase tracking-wider"
+                className="w-full btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 py-4 font-mono text-xs uppercase tracking-wider font-bold"
               >
                 {isSubmitting ? 'Processing Application...' : 'Submit Application'}
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -286,7 +286,7 @@ export const Careers: React.FC = () => {
           <div className="pt-4">
             <Button 
               onClick={() => setShowThankYou(false)}
-              className="w-full btn-neo bg-ink text-bg border-ink font-mono text-xs uppercase tracking-wider py-3"
+              className="w-full btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 font-mono text-xs uppercase tracking-wider py-3 font-bold"
             >
               Back to Careers
             </Button>

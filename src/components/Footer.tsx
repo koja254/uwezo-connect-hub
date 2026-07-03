@@ -135,23 +135,34 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Organization Info */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center space-x-3 mb-6" onClick={() => window.scrollTo(0, 0)}>
-              <img
-                src="/images/new-uwezo-logo.jpeg"
-                alt="Uwezo Logo"
-                className="w-10 h-10 object-contain bg-transparent rounded-lg border border-bg"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFB4A2" stroke="%231F1A17" stroke-width="6"/><text x="50" y="60" font-size="36" font-family="serif" text-anchor="middle" fill="%231F1A17">U</text></svg>';
-                }}
-              />
-              <div>
-                <span className="font-serif font-bold text-xl leading-none">The Uwezo Network</span>
-                <div className="text-xs uppercase font-mono tracking-widest text-bg/85">Initiative</div>
-              </div>
-            </Link>
+            <div className="flex items-center justify-between mb-6">
+              <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <img
+                  src="/images/new-uwezo-logo.jpeg"
+                  alt="Uwezo Logo"
+                  className="w-10 h-10 object-contain bg-transparent rounded-lg border border-bg"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFB4A2" stroke="%231F1A17" stroke-width="6"/><text x="50" y="60" font-size="36" font-family="serif" text-anchor="middle" fill="%231F1A17">U</text></svg>';
+                  }}
+                />
+                <div>
+                  <span className="font-serif font-bold text-xl leading-none">The Uwezo Network</span>
+                  <div className="text-xs uppercase font-mono tracking-widest text-bg/85">Initiative</div>
+                </div>
+              </Link>
+
+              {/* Scroll to Top Button */}
+              <button 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="btn-neo bg-bg text-ink border-2 border-ink p-2 text-xs font-mono shadow-[2px_2px_0_#1F1A17] hover:shadow-[4px_4px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-1 font-bold shrink-0"
+                title="Scroll to Top"
+              >
+                <span>↑ TOP</span>
+              </button>
+            </div>
             
             <p className="text-bg/80 text-sm leading-relaxed mb-6">
-              A national NGO in Kenya co-designing development solutions with communities through tech education, environmental action, and health dignity.
+              A National NGO in Kenya co-designing development solutions with communities through tech education, environmental action, and health dignity.
             </p>
 
             {/* Contact Info */}
@@ -160,11 +171,16 @@ const Footer = () => {
                 <MapPin className="w-4 h-4 text-coral shrink-0" />
                 <span className="text-bg/80">Nairobi, Kenya</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-coral shrink-0" />
-                <a href="mailto:info@uwezonetwork.org" className="text-bg/80 hover:text-coral transition-colors">
-                  info@uwezonetwork.org
-                </a>
+              <div className="flex items-start space-x-3">
+                <Mail className="w-4 h-4 text-coral shrink-0 mt-1" />
+                <div className="flex flex-col">
+                  <a href="mailto:info@uwezolinkinitiative.org" className="text-bg/80 hover:text-coral transition-colors">
+                    info@uwezolinkinitiative.org
+                  </a>
+                  <a href="mailto:uwezolinkinitiative@gmail.com" className="text-bg/80 hover:text-coral transition-colors text-xs opacity-80">
+                    uwezolinkinitiative@gmail.com
+                  </a>
+                </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-coral shrink-0" />
@@ -245,7 +261,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/who-we-are/our-team#volunteer" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/contact" className="text-bg/80 hover:text-coral transition-colors" onClick={() => window.scrollTo(0, 0)}>
                   Volunteer with Us
                 </Link>
               </li>

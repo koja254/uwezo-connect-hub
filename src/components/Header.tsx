@@ -2,14 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,181 +65,157 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
-            <NavigationMenu>
-              <NavigationMenuList className="flex space-x-4">
-                
-                {/* Who We Are Dropdown */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep">
-                    Who We Are
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-2 p-4 w-[240px] bg-paper border border-ink rounded-lg shadow-md">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/who-we-are/about-us"
-                          className={`block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-coral/30 hover:text-ink ${isActivePath('/who-we-are/about-us') ? 'bg-coral/20 font-semibold' : ''}`}
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">About Us</div>
-                          <p className="text-xs text-ink-soft leading-snug">Our mission, vision and commitment</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/who-we-are/our-history"
-                          className={`block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-coral/30 hover:text-ink ${isActivePath('/who-we-are/our-history') ? 'bg-coral/20 font-semibold' : ''}`}
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Our History</div>
-                          <p className="text-xs text-ink-soft leading-snug">The story of our NGO journey</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/who-we-are/our-team"
-                          className={`block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-coral/30 hover:text-ink ${isActivePath('/who-we-are/our-team') ? 'bg-coral/20 font-semibold' : ''}`}
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Our Team</div>
-                          <p className="text-xs text-ink-soft leading-snug">Meet our leadership and staff</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+            <div className="flex items-center space-x-2">
+              
+              {/* Who We Are Dropdown */}
+              <div className="relative group">
+                <button className="flex items-center gap-1.5 px-3 py-2 bg-transparent text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep transition-colors font-bold">
+                  Who We Are
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 top-full pt-2 z-50 w-[240px] hidden group-hover:block">
+                  <div className="grid gap-2 p-4 bg-paper border-2 border-ink shadow-[4px_4px_0_#1F1A17] text-ink">
+                    <Link
+                      to="/who-we-are/about-us"
+                      className={`block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-coral/30 hover:text-ink ${isActivePath('/who-we-are/about-us') ? 'bg-coral/20 font-bold' : ''}`}
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">About Us</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Our mission, vision and commitment</p>
+                    </Link>
+                    <Link
+                      to="/who-we-are/our-history"
+                      className={`block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-coral/30 hover:text-ink ${isActivePath('/who-we-are/our-history') ? 'bg-coral/20 font-bold' : ''}`}
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Our History</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">The story of our NGO journey</p>
+                    </Link>
+                    <Link
+                      to="/who-we-are/our-team"
+                      className={`block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-coral/30 hover:text-ink ${isActivePath('/who-we-are/our-team') ? 'bg-coral/20 font-bold' : ''}`}
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Our Team</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Meet our leadership and staff</p>
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
-                {/* Our Programs Dropdown */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep">
-                    Our Programs
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-2 p-4 w-[280px] bg-paper border border-ink rounded-lg shadow-md">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/programs"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink border-b border-ink/10 pb-3"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-bold">All Programs Directory</div>
-                          <p className="text-xs text-ink-soft leading-snug">Explore our synergistic development model</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/programs/days-for-dignity"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Days for Dignity</div>
-                          <p className="text-xs text-ink-soft leading-snug">Health & attendance-linked support</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/programs/tech-for-tomorrow"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Tech for Tomorrow</div>
-                          <p className="text-xs text-ink-soft leading-snug">Maker labs, IT and IoT hardware</p>
-                        </Link>
-                      </NavigationMenuLink>
+              {/* Our Programs Dropdown */}
+              <div className="relative group">
+                <button className="flex items-center gap-1.5 px-3 py-2 bg-transparent text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep transition-colors font-bold">
+                  Our Programs
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 top-full pt-2 z-50 w-[280px] hidden group-hover:block">
+                  <div className="grid gap-2 p-4 bg-paper border-2 border-ink shadow-[4px_4px_0_#1F1A17] text-ink">
+                    <Link
+                      to="/programs"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink border-b border-ink/10 pb-3"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">All Programs Directory</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Explore our synergistic development model</p>
+                    </Link>
+                    
+                    <Link
+                      to="/programs/days-for-dignity"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Days for Dignity</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Health & attendance-linked support</p>
+                    </Link>
+                    
+                    <Link
+                      to="/programs/tech-for-tomorrow"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Tech for Tomorrow</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Maker labs, IT and IoT hardware</p>
+                    </Link>
 
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/programs/civic-power-in-motion"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Civic Power in Motion</div>
-                          <p className="text-xs text-ink-soft leading-snug">Inclusive youth democratic participation</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+                    <Link
+                      to="/programs/civic-power-in-motion"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-mint/30 hover:text-ink"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Civic Power in Motion</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Inclusive youth democratic participation</p>
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
-                {/* Resources Dropdown */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep">
-                    Resources
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-2 p-4 w-[240px] bg-paper border border-ink rounded-lg shadow-md">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/resources"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink border-b border-ink/10 pb-3"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">All Resources</div>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/resources/reports"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Reports</div>
-                          <p className="text-xs text-ink-soft leading-snug">Research & impact metrics</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/resources/publications"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Publications</div>
-                          <p className="text-xs text-ink-soft leading-snug">Guides and manuals</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/resources/assets"
-                          className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink"
-                          onClick={() => window.scrollTo(0, 0)}
-                        >
-                          <div className="text-sm font-semibold">Assets</div>
-                          <p className="text-xs text-ink-soft leading-snug">Media kit and logo package</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+              {/* Resources Dropdown */}
+              <div className="relative group">
+                <button className="flex items-center gap-1.5 px-3 py-2 bg-transparent text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep transition-colors font-bold">
+                  Resources
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 top-full pt-2 z-50 w-[240px] hidden group-hover:block">
+                  <div className="grid gap-2 p-4 bg-paper border-2 border-ink shadow-[4px_4px_0_#1F1A17] text-ink">
+                    <Link
+                      to="/resources"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink border-b border-ink/10 pb-3 font-bold"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">All Resources</div>
+                    </Link>
+                    <Link
+                      to="/resources/reports"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Reports</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Research & impact metrics</p>
+                    </Link>
+                    <Link
+                      to="/resources/publications"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Publications</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Guides and manuals</p>
+                    </Link>
+                    <Link
+                      to="/resources/assets"
+                      className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-lavender/30 hover:text-ink"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <div className="text-sm font-bold">Assets</div>
+                      <p className="text-[10px] text-ink-soft leading-snug">Media kit and logo package</p>
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
-                {/* Blog Link */}
-                <NavigationMenuItem>
-                  <Link 
-                    to="/blog" 
-                    className={`block px-3 py-2 text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep transition-colors ${isActivePath('/blog') ? 'text-coral-deep font-bold' : ''}`}
-                    onClick={() => window.scrollTo(0, 0)}
-                  >
-                    Blog
-                  </Link>
-                </NavigationMenuItem>
+              {/* Blog Link */}
+              <Link 
+                to="/blog" 
+                className={`block px-3 py-2 text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep transition-colors font-bold ${isActivePath('/blog') ? 'text-coral-deep' : ''}`}
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                Blog
+              </Link>
 
-                {/* Contact Link */}
-                <NavigationMenuItem>
-                  <Link 
-                    to="/contact" 
-                    className={`block px-3 py-2 text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep transition-colors ${isActivePath('/contact') ? 'text-coral-deep font-bold' : ''}`}
-                    onClick={() => window.scrollTo(0, 0)}
-                  >
-                    Contact
-                  </Link>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+              {/* Contact Link */}
+              <Link 
+                to="/contact" 
+                className={`block px-3 py-2 text-ink font-mono text-xs uppercase tracking-wider hover:text-coral-deep transition-colors font-bold ${isActivePath('/contact') ? 'text-coral-deep' : ''}`}
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                Contact
+              </Link>
 
-            {/* Donate CTA button */}
+            </div>
+
+            {/* Donate CTA button (solid neo-brutalist shadow, highly visible border) */}
             <div className="flex items-center">
-              <Button asChild className="btn-neo bg-ink text-bg border-ink hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all text-xs font-mono uppercase tracking-wider">
+              <Button asChild className="btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 text-xs font-mono uppercase tracking-wider font-bold">
                 <Link to="/donate" onClick={() => window.scrollTo(0, 0)}>Donate</Link>
               </Button>
             </div>
@@ -265,7 +233,7 @@ const Header = () => {
 
         {/* Mobile Navigation Panel */}
         {isMenuOpen && (
-          <div className="lg:hidden border border-ink bg-paper rounded-lg mt-2 p-4 shadow-lg animate-[accordion-down_0.25s_ease-out]">
+          <div className="lg:hidden border border-ink bg-paper rounded-lg mt-2 p-4 shadow-lg animate-[accordion-down_0.25s_ease-out] text-ink">
             <nav className="flex flex-col space-y-4">
               
               {/* Who We Are Subsection */}
@@ -388,7 +356,7 @@ const Header = () => {
                 Contact
               </Link>
               
-              <Button asChild className="btn-neo w-full bg-ink text-bg border-ink">
+              <Button asChild className="btn-neo w-full bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17]">
                 <Link to="/donate" onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}>
                   Donate
                 </Link>

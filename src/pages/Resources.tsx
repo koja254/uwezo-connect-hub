@@ -35,15 +35,26 @@ const Resources = () => {
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[50vh] flex items-center justify-center bg-paper">
-        <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
-          <span className="font-mono text-xs uppercase tracking-widest text-coral-deep font-bold bg-coral/20 px-3 py-1 rounded-full border border-ink/20">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/resources.jpg"
+            alt="Resources"
+            className="w-full h-full object-cover grayscale opacity-[0.45]"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=2073';
+            }}
+          />
+        </div>
+        <div className="container mx-auto px-4 max-w-4xl text-center space-y-6 relative z-10">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink font-bold bg-coral/20 px-3 py-1 rounded-full border border-ink/20 animate-pulse">
             RESOURCE DIRECTORY
           </span>
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
             Reports & Assets
           </h1>
-          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
-            "Access our audited research, publications, guides, and corporate brand assets here."
+          <p className="font-serif text-xl italic text-ink max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4 text-left bg-bg/85 p-4 border border-ink">
+            "Access vetted publications, research reports, and toolkits curated for our community partners and stakeholders to guide localized social action."
           </p>
         </div>
       </section>
@@ -78,9 +89,9 @@ const Resources = () => {
           
           {/* Reports Panel */}
           {activeTab === 'reports' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory md:grid md:grid-cols-2 gap-8 md:overflow-x-visible md:pb-0">
               {reports.map((report) => (
-                <div key={report.id} className="border-2 border-ink bg-paper p-6 shadow-[4px_4px_0_#1F1A17] hover:shadow-[6px_6px_0_#1F1A17] transition-all flex flex-col justify-between">
+                <div key={report.id} className="border-2 border-ink bg-paper p-6 shadow-[4px_4px_0_#1F1A17] hover:shadow-[6px_6px_0_#1F1A17] transition-all flex flex-col justify-between snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto md:shrink md:snap-none">
                   <div>
                     <div className="w-10 h-10 bg-coral/20 border border-ink rounded flex items-center justify-center mb-4">
                       <FileText className="w-5 h-5 text-ink" />
@@ -93,7 +104,7 @@ const Resources = () => {
                     </div>
                   </div>
                   
-                  <Button asChild className="w-full btn-neo bg-ink text-bg border-ink py-2 text-xs font-mono uppercase tracking-wider">
+                  <Button asChild className="w-full btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 py-2 text-xs font-mono uppercase tracking-wider font-bold">
                     <a href={report.downloadUrl} target="_blank" rel="noopener noreferrer">
                       <Download className="w-4 h-4 mr-2" />
                       View Document (PDF)

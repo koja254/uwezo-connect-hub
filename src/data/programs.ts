@@ -15,7 +15,7 @@ const programDefinitions: Program[] = [
     description: `A girl's education should never stop because of her period. Yet every month, thousands of bright girls miss 3-5 days of school because their families cannot afford sanitary pads. Days for Dignity addresses this gap through an innovative, data-driven reward system.
 
 Students earn digital education and attendance vouchers for school attendance and participation in Sexual and Reproductive Health Rights (SRHR) workshops. These vouchers are redeemable for sanitary products, school supplies, and other necessities at partner kiosks and clinics, creating a cycle of empowerment that addresses both immediate needs and long-term education goals.`,
-    heroImage: '/images/img-21.png',
+    heroImage: '/images/daysfordignity.png',
     heroImageAlt: 'Students in a school corridor receiving assistance',
     keyFeatures: [
       'Inclusion matrices for localized distribution',
@@ -32,9 +32,9 @@ Students earn digital education and attendance vouchers for school attendance an
       { step: 4, title: 'Impact Verification', description: 'Verify attendance and hygiene metrics to scale support networks.' }
     ],
     impact: [
-      { metric: 'Girls Supported', value: '500+', description: 'School-going girls receiving regular materials' },
-      { metric: 'Classroom Days Saved', value: '4.5K+', description: 'School days recovered due to reduced absenteeism' },
-      { metric: 'SRHR Workshops', value: '50+', description: 'Peer-led youth hygiene and safety sessions' }
+      { metric: 'Girls Supported', value: '100+', description: 'School-going girls receiving regular materials' },
+      { metric: 'Classroom Days Saved', value: '800+', description: 'School days recovered due to reduced absenteeism' },
+      { metric: 'SRHR Workshops', value: '3+', description: 'Peer-led youth hygiene and safety sessions' }
     ],
     gallery: [
       { src: '/images/image-03.jpg', alt: 'Voucher redemption and hygiene materials' },

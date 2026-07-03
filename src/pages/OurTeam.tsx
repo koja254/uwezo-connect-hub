@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Linkedin, ArrowRight, Heart } from 'lucide-react';
+import { Mail, Linkedin, ArrowRight, Heart, User } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SectionDivider from '@/components/SectionDivider';
@@ -40,9 +40,9 @@ const OurTeam = () => {
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 border-b-[1.5px] border-ink overflow-hidden min-h-[60vh] flex items-center justify-center">
-        <div className="absolute inset-0 z-0 opacity-15">
+        <div className="absolute inset-0 z-0 opacity-[0.45]">
           <img
-            src="/images/programs.jpg"
+            src="/images/team.jpg"
             alt="The Uwezo Network Initiative team"
             className="w-full h-full object-cover grayscale"
             onError={(e) => {
@@ -52,13 +52,13 @@ const OurTeam = () => {
         </div>
 
         <div className="container mx-auto px-4 z-10 max-w-4xl text-center space-y-6">
-          <span className="font-mono text-xs uppercase tracking-widest text-lavender font-bold bg-lavender/30 px-3 py-1 rounded-full border border-ink/20">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink font-bold bg-lavender/30 px-3 py-1 rounded-full border border-ink/20 animate-pulse">
             OUR TEAM
           </span>
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-ink">
             Meet the Builders
           </h1>
-          <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
+          <p className="font-serif text-xl italic text-ink max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
             "We exist because young people can and do lead. We shape solutions alongside the communities we serve."
           </p>
         </div>
@@ -72,23 +72,31 @@ const OurTeam = () => {
             <p className="text-ink-soft text-sm font-mono uppercase tracking-wider mt-1">Driving structural change and digital dignity</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="flex overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory md:grid md:grid-cols-2 gap-8 max-w-4xl mx-auto md:overflow-x-visible md:pb-0">
             {leadership.map((member) => {
               const theme = getMemberTheme(member.id);
               return (
                 <div 
                   key={member.id} 
-                  className={`border-2 border-ink bg-paper p-6 transition-all duration-300 shadow-[4px_4px_0_#1F1A17] ${theme.border} ${theme.shadow} ${theme.bg} flex flex-col justify-between`}
+                  className={`border-2 border-ink bg-paper p-6 transition-all duration-300 shadow-[4px_4px_0_#1F1A17] ${theme.border} ${theme.shadow} ${theme.bg} flex flex-col justify-between snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto md:shrink md:snap-none`}
                 >
                   <div>
                     {/* Portrait */}
-                    <div className="w-full h-64 border border-ink overflow-hidden mb-6 relative">
+                    <div className="w-full h-64 border border-ink overflow-hidden mb-6 relative bg-paper flex items-center justify-center">
                       <div className="tape-accent bg-butter" />
-                      <LazyImage
-                        src={member.image || '/images/team/placeholder.jpeg'}
-                        alt={member.imageAlt || member.name}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
+                      {(!member.image || member.image.includes('unsplash.com')) ? (
+                        <div className="w-full h-full flex flex-col items-center justify-center bg-paper border-b border-ink/10">
+                          <User className="w-16 h-16 text-ink-soft/40" />
+                          <span className="font-mono text-[9px] text-ink-soft/60 uppercase tracking-widest mt-2">No Photo Available</span>
+                        </div>
+                      ) : (
+                        <LazyImage
+                          src={member.image}
+                          alt={member.imageAlt || member.name}
+                          className={`w-full h-full object-cover transition-transform duration-300 ${member.id === 'bob-kimani' || member.id === 'johnson-gitonga' ? 'scale-[0.88]' : 'hover:scale-105'}`}
+                          style={{ objectPosition: member.objectPosition || 'top' }}
+                        />
+                      )}
                     </div>
 
                     <h3 className="font-serif text-2xl font-bold text-ink">{member.name}</h3>
@@ -136,22 +144,30 @@ const OurTeam = () => {
             <p className="text-ink-soft text-sm font-mono uppercase tracking-wider mt-1">Guiding governance, partnerships, and operations</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory lg:grid lg:grid-cols-3 md:grid-cols-2 gap-8 md:overflow-x-visible md:pb-0">
             {board.map((member) => {
               const theme = getMemberTheme(member.id);
               return (
                 <div 
                   key={member.id} 
-                  className={`border-2 border-ink bg-bg p-6 transition-all duration-300 shadow-[3px_3px_0_#1F1A17] ${theme.border} ${theme.shadow} ${theme.bg} flex flex-col justify-between`}
+                  className={`border-2 border-ink bg-bg p-6 transition-all duration-300 shadow-[3px_3px_0_#1F1A17] ${theme.border} ${theme.shadow} ${theme.bg} flex flex-col justify-between snap-start shrink-0 w-[80vw] sm:w-[280px] md:w-auto md:shrink md:snap-none`}
                 >
                   <div>
                     {/* Portrait */}
-                    <div className="w-full h-48 border border-ink overflow-hidden mb-4 relative">
-                      <LazyImage
-                        src={member.image || '/images/team/placeholder.jpeg'}
-                        alt={member.imageAlt || member.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-full h-48 border border-ink overflow-hidden mb-4 relative bg-paper flex items-center justify-center">
+                      {(!member.image || member.image.includes('unsplash.com')) ? (
+                        <div className="w-full h-full flex flex-col items-center justify-center bg-paper border-b border-ink/10">
+                          <User className="w-12 h-12 text-ink-soft/40" />
+                          <span className="font-mono text-[8px] text-ink-soft/60 uppercase tracking-widest mt-1">No Photo Available</span>
+                        </div>
+                      ) : (
+                        <LazyImage
+                          src={member.image}
+                          alt={member.imageAlt || member.name}
+                          className={`w-full h-full object-cover transition-transform duration-300 ${member.id === 'bob-kimani' || member.id === 'johnson-gitonga' ? 'scale-[0.88]' : 'hover:scale-105'}`}
+                          style={{ objectPosition: member.objectPosition || 'top' }}
+                        />
+                      )}
                     </div>
 
                     <h3 className="font-serif text-xl font-bold text-ink">{member.name}</h3>
@@ -192,10 +208,10 @@ const OurTeam = () => {
           <div className="space-y-4">
             <h2 className="font-serif text-4xl font-bold">Want to Join Us?</h2>
             <p className="text-ink-soft max-w-md mx-auto leading-relaxed text-sm">
-              We are always looking for passionate technology builders, program organizers, facilitators, and logistics drivers.
+              We are always looking for passionate technology builders, program organizers, facilitators, and field operations and support staff.
             </p>
             <div className="pt-4">
-              <Button asChild className="btn-neo bg-ink text-bg border-ink px-8 py-5 font-mono text-xs uppercase tracking-wider">
+              <Button asChild className="btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 px-8 py-5 font-mono text-xs uppercase tracking-wider font-bold">
                 <Link to="/careers">
                   View Open Opportunities
                   <ArrowRight className="w-4 h-4 ml-2" />

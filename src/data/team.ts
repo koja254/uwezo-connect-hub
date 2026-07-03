@@ -10,6 +10,7 @@ export interface TeamMember {
   email?: string;
   category: 'leadership' | 'board' | 'kpa' | 'extended';
   tags?: string[];
+  objectPosition?: string;
 }
 
 export const teamMembers: TeamMember[] = [
@@ -23,22 +24,23 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Sharly1.jpeg',
     imageAlt: 'Portrait of Sharly Moraa',
     linkedin: 'https://www.linkedin.com/in/sharly-misati-818b28261/',
-    email: 'sharly.moraa@uwezonetwork.org',
+    email: 'sharly.moraa@uwezolinkinitiative.org',
     category: 'leadership',
-    tags: ['SRHR Advocacy', 'Ethical AI', 'Days for Dignity', 'Menstrual Equity']
+    tags: ['SRHR Advocacy', 'Ethical AI', 'Days for Dignity', 'Menstrual Equity'],
+    objectPosition: 'center 10%'
   },
   {
     id: 'tevin-omondi',
     name: 'Tevin Omondi',
     role: 'Co-Founder & Technology Lead',
-    bio: `A vocal advocate for green industrialization, Tevin specializes in leveraging technology for social good. As the Co-Founder and Technology Lead, he architects The Uwezo Network's maker lab modules and utilizes IoT prototypes to create scalable, low-barrier innovations. Furthermore, he leads the technical development of our digital tools, building the blockchain architecture and digital voucher systems that ensure transparent value distribution. He is dedicated to empowering rural Kenya through sustainable, community-driven technological advancement.`,
+    bio: `A vocal advocate for green industrialization, Tevin specializes in leveraging technology for social good. As the Co-Founder and Technology Lead, he architects The Uwezo Network's maker lab modules and utilizes IoT prototypes to create scalable, low-barrier innovations. Furthermore, he leads the technical development of our digital tools, building the digital database architecture and digital voucher systems that ensure transparent value distribution. He is dedicated to empowering rural Kenya through sustainable, community-driven technological advancement.`,
     quote: `"Technology is only as powerful as the lives it transforms."`,
     image: '/images/team/Tevin0.jpeg',
     imageAlt: 'Portrait of Tevin Omondi',
     linkedin: 'https://www.linkedin.com/in/tevin-omondi-40655723b/',
-    email: 'tevin@uwezonetwork.org',
+    email: 'tevin@uwezolinkinitiative.org',
     category: 'leadership',
-    tags: ['Blockchain for Impact', 'Maker Labs', 'Green Economy', 'Smart Contracts']
+    tags: ['Digital Vouchers', 'Maker Labs', 'Green Economy', 'Full-Stack Dev']
   },
 
   // Board Members
@@ -50,9 +52,10 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Ali.jpeg',
     imageAlt: 'Portrait of Ali Raqiba',
     linkedin: 'https://www.linkedin.com/in/raqiba-ali-77904b257/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
-    tags: ['IoT Labs', 'Youth Tech', 'Green Economy']
+    tags: ['IoT Labs', 'Youth Tech', 'Green Economy'],
+    objectPosition: 'center 15%'
   },
   {
     id: 'peris-makworo',
@@ -62,9 +65,10 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Peris.jpeg',
     imageAlt: 'Portrait of Peris Makworo',
     linkedin: 'https://www.linkedin.com/in/peris-makworo-5805602a4/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
-    tags: ['SRHR Education', 'Days for Dignity', 'Grassroots']
+    tags: ['SRHR Education', 'Days for Dignity', 'Grassroots'],
+    objectPosition: 'center 18%'
   },
   {
     id: 'sharon-kemunto',
@@ -74,9 +78,10 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Sharon.jpeg',
     imageAlt: 'Portrait of Sharon Kemunto',
     linkedin: 'https://www.linkedin.com/in/sharon-misati-491341188/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
-    tags: ['Operations', 'Administration', 'Comms']
+    tags: ['Operations', 'Administration', 'Comms'],
+    objectPosition: 'center 25%'
   },
   {
     id: 'johnson-gitonga',
@@ -86,9 +91,10 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Johnson.jpeg',
     imageAlt: 'Portrait of Johnson Gitonga',
     linkedin: 'https://www.linkedin.com/in/johnson-gitonga-391ab4347/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
-    tags: ['Public Relations', 'Partnerships', 'Outreach']
+    tags: ['Public Relations', 'Partnerships', 'Outreach'],
+    objectPosition: 'center 18%'
   },
   {
     id: 'bob-kimani',
@@ -98,9 +104,10 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Bob.jpeg',
     imageAlt: 'Portrait of Bob Kimani',
     linkedin: 'https://www.linkedin.com/in/bob-kimani-55893a33a/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
-    tags: ['Civic Literacy', 'iOS Dev', 'Digital Rights']
+    tags: ['Civic Literacy', 'iOS Dev', 'Digital Rights'],
+    objectPosition: 'center 18%'
   },
   {
     id: 'kevin-ojwang',
@@ -110,7 +117,7 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Kevin.jpeg',
     imageAlt: 'Portrait of Kevin Ojwang',
     linkedin: 'https://www.linkedin.com/in/kevin-ojwang-aa71a6308/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['STEM Education', 'Data Analytics', 'AI']
   },
@@ -122,19 +129,20 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/Teresia.jpeg',
     imageAlt: 'Placeholder: Teresia Wanjohi',
     linkedin: 'https://www.linkedin.com/in/teresia-wanjohi-379575182/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
-    tags: ['Cybersecurity', 'Digital Safety', 'STEM']
+    tags: ['Cybersecurity', 'Digital Safety', 'STEM'],
+    objectPosition: 'center 20%'
   },
   {
     id: 'christine-muna',
     name: 'Christine Muna',
     role: 'Senior Advisory Consultant',
     bio: `With over 15 years of leadership in the nonprofit and humanitarian sectors, Christine provides strategic oversight on donor engagement and international visibility, aligning The Uwezo Network's initiatives with global ESG standards.`,
-    image: '/images/team/placeholder.jpeg',
-    imageAlt: 'Placeholder: Christine Muna',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300',
+    imageAlt: 'Portrait of Christine Muna',
     linkedin: 'https://www.linkedin.com/in/christine-muna-a35878155/',
-    email: 'info@uwezonetwork.org',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['Strategy', 'Global Comms', 'ESG']
   },
@@ -143,9 +151,9 @@ export const teamMembers: TeamMember[] = [
     name: 'Hellen Koros',
     role: 'Finance & Compliance Officer',
     bio: `As a Certified Public Accountant, Hellen maintains the financial health and transparency of the initiative, overseeing budget allocation and ensuring rigorous compliance with international accounting standards for nonprofits.`,
-    image: '/images/team/placeholder.jpeg',
-    imageAlt: 'Placeholder: Hellen Koros',
-    email: 'info@uwezonetwork.org',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300',
+    imageAlt: 'Portrait of Hellen Koros',
+    email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['Finance', 'CPA', 'Compliance']
   },
@@ -156,8 +164,8 @@ export const teamMembers: TeamMember[] = [
     name: 'Evans James',
     role: 'Executive Director, Kenya Poverty Action',
     bio: `Development expert with 20+ years in water, health, and sanitation. Executive Director of KPA and advisor to multiple organizations. Skilled in strategic partnerships, resource mobilization, and policy advocacy. Dedicated to fostering sustainable, community-driven change.`,
-    image: '/images/team/placeholder.jpeg',
-    imageAlt: 'Placeholder: Evans James',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300',
+    imageAlt: 'Portrait of Evans James',
     email: 'info@kenyapovertyaction.org.uk',
     category: 'kpa',
     tags: ['Policy Advocacy', 'WASH', 'Resource Mobilization']

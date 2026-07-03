@@ -54,16 +54,15 @@ export const Donate: React.FC = () => {
             Become an Ally Today
           </h1>
           <p className="font-serif text-xl italic text-ink-soft max-w-2xl mx-auto leading-relaxed border-l-2 border-ink/30 pl-4">
-            "We Need Your Support - Leave a Legacy. Invest in the next generation of African tech leaders."
+            "Your partnership is an investment in human dignity, sustainable education, and localized community agency. Leave a lasting legacy of change."
           </p>
         </div>
       </section>
 
-      {/* Philosophy Callout */}
       <section className="py-12 bg-bg text-center">
         <div className="container mx-auto px-4 max-w-3xl">
           <p className="text-lg md:text-xl text-ink-soft leading-relaxed font-sans">
-            Every donation directly funds sanitary towel voucher balances for girls to stay in school, components for e-waste smart classroom engineering, and facilitator tools for community-level voter dialogues.
+            Every contribution acts as a direct catalyst for community resilience. By supporting our independent pillars, you secure the resources that keep girls in school, build local capacity for climate technology innovation, and empower youth to actively participate in democratic processes across Kenya.
           </p>
         </div>
       </section>
@@ -106,13 +105,17 @@ export const Donate: React.FC = () => {
                       <span className="font-mono font-bold text-ink">2.</span>
                       <span>Select <strong>Lipa Na M-Pesa</strong> then <strong>Paybill</strong></span>
                     </li>
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <span className="font-mono font-bold text-ink">3.</span>
-                      <span>Enter Business Number: <strong>400222</strong> (Cooperative Bank)</span>
+                      <span className="flex items-center gap-2">
+                        Enter Business Number: <strong>XXXXXX</strong>
+                      </span>
                     </li>
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <span className="font-mono font-bold text-ink">4.</span>
-                      <span>Enter Account Number: <strong>DONATE</strong></span>
+                      <span className="flex items-center gap-2">
+                        Enter Account Number: <strong>XXXXXX</strong>
+                      </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-mono font-bold text-ink">5.</span>
@@ -126,7 +129,7 @@ export const Donate: React.FC = () => {
                 </div>
                 <div className="border border-ink/40 p-4 bg-butter/10 text-center rounded">
                   <p className="text-xs text-ink-soft font-mono">
-                    * M-Pesa transfers directly deposit into our verified NGO accounts in Nairobi, Kenya.
+                    * Kindly write us an email at <a href="mailto:info@uwezolinkinitiative.org" className="underline font-bold hover:text-ink">info@uwezolinkinitiative.org</a> before making any payments, as we will be implementing automated payment gateways later.
                   </p>
                 </div>
               </TabsContent>
@@ -177,7 +180,7 @@ export const Donate: React.FC = () => {
                         </div>
                         <Button
                           onClick={() => copyToClipboard(wallet.address, wallet.name)}
-                          className="btn-neo bg-ink text-bg border-ink p-2 text-xs font-mono h-10 w-full sm:w-28 flex items-center justify-center gap-1.5"
+                          className="btn-neo bg-ink text-bg border-2 border-ink shadow-[2px_2px_0_#1F1A17] hover:shadow-[4px_4px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 p-2 text-xs font-mono h-10 w-full sm:w-28 flex items-center justify-center gap-1.5 font-bold"
                         >
                           {copiedAddress === wallet.address ? <Check className="w-4 h-4 text-mint" /> : <Copy className="w-4 h-4" />}
                           {copiedAddress === wallet.address ? 'Copied' : 'Copy'}
@@ -203,7 +206,7 @@ export const Donate: React.FC = () => {
             Reach out directly to our partnerships team to coordinate donor-directed grants, equipment donations, or corporate matching.
           </p>
           <div className="pt-4">
-            <Button asChild className="btn-neo bg-ink text-bg border-ink px-8 py-5 font-mono text-xs uppercase tracking-wider">
+            <Button asChild className="btn-neo bg-ink text-bg border-2 border-ink shadow-[3px_3px_0_#1F1A17] hover:shadow-[5px_5px_0_#1F1A17] hover:-translate-y-0.5 transition-all duration-300 px-8 py-5 font-mono text-xs uppercase tracking-wider font-bold">
               <Link to="/contact">
                 Get In Touch
                 <ArrowRight className="w-4 h-4 ml-2" />
