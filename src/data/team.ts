@@ -55,7 +55,7 @@ export const teamMembers: TeamMember[] = [
     email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['IoT Labs', 'Youth Tech', 'Green Economy'],
-    objectPosition: 'center 15%'
+    objectPosition: 'center 35%'
   },
   {
     id: 'peris-makworo',
@@ -68,7 +68,7 @@ export const teamMembers: TeamMember[] = [
     email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['SRHR Education', 'Days for Dignity', 'Grassroots'],
-    objectPosition: 'center 18%'
+    objectPosition: 'center 35%'
   },
   {
     id: 'sharon-kemunto',
@@ -81,7 +81,7 @@ export const teamMembers: TeamMember[] = [
     email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['Operations', 'Administration', 'Comms'],
-    objectPosition: 'center 25%'
+    objectPosition: 'center 35%'
   },
   {
     id: 'johnson-gitonga',
@@ -94,7 +94,7 @@ export const teamMembers: TeamMember[] = [
     email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['Public Relations', 'Partnerships', 'Outreach'],
-    objectPosition: 'center 18%'
+    objectPosition: 'center 40%'
   },
   {
     id: 'bob-kimani',
@@ -107,7 +107,7 @@ export const teamMembers: TeamMember[] = [
     email: 'info@uwezolinkinitiative.org',
     category: 'board',
     tags: ['Civic Literacy', 'iOS Dev', 'Digital Rights'],
-    objectPosition: 'center 18%'
+    objectPosition: 'center 40%'
   },
   {
     id: 'kevin-ojwang',

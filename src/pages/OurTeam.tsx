@@ -93,7 +93,7 @@ const OurTeam = () => {
                         <LazyImage
                           src={member.image}
                           alt={member.imageAlt || member.name}
-                          className={`w-full h-full object-cover transition-transform duration-300 ${member.id === 'bob-kimani' || member.id === 'johnson-gitonga' ? 'scale-[0.88]' : 'hover:scale-105'}`}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                           style={{ objectPosition: member.objectPosition || 'top' }}
                         />
                       )}
@@ -164,7 +164,7 @@ const OurTeam = () => {
                         <LazyImage
                           src={member.image}
                           alt={member.imageAlt || member.name}
-                          className={`w-full h-full object-cover transition-transform duration-300 ${member.id === 'bob-kimani' || member.id === 'johnson-gitonga' ? 'scale-[0.88]' : 'hover:scale-105'}`}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                           style={{ objectPosition: member.objectPosition || 'top' }}
                         />
                       )}
